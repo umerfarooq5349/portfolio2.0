@@ -1,0 +1,68 @@
+@import url('https://api.fontshare.com/v2/css?f[]=chubbo@700,800,900&f[]=supreme@400,500,700&display=swap');
+@import "tailwindcss";
+
+:root {
+  /* Strict 5 Color Palette (Coolors Specified):
+     1. #20476C (Deep Navy Blue - Base / Background & Card Surfaces)
+     2. #B8DBD9 (Soft Ice Mint - Secondary / Body Muted Text / Hairline Borders)
+     3. #ECB365 (Warm Golden Amber - Primary Signature Accent / Buttons / Shutter CTAs)
+     4. #F45B69 (Bubblegum Pink / Coral - Tags / Badges / Icons / Hover States / Social Proof)
+     5. #0C7C59 (Deep Emerald Green - Success Badges / Status Indicators)
+  */
+  --background: #11283D; /* Deep Navy Blue from #20476C */
+  --foreground: #FFFFFF;
+  --surface: #193854; /* Navy Surface Card from #20476C */
+  --surface-elevated: #20476C; /* Pure #20476C Elevated Card */
+
+  --navy: #20476C;
+  --ice: #B8DBD9;
+  --gold: #ECB365;
+  --pink: #F45B69; /* Bubblegum Pink */
+  --coral: #F45B69;
+
+  --accent: #ECB365; /* Buttons, Shutter Highlights, Primary CTAs */
+  --accent-hover: #D9A054;
+  --emerald: #0C7C59;
+  --border-subtle: rgba(184, 219, 217, 0.22);
+
+  --font-chubbo: 'Chubbo', sans-serif;
+  --font-supreme: 'Supreme', sans-serif;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-elevated: var(--surface-elevated);
+  --color-navy: var(--navy);
+  --color-ice: var(--ice);
+  --color-gold: var(--gold);
+  --color-pink: var(--pink);
+  --color-coral: var(--coral);
+  --color-emerald: var(--emerald);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-muted: var(--muted);
+  --color-border-subtle: var(--border-subtle);
+  --font-sans: var(--font-supreme);
+  --font-serif: var(--font-chubbo);
+  --font-heading: var(--font-chubbo);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: 'Supreme', var(--font-supreme), system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.font-heading {
+  font-family: 'Chubbo', var(--font-chubbo), system-ui, sans-serif;
+  font-weight: 700;
+}
