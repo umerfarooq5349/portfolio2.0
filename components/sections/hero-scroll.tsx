@@ -7,6 +7,68 @@ import { MagneticButton } from "@/components/ui/magnetic-button";
 import HeroShutterText from "@/components/ui/hero-shutter-text";
 import { DotGrid } from "@/components/ui/DotGrid";
 import { ArrowRight, CalendarCheck, CheckCircle, Star, Lightning, SpeakerHigh, SpeakerSimpleSlash } from "@phosphor-icons/react";
+import { SlantedGlassMarquee, MarqueeItem } from "@/components/ui/slanted-glass-marquee";
+
+
+const BrandLogos = {
+  GoHighLevel: () => (
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" className="text-[#3B82F6] shrink-0">
+      <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" fill="currentColor" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+    </svg>
+  ),
+  n8n: () => (
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" className="text-[#FF6D5A] shrink-0">
+      <circle cx="6" cy="12" r="3" fill="currentColor" />
+      <circle cx="18" cy="6" r="3" fill="currentColor" />
+      <circle cx="18" cy="18" r="3" fill="currentColor" />
+      <path d="M8.5 10.5L15.5 7.5M8.5 13.5L15.5 16.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+    </svg>
+  ),
+  Zapier: () => (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-[#FF4F00] shrink-0">
+      <path d="M12 2L14.5 9.5H22L16 14L18.5 21.5L12 17L5.5 21.5L8 14L2 9.5H9.5L12 2Z" fill="currentColor" />
+    </svg>
+  ),
+  OpenAI: () => (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-[#ECB365] shrink-0">
+      <path d="M12 2L14.5 7.5L20 8L15.5 12L17 17.5L12 14.5L7 17.5L8.5 12L4 8L9.5 7.5L12 2Z" fill="currentColor" />
+    </svg>
+  ),
+  Make: () => (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-[#A855F7] shrink-0">
+      <rect x="3" y="3" width="7" height="7" rx="2" fill="currentColor" />
+      <rect x="14" y="3" width="7" height="7" rx="2" fill="currentColor" />
+      <rect x="8.5" y="14" width="7" height="7" rx="2" fill="currentColor" />
+    </svg>
+  ),
+  HubSpot: () => (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-[#FF7A59] shrink-0">
+      <circle cx="12" cy="12" r="4" fill="currentColor" />
+      <path d="M12 2V6M12 18V22M2 12H6M18 12H22" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
+    </svg>
+  ),
+  Stripe: () => (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-[#635BFF] shrink-0">
+      <path d="M13.9 9.1c0-.7-.6-1-1.6-1-1.4 0-3.1.5-4.4 1.3V5.8C9.4 5.1 11.4 4.7 13 4.7c3.4 0 5.6 1.7 5.6 4.7 0 4.6-6.3 3.9-6.3 5.9 0 .8.7 1.1 1.8 1.1 1.6 0 3.6-.7 4.9-1.6v3.7c-1.5.8-3.5 1.2-5.1 1.2-3.6 0-5.9-1.7-5.9-4.8 0-4.9 6.3-4.1 6.3-5.8z" fill="currentColor" />
+    </svg>
+  ),
+  API: () => (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-[#B8DBD9] shrink-0">
+      <path d="M16 18L22 12L16 6M8 6L2 12L8 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  ),
+};
+
+const TOOLS_DATA: MarqueeItem[] = [
+  { name: "GoHighLevel", icon: <BrandLogos.GoHighLevel />, color: "#FFFFFF" },
+  { name: "n8n Automation", icon: <BrandLogos.n8n />, color: "#FFFFFF" },
+  { name: "Zapier Workflows", icon: <BrandLogos.Zapier />, color: "#FFFFFF" },
+  { name: "AI Agents & Chatbots", icon: <BrandLogos.OpenAI />, color: "#ECB365" },
+  { name: "Make.com Integrations", icon: <BrandLogos.Make />, color: "#FFFFFF" },
+  { name: "HubSpot CRM", icon: <BrandLogos.HubSpot />, color: "#FFFFFF" },
+  { name: "Stripe & Webhooks", icon: <BrandLogos.Stripe />, color: "#FFFFFF" },
+  { name: "Custom API Systems", icon: <BrandLogos.API />, color: "#B8DBD9" },
+];
 
 export function HeroScroll() {
   const containerRef = useRef<HTMLElement>(null);
@@ -29,7 +91,7 @@ export function HeroScroll() {
           // If browser policy temporarily blocks unmuted play before interaction, fallback to muted autoplay until first micro-gesture
           video.muted = true;
           setIsMuted(true);
-          video.play().catch(() => {});
+          video.play().catch(() => { });
         });
     };
 
@@ -72,7 +134,7 @@ export function HeroScroll() {
         .catch(() => {
           video.muted = true;
           setIsMuted(true);
-          video.play().catch(() => {});
+          video.play().catch(() => { });
         });
     } else {
       video.pause();
@@ -99,7 +161,7 @@ export function HeroScroll() {
       ref={containerRef}
       id="hero"
       aria-label="Hero — Muhammad Umer Farooq CRM Automation Expert"
-      className="relative min-h-screen lg:h-screen lg:max-h-screen bg-[var(--background)] text-white overflow-hidden flex flex-col justify-between"
+      className="relative min-h-screen lg:min-h-screen bg-[var(--background)] text-white overflow-visible flex flex-col justify-between"
     >
       {/* Interactive DotGrid background */}
       <div className="absolute inset-0 z-0 pointer-events-auto">
@@ -118,9 +180,9 @@ export function HeroScroll() {
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_90%_75%_at_50%_0%,rgba(236,179,101,0.1),transparent_80%),radial-gradient(ellipse_70%_50%_at_20%_40%,rgba(32,71,108,0.4),transparent_90%)] pointer-events-none z-0" />
 
       {/* Main hero content */}
-      <div className="relative z-10 flex-1 flex items-center pt-20 lg:pt-22 pb-8">
+      <div className="relative z-10 flex-1 flex items-center mt-8 pt-40 lg:pt-22 pb-8">
         <div className="max-w-6xl mx-auto px-6 w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 xl:gap-12 items-center">
+          <div className="grid grid-cols-3 lg:grid-cols-12 gap-8 xl:gap-12 items-center ">
 
             {/* Left — Text Content (7 cols) */}
             <div className="lg:col-span-7">
@@ -291,6 +353,16 @@ export function HeroScroll() {
             </motion.div>
           </div>
         </div>
+      </div>
+
+      {/* Full-Width Slanted Glassmorphic Marquee (-3deg) embedded in Hero */}
+      <div className="w-full relative z-20 pb-6 pt-2 overflow-visible pointer-events-auto">
+        <SlantedGlassMarquee
+          items={TOOLS_DATA}
+          angle={-3}
+          speed={1}
+          pauseOnHover={true}
+        />
       </div>
     </section>
   );

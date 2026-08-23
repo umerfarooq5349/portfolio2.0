@@ -51,7 +51,7 @@ export function StatsBar() {
   return (
     <section
       aria-label="Key Statistics"
-      className="py-20 border-y border-white/10 bg-[var(--background)]"
+      className="relative z-10 py-16 border-y border-white/10 bg-[var(--background)]"
     >
       <div className="max-w-5xl mx-auto px-6">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-0 divide-x divide-white/10">

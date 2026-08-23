@@ -58,13 +58,13 @@ export function SlantedGlassMarquee({
 
   return (
     <div
-      className="w-full relative overflow-visible flex items-center justify-center py-6"
+      className="w-full relative overflow-visible flex items-center justify-center py-8 md:py-10"
       onMouseEnter={() => pauseOnHover && setIsHovered(true)}
       onMouseLeave={() => pauseOnHover && setIsHovered(false)}
     >
       {/* Slanted Glassmorphic Container tilted at -4deg */}
       <div
-        className="w-[125%] max-w-none relative flex items-center overflow-hidden transition-transform duration-300"
+        className="w-[112%] max-w-none relative flex items-center overflow-hidden transition-transform duration-300"
         style={{
           transform: `rotate(${angle}deg)`,
           background: "linear-gradient(90deg, rgba(255,255,255,0.02) 0%, rgba(255,255,255,0.06) 20%, rgba(255,255,255,0.06) 80%, rgba(255,255,255,0.02) 100%)",
@@ -110,9 +110,9 @@ export function SlantedGlassMarquee({
           ))}
         </div>
 
-        {/* Side Gradient Fades */}
-        <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-[var(--background)] to-transparent pointer-events-none z-10" />
-        <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-[var(--background)] to-transparent pointer-events-none z-10" />
+        {/* Transparent edge gradient overlay */}
+        <div className="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-black/20 to-transparent pointer-events-none z-10" />
+        <div className="absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-black/20 to-transparent pointer-events-none z-10" />
       </div>
     </div>
   );

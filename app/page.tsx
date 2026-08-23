@@ -14,7 +14,7 @@ export default function Home() {
   return (
     <>
       <HeroScroll />
-      <TrustedBy />
+      {/* <TrustedBy /> */}
       <StatsBar />
       {/* <ToolsCloudSection /> */}
       <AboutSection />

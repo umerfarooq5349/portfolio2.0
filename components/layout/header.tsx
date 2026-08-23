@@ -21,9 +21,10 @@ export function Header() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
+    const handleScroll = () => setScrolled(window.scrollY > 30);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -35,47 +36,78 @@ export function Header() {
     } else {
       document.body.style.overflow = "";
     }
-    return () => { document.body.style.overflow = ""; };
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [mobileMenuOpen]);
 
   return (
-    <header
-      className={cn(
-        "fixed top-0 inset-x-0 z-50 transition-all duration-300 ease-in-out",
-        scrolled
-          ? "bg-[var(--background)]/90 backdrop-blur-md border-b border-white/8 py-3"
-          : "bg-transparent py-5"
-      )}
-    >
-      <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
-
+    <header className="fixed top-0 inset-x-0 z-50 px-4 sm:px-6 pt-4 sm:pt-5 pointer-events-none">
+      {/* Floating Glassmorphic Container (Matches max-w-6xl page container width with ultra-soft minimal shadow) */}
+      <div
+        className={cn(
+          "max-w-6xl mx-auto rounded-full px-5 sm:px-6 py-2.5 sm:py-3 transition-all duration-300 pointer-events-auto flex items-center justify-between",
+          "bg-white/[0.07] backdrop-blur-xl [webkit-backdrop-filter:blur(20px)]",
+          "border border-white/12 shadow-[0_2px_12px_rgba(0,0,0,0.12)]",
+          scrolled ? "bg-[var(--surface)]/90 border-white/18 shadow-[0_4px_20px_rgba(0,0,0,0.18)]" : ""
+        )}
+      >
         {/* Logo */}
-        <Link href="/" className="flex flex-col leading-none group">
-          <span className="text-lg font-bold font-heading tracking-tight text-white">
+        <Link href="/" className="flex flex-col leading-none group pl-1">
+          <span className="text-base sm:text-lg font-bold font-heading tracking-tight text-white group-hover:text-[var(--accent)] transition-colors">
             Muhammad Umer
             <span className="text-[var(--accent)]">.</span>
           </span>
-          <span className="text-[10px] font-sans text-zinc-500 tracking-widest uppercase">CRM &amp; Automation Expert</span>
+          <span className="text-[9px] sm:text-[10px] font-sans text-[var(--ice)]/70 tracking-widest uppercase mt-0.5 font-medium">
+            CRM &amp; Automation Expert
+          </span>
         </Link>
 
-        {/* Desktop Nav */}
-        <nav aria-label="Main navigation" className="hidden lg:flex items-center space-x-6">
-          {links.map((link) => (
-            <Link
-              key={link.name}
-              href={link.href}
-              className="relative text-sm font-medium text-zinc-400 hover:text-white transition-colors duration-200 py-1"
-            >
-              {link.name}
-              {pathname === link.href && (
-                <motion.div
-                  layoutId="activeTab"
-                  className="absolute -bottom-1 left-0 right-0 h-0.5 bg-[var(--accent)] rounded-full"
-                  transition={{ type: "spring", bounce: 0.2, duration: 0.4 }}
-                />
-              )}
-            </Link>
-          ))}
+        {/* Desktop Nav Links with Sliding Active & Hover Pill Animations */}
+        <nav
+          aria-label="Main navigation"
+          className="hidden lg:flex items-center space-x-1 relative"
+          onMouseLeave={() => setHoveredIndex(null)}
+        >
+          {links.map((link, index) => {
+            const isActive = pathname === link.href;
+            return (
+              <Link
+                key={link.name}
+                href={link.href}
+                onMouseEnter={() => setHoveredIndex(index)}
+                className={cn(
+                  "relative text-xs sm:text-sm font-sans transition-colors duration-200 px-3.5 py-1.5 rounded-full block cursor-pointer z-10",
+                  isActive
+                    ? "text-black font-bold"
+                    : "text-[var(--ice)]/80 hover:text-white font-medium"
+                )}
+              >
+                {/* Sliding Hover Pill */}
+                {hoveredIndex === index && !isActive && (
+                  <motion.div
+                    layoutId="hoverNavPill"
+                    className="absolute inset-0 bg-white/10 rounded-full -z-10 border border-white/12"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                  />
+                )}
+
+                {/* Sliding Active Pill */}
+                {isActive && (
+                  <motion.div
+                    layoutId="activeNavPill"
+                    className="absolute inset-0 bg-[var(--accent)] rounded-full -z-10 shadow-[0_2px_10px_rgba(236,179,101,0.3)] border border-[var(--accent)]"
+                    transition={{ type: "spring", stiffness: 380, damping: 28 }}
+                  />
+                )}
+
+                <span className="relative z-10">{link.name}</span>
+              </Link>
+            );
+          })}
         </nav>
 
         {/* Desktop CTA */}
@@ -83,7 +115,7 @@ export function Header() {
           <Link
             href="/contact"
             id="book-call-cta"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[var(--accent)] text-black font-semibold text-sm hover:opacity-90 transition-all cursor-pointer"
+            className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-[var(--accent)] text-black font-bold text-xs sm:text-sm hover:opacity-95 hover:shadow-[0_4px_16px_rgba(236,179,101,0.35)] transition-all cursor-pointer border border-[var(--accent)]/50"
           >
             <CalendarCheck size={16} />
             Start a Project
@@ -94,55 +126,60 @@ export function Header() {
         <button
           aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
           aria-expanded={mobileMenuOpen}
-          className="lg:hidden text-white p-2 -mr-2 cursor-pointer"
+          className="lg:hidden text-white p-2 rounded-full bg-white/10 border border-white/15 cursor-pointer"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
         >
-          {mobileMenuOpen ? <X size={22} /> : <List size={22} />}
+          {mobileMenuOpen ? <X size={20} /> : <List size={20} />}
         </button>
       </div>
 
-      {/* Mobile Menu Overlay */}
+      {/* Mobile Menu Overlay with Slide-In & Slide-Out Animations */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="absolute top-full left-0 right-0 bg-[var(--background)]/97 backdrop-blur-xl border-b border-white/10 shadow-2xl overflow-hidden lg:hidden"
+            initial={{ opacity: 0, scale: 0.95, y: -15 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.95, y: -15 }}
+            transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+            className="max-w-6xl mx-auto mt-3 rounded-3xl bg-[var(--surface)]/95 backdrop-blur-2xl border border-white/15 shadow-[0_4px_24px_rgba(0,0,0,0.25)] overflow-hidden lg:hidden pointer-events-auto p-6"
           >
-            <div className="px-6 py-6 flex flex-col space-y-1">
-              {links.map((link, i) => (
-                <motion.div
-                  key={link.name}
-                  initial={{ opacity: 0, x: -16 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.05 }}
-                >
-                  <Link
-                    href={link.href}
-                    onClick={() => setMobileMenuOpen(false)}
-                    className={cn(
-                      "block text-lg font-medium py-3 border-b border-white/5 transition-colors",
-                      pathname === link.href
-                        ? "text-[var(--accent)]"
-                        : "text-zinc-300 hover:text-white"
-                    )}
+            <div className="flex flex-col space-y-1.5">
+              {links.map((link, i) => {
+                const isActive = pathname === link.href;
+                return (
+                  <motion.div
+                    key={link.name}
+                    initial={{ opacity: 0, x: -24 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: 24 }}
+                    transition={{ delay: i * 0.04, duration: 0.25 }}
                   >
-                    {link.name}
-                  </Link>
-                </motion.div>
-              ))}
+                    <Link
+                      href={link.href}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className={cn(
+                        "block text-base font-sans py-2.5 px-4 rounded-2xl transition-all duration-200",
+                        isActive
+                          ? "bg-[var(--accent)] text-black font-bold shadow-md shadow-[var(--accent)]/20"
+                          : "text-[var(--ice)]/90 hover:bg-white/10 hover:text-white font-medium"
+                      )}
+                    >
+                      {link.name}
+                    </Link>
+                  </motion.div>
+                );
+              })}
               <motion.div
-                initial={{ opacity: 0, y: 10 }}
+                initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: links.length * 0.05 + 0.1 }}
+                exit={{ opacity: 0, y: 15 }}
+                transition={{ delay: links.length * 0.04 + 0.04, duration: 0.25 }}
                 className="pt-4"
               >
                 <Link
                   href="/contact"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="flex items-center justify-center gap-2 w-full px-6 py-3.5 rounded-full bg-[var(--accent)] text-black font-semibold text-sm cursor-pointer"
+                  className="flex items-center justify-center gap-2 w-full px-6 py-3.5 rounded-full bg-[var(--accent)] text-black font-bold text-sm cursor-pointer shadow-lg shadow-[var(--accent)]/20"
                 >
                   <CalendarCheck size={18} />
                   Start a Project
@@ -155,3 +192,5 @@ export function Header() {
     </header>
   );
 }
+
+
