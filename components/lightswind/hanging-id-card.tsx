@@ -27,6 +27,35 @@ export interface HangingIdCardProps {
   avatarUrl?: string;
 }
 
+// ─── SVG QR Code Component ──────────────────────────────────────────────────
+const QRCodeGraphic = ({ size = 44, color = "#ECB365" }: { size?: number; color?: string }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" className="shrink-0 rounded-md border border-white/10 shadow-sm">
+    <rect width="24" height="24" rx="3" fill="#112335" />
+    {/* Top-Left Finder */}
+    <rect x="2" y="2" width="7" height="7" rx="1.5" stroke={color} strokeWidth="1.5" />
+    <rect x="4" y="4" width="3" height="3" fill={color} />
+    {/* Top-Right Finder */}
+    <rect x="15" y="2" width="7" height="7" rx="1.5" stroke={color} strokeWidth="1.5" />
+    <rect x="17" y="4" width="3" height="3" fill={color} />
+    {/* Bottom-Left Finder */}
+    <rect x="2" y="15" width="7" height="7" rx="1.5" stroke={color} strokeWidth="1.5" />
+    <rect x="4" y="17" width="3" height="3" fill={color} />
+    {/* Data Matrix Pixels */}
+    <rect x="11" y="3" width="2" height="2" fill={color} />
+    <rect x="10" y="7" width="2" height="2" fill={color} />
+    <rect x="11" y="11" width="2" height="2" fill={color} />
+    <rect x="15" y="11" width="2" height="2" fill={color} />
+    <rect x="19" y="11" width="2" height="2" fill={color} />
+    <rect x="11" y="15" width="2" height="2" fill={color} />
+    <rect x="15" y="15" width="2" height="2" fill={color} />
+    <rect x="19" y="15" width="2" height="2" fill={color} />
+    <rect x="11" y="19" width="2" height="2" fill={color} />
+    <rect x="15" y="19" width="2" height="2" fill={color} />
+    <rect x="19" y="19" width="2" height="2" fill={color} />
+    <rect x="7" y="11" width="2" height="2" fill={color} />
+  </svg>
+);
+
 // ─── SVG Black Lanyard Rope & Metal Lock Clip ──────────────────────────────────
 const Lanyard = ({ length, color }: { length: number; color: string }) => {
   const clampY = length;
@@ -304,7 +333,7 @@ export const HangingIdCard = ({
         {/* ID Card */}
         <div className="relative w-[260px] sm:w-[285px] h-fit shrink-0 rounded-2xl overflow-hidden shadow-2xl border border-white/20 bg-[#162738] text-white pointer-events-none mt-[-16px]">
           {/* Punched Slot Hole for Lanyard Clip */}
-          <div className="flex justify-center pt-3 pb-1 bg-zinc-900/90 border-b border-white/10">
+          <div className="flex justify-center pt-3 pb-1 bg-zinc-900/90 border-b border-white/10 relative z-20">
             <div className="w-9 h-3 rounded-full bg-black border border-zinc-700 shadow-inner flex items-center justify-center">
               <div className="w-7 h-1.5 rounded-full bg-zinc-950 opacity-90" />
             </div>
@@ -312,13 +341,23 @@ export const HangingIdCard = ({
 
           {children ?? (
             <div className="flex flex-col">
-              {/* Card Header Banner */}
-              <div
-                className="px-5 pt-4 pb-4 flex flex-col items-center gap-2.5 relative overflow-hidden"
-                style={{ background: `linear-gradient(135deg, ${accentColor} 0%, #11283D 100%)` }}
-              >
+              {/* Card Header Banner with Blurred Avatar Image Background */}
+              <div className="px-5 pt-4 pb-4 flex flex-col items-center gap-2.5 relative overflow-hidden bg-zinc-950">
+                {/* Blurred Image Background (Replaces gradient) */}
+                {avatarUrl && (
+                  <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+                    <Image
+                      src={avatarUrl}
+                      alt=""
+                      fill
+                      className="object-cover object-center scale-150 blur-xl opacity-60 saturate-150"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-[#162738]" />
+                  </div>
+                )}
+
                 {/* Security Chip Icon */}
-                <div className="absolute top-3 left-3.5 w-7 h-5.5 rounded bg-amber-400/90 border border-amber-500/80 shadow-sm flex items-center justify-center">
+                <div className="absolute top-3 left-3.5 w-7 h-5.5 rounded bg-amber-400/90 border border-amber-500/80 shadow-sm flex items-center justify-center z-10">
                   <div className="w-5 h-3.5 border border-amber-700/40 rounded-[1px] grid grid-cols-2 gap-[1px] p-[1px]">
                     <div className="bg-amber-600/40" />
                     <div className="bg-amber-600/40" />
@@ -328,7 +367,7 @@ export const HangingIdCard = ({
                 </div>
 
                 {/* User Profile Avatar Photo */}
-                <div className="flex h-18 w-18 sm:h-20 sm:w-20 items-center justify-center rounded-full overflow-hidden border-2 border-white/40 shadow-xl mt-1 bg-zinc-800 relative shrink-0">
+                <div className="flex h-18 w-18 sm:h-20 sm:w-20 items-center justify-center rounded-full overflow-hidden border-2 border-white/40 shadow-2xl mt-1 bg-zinc-800 relative z-10 shrink-0">
                   {avatarUrl ? (
                     <Image
                       src={avatarUrl}
@@ -356,30 +395,37 @@ export const HangingIdCard = ({
 
                 <div className="my-2 w-full border-t border-white/10" />
 
-                {/* Barcode */}
-                <div className="flex gap-[2.5px] items-end h-7 px-1">
-                  {Array.from({ length: 30 }).map((_, i) => (
-                    <div
-                      key={i}
-                      className="bg-zinc-200 rounded-[1px]"
-                      style={{
-                        width: i % 3 === 0 ? "3.5px" : "1.8px",
-                        height: `${50 + Math.sin(i * 1.3) * 35}%`,
-                      }}
-                    />
-                  ))}
-                </div>
+                {/* QR Code + Barcode Combo Verification Strip */}
+                <div className="w-full flex items-center justify-between gap-3 px-1">
+                  {/* Real SVG QR Code */}
+                  <QRCodeGraphic size={44} color={accentColor} />
 
-                <p
-                  className="text-xs font-mono font-bold tracking-widest mt-1"
-                  style={{ color: accentColor }}
-                >
-                  {badgeId}
-                </p>
+                  {/* Barcode & Badge Serial */}
+                  <div className="flex flex-col items-end grow">
+                    <div className="flex gap-[2px] items-end h-6 w-full justify-end">
+                      {Array.from({ length: 22 }).map((_, i) => (
+                        <div
+                          key={i}
+                          className="bg-zinc-200 rounded-[1px]"
+                          style={{
+                            width: i % 3 === 0 ? "3px" : "1.5px",
+                            height: `${50 + Math.sin(i * 1.3) * 35}%`,
+                          }}
+                        />
+                      ))}
+                    </div>
+                    <p
+                      className="text-[10px] font-mono font-bold tracking-widest mt-1"
+                      style={{ color: accentColor }}
+                    >
+                      {badgeId}
+                    </p>
+                  </div>
+                </div>
 
                 {/* Status badge */}
                 <div
-                  className="mt-1.5 px-3.5 py-1 rounded-full text-[10px] font-bold text-black uppercase tracking-widest shadow-md"
+                  className="mt-2 px-3.5 py-1 rounded-full text-[10px] font-bold text-black uppercase tracking-widest shadow-md"
                   style={{ background: accentColor }}
                 >
                   ACTIVE SPECIALIST
