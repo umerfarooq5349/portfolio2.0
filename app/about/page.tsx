@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { AboutSection } from "@/components/sections/about-section";
+import { AboutVariationsContainer } from "@/app/about/about-variations-container";
 import { StatsBar } from "@/components/sections/stats-bar";
 import { TrustedBy } from "@/components/sections/trusted-by";
 import { MiniTestimonials } from "@/components/sections/mini-testimonials";
@@ -22,7 +22,7 @@ export default function AboutPage() {
         </p>
       </div>
 
-      <AboutSection />
+      <AboutVariationsContainer />
 
       {/* Experience & Skills */}
       <section className="py-24 max-w-5xl mx-auto px-6">
