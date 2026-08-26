@@ -86,7 +86,6 @@ export function AboutMinimalist() {
       aria-label="About — Minimalist Editorial Edition"
       className="relative z-10 py-16 sm:py-24 lg:py-28 bg-[var(--background)] text-white overflow-hidden"
     >
-      {/* Enhanced Soft Ambient Radial Light Spill */}
 
       <div className="max-w-6xl mx-auto px-6 lg:px-8 relative z-10">
         {/* Section Header */}
