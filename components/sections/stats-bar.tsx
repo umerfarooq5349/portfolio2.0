@@ -75,7 +75,8 @@ export function StatsBar() {
               changeDescription="last 30 days"
               icon={<ShieldCheck className="h-4 w-4 text-[var(--accent)]" />}
               className="bg-[#112335]/70 border-white/10 text-white shadow-xl hover:border-[var(--accent)]/30 transition-colors"
-            /><StatCard
+            />
+            <StatCard
               title="Webhook System Reliability"
               value={99}
               change={0.9}

@@ -3,6 +3,7 @@
 import React, { useRef, useEffect, useCallback, useState } from "react";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
+import Link from "next/link";
 
 // ─── Physics constants ────────────────────────────────────────────────────────
 const SPRING_K = 0;          // Real pendulum relies on gravity
@@ -395,53 +396,36 @@ export const HangingIdCard = ({
                 <div className="my-1 w-full border-t border-white/10" />
 
                 {/* Prominently Centered 100% Scannable QR Code */}
-                <div className="flex flex-col items-center justify-center space-y-1.5 my-1">
-                  <ScannableQRCode size={90} color="#000000" bgColor="#ffffff" />
-                  <span className="text-[10px] font-mono text-[var(--ice)]/80 tracking-wider font-semibold">
-                    SCAN &bull; LINKEDIN PROFILE
-                  </span>
+                <div className="flex flex-col items-center justify-center my-1">
+                  <ScannableQRCode size={96} color="#000000" bgColor="#ffffff" />
                 </div>
 
-                <div className="my-1 w-full border-t border-white/10" />
-
-                {/* Barcode & Serial Number */}
-                <div className="w-full flex flex-col items-center justify-center space-y-1">
-                  <div className="flex gap-[2.5px] items-end h-6 justify-center">
-                    {Array.from({ length: 28 }).map((_, i) => (
-                      <div
-                        key={i}
-                        className="bg-zinc-200 rounded-[1px]"
-                        style={{
-                          width: i % 3 === 0 ? "3px" : "1.5px",
-                          height: `${55 + Math.sin(i * 1.4) * 35}%`,
-                        }}
-                      />
-                    ))}
-                  </div>
-                  <p
-                    className="text-[11px] font-mono font-bold tracking-widest"
-                    style={{ color: accentColor }}
-                  >
-                    {badgeId}
-                  </p>
-                </div>
-
-                {/* Status badge */}
-                <div
-                  className="mt-1 px-4 py-1 rounded-full text-[10px] font-bold text-black uppercase tracking-widest shadow-md"
-                  style={{ background: accentColor }}
+                {/* Badge Serial ID */}
+                <p
+                  className="text-[11px] font-mono font-bold tracking-widest my-0.5"
+                  style={{ color: accentColor }}
                 >
-                  ACTIVE SPECIALIST
-                </div>
+                  {badgeId}
+                </p>
+
+                {/* Status CTA button to /contact */}
+                <Link
+                  href="/contact"
+                  className="mt-1 px-5 py-1.5 rounded-full text-xs font-bold text-black uppercase tracking-widest shadow-lg hover:scale-105 active:scale-95 transition-all duration-200 cursor-pointer pointer-events-auto flex items-center gap-1.5 hover:brightness-110"
+                  style={{ background: accentColor }}
+                  title="Contact Me"
+                >
+                  ACTIVE SPECIALIST &rarr;
+                </Link>
               </div>
             </div>
           )}
         </div>
       </div>
 
-      {/* Drag / Scan hint */}
+      {/* Drag hint */}
       <p className="mt-6 text-[11px] text-zinc-400 font-medium select-none pointer-events-none text-center">
-        Scan QR Code to open LinkedIn profile &bull; Drag to swing
+        Drag or click the card to swing
       </p>
     </div>
   );
