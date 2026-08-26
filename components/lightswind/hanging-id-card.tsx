@@ -274,17 +274,17 @@ export const HangingIdCard = ({
 
   return (
     <div
-      className={cn("flex flex-col items-center select-none", className)}
+      className={cn("inline-flex flex-col items-center select-none h-fit shrink-0 self-center", className)}
       style={{ touchAction: "none" }}
     >
       {/* Ceiling anchor pin */}
       <div
-        className="w-3.5 h-3.5 rounded-full shadow-md z-10 relative bg-zinc-900 border border-zinc-700"
+        className="w-3.5 h-3.5 rounded-full shadow-md z-10 relative bg-zinc-900 border border-zinc-700 shrink-0"
       />
 
       {/* The Pendulum Assembly (Rope + Lock Clip + Card) */}
       <div 
-        className="flex flex-col items-center cursor-grab active:cursor-grabbing"
+        className="flex flex-col items-center cursor-grab active:cursor-grabbing h-fit shrink-0"
         onPointerDown={onPointerDown}
         onPointerMove={onPointerMove}
         onPointerUp={onPointerUp}
@@ -297,16 +297,16 @@ export const HangingIdCard = ({
         }}
       >
         {/* Lanyard Rope with Lock Clip */}
-        <div style={{ pointerEvents: "none" }}>
+        <div style={{ pointerEvents: "none" }} className="h-fit shrink-0">
           <Lanyard length={ropeLength} color={ropeColor} />
         </div>
 
         {/* ID Card */}
-        <div className="relative w-[210px] sm:w-[225px] rounded-2xl overflow-hidden shadow-2xl border border-white/15 bg-[#162738] text-white pointer-events-none mt-[-16px] shrink-0">
+        <div className="relative w-[260px] sm:w-[285px] h-fit shrink-0 rounded-2xl overflow-hidden shadow-2xl border border-white/20 bg-[#162738] text-white pointer-events-none mt-[-16px]">
           {/* Punched Slot Hole for Lanyard Clip */}
-          <div className="flex justify-center pt-2.5 pb-1 bg-zinc-900/90 border-b border-white/10">
-            <div className="w-8 h-2.5 rounded-full bg-black border border-zinc-700 shadow-inner flex items-center justify-center">
-              <div className="w-6 h-1 rounded-full bg-zinc-950 opacity-90" />
+          <div className="flex justify-center pt-3 pb-1 bg-zinc-900/90 border-b border-white/10">
+            <div className="w-9 h-3 rounded-full bg-black border border-zinc-700 shadow-inner flex items-center justify-center">
+              <div className="w-7 h-1.5 rounded-full bg-zinc-950 opacity-90" />
             </div>
           </div>
 
@@ -314,12 +314,12 @@ export const HangingIdCard = ({
             <div className="flex flex-col">
               {/* Card Header Banner */}
               <div
-                className="px-4 pt-3 pb-3 flex flex-col items-center gap-2 relative overflow-hidden"
+                className="px-5 pt-4 pb-4 flex flex-col items-center gap-2.5 relative overflow-hidden"
                 style={{ background: `linear-gradient(135deg, ${accentColor} 0%, #11283D 100%)` }}
               >
                 {/* Security Chip Icon */}
-                <div className="absolute top-2.5 left-3 w-6 h-5 rounded bg-amber-400/90 border border-amber-500/80 shadow-sm flex items-center justify-center">
-                  <div className="w-4 h-3 border border-amber-700/40 rounded-[1px] grid grid-cols-2 gap-[1px] p-[1px]">
+                <div className="absolute top-3 left-3.5 w-7 h-5.5 rounded bg-amber-400/90 border border-amber-500/80 shadow-sm flex items-center justify-center">
+                  <div className="w-5 h-3.5 border border-amber-700/40 rounded-[1px] grid grid-cols-2 gap-[1px] p-[1px]">
                     <div className="bg-amber-600/40" />
                     <div className="bg-amber-600/40" />
                     <div className="bg-amber-600/40" />
@@ -328,17 +328,17 @@ export const HangingIdCard = ({
                 </div>
 
                 {/* User Profile Avatar Photo */}
-                <div className="flex h-14 w-14 items-center justify-center rounded-full overflow-hidden border-2 border-white/30 shadow-lg mt-1 bg-zinc-800 relative shrink-0">
+                <div className="flex h-18 w-18 sm:h-20 sm:w-20 items-center justify-center rounded-full overflow-hidden border-2 border-white/40 shadow-xl mt-1 bg-zinc-800 relative shrink-0">
                   {avatarUrl ? (
                     <Image
                       src={avatarUrl}
                       alt={name}
-                      width={56}
-                      height={56}
+                      width={80}
+                      height={80}
                       className="w-full h-full object-cover object-center"
                     />
                   ) : (
-                    <svg className="w-7 h-7 text-white/90" fill="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-9 h-9 text-white/90" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
                     </svg>
                   )}
@@ -346,24 +346,24 @@ export const HangingIdCard = ({
               </div>
 
               {/* Card Body */}
-              <div className="bg-[#162738] px-4 py-3.5 flex flex-col items-center gap-1">
-                <p className="text-sm font-bold text-white text-center leading-tight font-heading">
+              <div className="bg-[#162738] px-5 py-4.5 flex flex-col items-center gap-1.5">
+                <p className="text-base sm:text-lg font-bold text-white text-center leading-snug font-heading">
                   {name}
                 </p>
-                <p className="text-[11px] text-[var(--ice)]/80 font-medium text-center">
+                <p className="text-xs sm:text-sm text-[var(--ice)]/80 font-medium text-center">
                   {role}
                 </p>
 
-                <div className="my-1.5 w-full border-t border-zinc-800" />
+                <div className="my-2 w-full border-t border-white/10" />
 
                 {/* Barcode */}
-                <div className="flex gap-[2px] items-end h-6 px-1">
-                  {Array.from({ length: 26 }).map((_, i) => (
+                <div className="flex gap-[2.5px] items-end h-7 px-1">
+                  {Array.from({ length: 30 }).map((_, i) => (
                     <div
                       key={i}
                       className="bg-zinc-200 rounded-[1px]"
                       style={{
-                        width: i % 3 === 0 ? "3px" : "1.5px",
+                        width: i % 3 === 0 ? "3.5px" : "1.8px",
                         height: `${50 + Math.sin(i * 1.3) * 35}%`,
                       }}
                     />
@@ -371,7 +371,7 @@ export const HangingIdCard = ({
                 </div>
 
                 <p
-                  className="text-[10px] font-mono font-bold tracking-widest mt-0.5"
+                  className="text-xs font-mono font-bold tracking-widest mt-1"
                   style={{ color: accentColor }}
                 >
                   {badgeId}
@@ -379,7 +379,7 @@ export const HangingIdCard = ({
 
                 {/* Status badge */}
                 <div
-                  className="mt-1 px-3 py-0.5 rounded-full text-[9px] font-bold text-black uppercase tracking-widest shadow-sm"
+                  className="mt-1.5 px-3.5 py-1 rounded-full text-[10px] font-bold text-black uppercase tracking-widest shadow-md"
                   style={{ background: accentColor }}
                 >
                   ACTIVE SPECIALIST

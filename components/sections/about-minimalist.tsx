@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import React, { useState, useRef, useEffect } from "react";
+import { motion, AnimatePresence, useInView } from "framer-motion";
 import { HangingIdCard } from "@/components/lightswind/hanging-id-card";
 import {
   Sparkle,
@@ -11,34 +11,68 @@ import {
   Cpu,
   CheckCircle,
   GearSix,
+  Code,
+  TrendUp,
+  Quotes,
 } from "@phosphor-icons/react";
+
+// Count-up Animated Number Component
+function AnimatedNumber({ value, suffix, isDecimal }: { value: number; suffix: string; isDecimal?: boolean }) {
+  const [display, setDisplay] = useState(0);
+  const ref = useRef<HTMLSpanElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-50px" });
+
+  useEffect(() => {
+    if (!inView) return;
+    const duration = 2000;
+    const startTime = performance.now();
+    const start = 0;
+
+    const update = (now: number) => {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      // Ease out cubic
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setDisplay(parseFloat((start + (value - start) * eased).toFixed(isDecimal ? 1 : 0)));
+      if (progress < 1) requestAnimationFrame(update);
+    };
+    requestAnimationFrame(update);
+  }, [inView, value, isDecimal]);
+
+  return (
+    <span ref={ref}>
+      {isDecimal ? display.toFixed(1) : display}
+      {suffix}
+    </span>
+  );
+}
 
 const pillars = [
   {
-    id: "crm",
-    title: "Systemic CRM Architecture",
+    id: "ghl",
+    title: "GoHighLevel CRM Architecture",
     icon: ShieldCheck,
-    tag: "GoHighLevel & White-Label SaaS",
+    tag: "GHL Expert & SaaS Setup",
     description:
-      "Engineered multi-tenant sub-account structures, automated pipeline stages, custom custom-field schemas, and fail-safe lead routing.",
-    metrics: ["100% Lead Capture", "Instant SMS Triggers"],
+      "Engineered end-to-end GoHighLevel sub-accounts, white-label SaaS setups, automated opportunity pipelines, SMS/Email drip workflows, and calendar booking systems.",
+    metrics: ["50+ GHL Workflows", "Instant Lead Response"],
   },
   {
-    id: "workflows",
-    title: "Autonomous Workflow Mesh",
+    id: "n8n-zapier",
+    title: "n8n & Zapier Workflow Mesh",
     icon: Cpu,
     tag: "n8n + Zapier + REST Webhooks",
     description:
-      "Connecting disconnected platforms into seamless, self-healing event loops. Eliminating repetitive manual data entry across teams.",
-    metrics: ["70% Manual Work Cut", "Sub-second Execution"],
+      "Connecting disparate tools (GoHighLevel, Stripe, Google Sheets, Custom APIs) into self-healing, multi-step webhooks that operate 24/7 without manual intervention.",
+    metrics: ["70% Manual Work Cut", "Sub-Second Sync"],
   },
   {
-    id: "ai",
-    title: "AI Chatbots & Conversational Sync",
+    id: "ai-chatbots",
+    title: "AI Chatbots & Lead Capture",
     icon: Lightning,
-    tag: "OpenAI + Webhook Integrations",
+    tag: "OpenAI + Voice & Chat Agents",
     description:
-      "Deploying intelligent 24/7 AI agents that qualify incoming leads, book appointments directly onto calendars, and update CRMs in real time.",
+      "Deploying conversational AI bots for real estate, healthcare, and service businesses to qualify incoming leads, schedule appointments, and update CRM records automatically.",
     metrics: ["24/7 Operations", "Zero Lead Leakage"],
   },
 ];
@@ -54,10 +88,10 @@ export function AboutMinimalist() {
     >
       {/* Soft Ambient Radial Light Spill */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_45%_at_50%_0%,rgba(236,179,101,0.06),transparent_80%)] pointer-events-none z-0" />
-      <div className="absolute top-1/2 left-0 w-96 h-96 bg-[var(--accent)]/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/2 left-0 w-96 h-96 bg-[#ECB365]/5 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-6xl mx-auto px-6 lg:px-8 relative z-10">
-        {/* Section Sub-heading Header */}
+        {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -65,83 +99,82 @@ export function AboutMinimalist() {
           transition={{ duration: 0.6 }}
           className="mb-16 sm:mb-20 text-center max-w-3xl mx-auto space-y-4"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[var(--accent)]/10 border border-[var(--accent)]/20 text-xs font-sans font-semibold uppercase tracking-widest text-[var(--accent)]">
-            <Sparkle size={14} className="text-[var(--accent)] animate-pulse" />
-            <span>Minimalist Editorial Edition</span>
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#ECB365]/10 border border-[#ECB365]/25 text-xs font-sans font-semibold uppercase tracking-widest text-[#ECB365]">
+            <Sparkle size={14} className="text-[#ECB365] animate-pulse" />
+            <span>Muhammad Umer Farooq &bull; About Me</span>
           </div>
 
           <h2 className="text-3xl sm:text-5xl lg:text-6xl font-heading font-semibold text-white tracking-tight leading-[1.12]">
             Engineering Autonomous Systems <br className="hidden sm:inline" />
-            <span className="text-[var(--accent)] italic">That Scale Impact.</span>
+            <span className="text-[#ECB365] italic">That Drive Revenue.</span>
           </h2>
 
-          <p className="text-sm sm:text-base font-sans text-[var(--ice)]/75 leading-relaxed font-light max-w-xl mx-auto">
-            A minimalist approach to business operations: removing friction, automating repetitive tasks, and building CRM pipelines that work continuously behind the scenes.
+          <p className="text-sm sm:text-base font-sans text-[#B8DBD9]/80 leading-relaxed font-light max-w-xl mx-auto">
+            Hi, I&apos;m Muhammad Umer Farooq, a CRM &amp; Automation Expert with 1.5+ years of experience transforming client operations through GoHighLevel, n8n, and custom webhooks.
           </p>
         </motion.div>
 
-        {/* 12-Column Asymmetric Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-          {/* Left Column (5 Cols) — Artfully Framed Hanging ID Card */}
+        {/* 12-Column Grid with Equal Height Matching Columns */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-stretch">
+          {/* Left Column (5 Cols) — Direct Hanging ID Card (Outer Frame Removed, Equal Height) */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
-            className="lg:col-span-5 flex flex-col items-center justify-center relative"
+            className="lg:col-span-5 flex flex-col items-center justify-center h-full p-6 sm:p-8 rounded-3xl "
           >
-            {/* Glass Pedestal Card Frame */}
-            <div className="w-full bg-white/[0.02] border border-white/10 rounded-3xl p-6 sm:p-8 backdrop-blur-xl relative flex flex-col items-center justify-center shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden group hover:border-[var(--accent)]/30 transition-colors duration-500">
-              {/* Internal Soft Glow */}
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(236,179,101,0.12),transparent_70%)] pointer-events-none" />
-
-              {/* Top Pedestal Header */}
-              <div className="w-full flex items-center justify-between border-b border-white/10 pb-4 mb-2">
-                <div className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-[var(--emerald)] animate-ping" />
-                  <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-[var(--accent)]">
-                    IDENTITY_CARD.RAW
-                  </span>
-                </div>
-                <span className="text-[10px] font-mono text-zinc-500">INTERACTIVE PENDULUM</span>
-              </div>
-
-              {/* The Hanging ID Card */}
+            {/* Hanging ID Card (Directly hanging with guaranteed h-fit & zero vertical stretching) */}
+            <div className="my-auto py-2 flex flex-col items-center justify-center h-fit w-full shrink-0">
               <HangingIdCard
                 name="Muhammad Umer Farooq"
-                role="CRM & Automation Architect"
-                badgeId="MUF-MINIMAL-2026"
+                role="CRM & Automation Specialist"
+                badgeId="MUF-89240-CRM"
                 accentColor="#ECB365"
-                ropeLength={90}
-                className="py-2"
+                ropeLength={150}
+                avatarUrl="/hero-portrait.png"
               />
+            </div>
+
+            {/* Quick Experience Badge */}
+            <div className="mt-8 pt-4 border-t border-white/10 w-full flex items-center justify-between text-xs font-sans text-[#B8DBD9]/75">
+              <span className="flex items-center gap-1.5">
+                <Code size={14} className="text-[#ECB365]" />
+                1.5+ Yrs Experience
+              </span>
+              <span className="flex items-center gap-1.5">
+                <TrendUp size={14} className="text-[var(--emerald)]" />
+                70% Efficiency Gain
+              </span>
             </div>
           </motion.div>
 
-          {/* Right Column (7 Cols) — Wide Editorial Content & Pillars */}
+          {/* Right Column (7 Cols) — Editorial Content & Interactive Pillars (Equal Height) */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.15 }}
-            className="lg:col-span-7 space-y-8"
+            className="lg:col-span-7 flex flex-col justify-between space-y-6 h-full p-6 sm:p-8 rounded-3xl "
           >
-            {/* Main Editorial Quote Box */}
-            <div className="p-6 sm:p-8 rounded-2xl bg-white/[0.03] border border-white/10 backdrop-blur-xl space-y-4">
-              <p className="text-base sm:text-lg font-heading font-medium text-white leading-relaxed">
-                &ldquo;Every manual click in your sales process is a bottleneck. True automation turns fragmented client interactions into an autonomous revenue engine.&rdquo;
+            {/* Main Quote Statement */}
+            <div className="relative p-6 sm:p-7 rounded-2xl bg-[#112335]/50 border border-white/10 backdrop-blur-xl border-l-4 border-l-[#ECB365] overflow-hidden space-y-3 shadow-lg">
+              {/* Background Decorative Quote Watermark */}
+              <Quotes size={80} className="absolute -top-3 -right-2 text-[#ECB365]/10 pointer-events-none" />
+
+              <p className="text-base sm:text-xl font-heading font-medium italic text-white leading-relaxed relative z-10">
+                &ldquo;I turn fragmented tools into seamless, automated engines that capture leads 24/7 and eliminate manual workload.&rdquo;
               </p>
-              <div className="flex items-center gap-3 pt-2 text-xs font-sans text-[var(--ice)]/70">
-                <span className="font-semibold text-white">Muhammad Umer Farooq</span>
-                <span>&bull;</span>
-                <span className="text-[var(--accent)] font-medium">1.5+ Years CRM Specialization</span>
-              </div>
+
+              <p className="text-xs sm:text-sm font-sans text-[#B8DBD9]/85 leading-relaxed font-light relative z-10 pt-1">
+                Specializing in GoHighLevel, n8n, Zapier, and custom API webhooks, I build scalable systems tailored for real estate, healthcare, and service businesses.
+              </p>
             </div>
 
             {/* Interactive Pillar Selector Tabs */}
             <div className="space-y-3">
-              <span className="text-xs font-sans font-bold uppercase tracking-widest text-[var(--accent)] block">
-                Core Specialization Pillars
+              <span className="text-xs font-sans font-bold uppercase tracking-widest text-[#ECB365] block">
+                Core Expertise Pillars
               </span>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 {pillars.map((pillar, idx) => {
@@ -151,15 +184,14 @@ export function AboutMinimalist() {
                     <button
                       key={pillar.id}
                       onClick={() => setActivePillar(idx)}
-                      className={`p-3.5 rounded-xl text-left border transition-all duration-300 cursor-pointer flex flex-col justify-between h-28 ${
-                        isActive
-                          ? "bg-[var(--accent)]/15 border-[var(--accent)] text-white shadow-lg"
-                          : "bg-white/[0.02] border-white/10 text-zinc-400 hover:border-white/20 hover:text-white"
-                      }`}
+                      className={`p-3.5 rounded-xl text-left border transition-all duration-300 cursor-pointer flex flex-col justify-between h-28 ${isActive
+                        ? "bg-[#ECB365]/15 border-[#ECB365] text-white shadow-lg"
+                        : "bg-white/[0.02] border-white/10 text-zinc-400 hover:border-white/20 hover:text-white"
+                        }`}
                     >
                       <div className="flex items-center justify-between">
-                        <Icon size={18} className={isActive ? "text-[var(--accent)]" : "text-zinc-400"} />
-                        {isActive && <CheckCircle size={14} className="text-[var(--accent)]" />}
+                        <Icon size={18} className={isActive ? "text-[#ECB365]" : "text-zinc-400"} />
+                        {isActive && <CheckCircle size={14} className="text-[#ECB365]" />}
                       </div>
                       <div>
                         <h4 className="text-xs font-sans font-bold text-white line-clamp-1">{pillar.title}</h4>
@@ -175,28 +207,28 @@ export function AboutMinimalist() {
             <AnimatePresence mode="wait">
               <motion.div
                 key={activePillar}
-                initial={{ opacity: 0, y: 10 }}
+                initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
+                exit={{ opacity: 0, y: -8 }}
                 transition={{ duration: 0.25 }}
-                className="p-6 rounded-2xl bg-[#112335]/60 border border-white/12 backdrop-blur-xl space-y-4"
+                className="p-5 rounded-2xl bg-[#193854]/70 border border-white/15 backdrop-blur-xl space-y-3"
               >
                 <div className="flex items-center justify-between">
-                  <h4 className="text-base font-heading font-semibold text-white">
+                  <h4 className="text-sm sm:text-base font-heading font-semibold text-white">
                     {pillars[activePillar].title}
                   </h4>
-                  <span className="text-[11px] font-mono px-2.5 py-0.5 rounded-full bg-white/10 text-[var(--ice)]">
+                  <span className="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-white/10 text-[#B8DBD9]">
                     {pillars[activePillar].tag}
                   </span>
                 </div>
-                <p className="text-xs sm:text-sm font-sans text-[var(--ice)]/80 leading-relaxed font-light">
+                <p className="text-xs font-sans text-[#B8DBD9]/90 leading-relaxed font-light">
                   {pillars[activePillar].description}
                 </p>
-                <div className="flex flex-wrap gap-2 pt-2 border-t border-white/10">
+                <div className="flex flex-wrap gap-2 pt-1 border-t border-white/10">
                   {pillars[activePillar].metrics.map((m, i) => (
                     <span
                       key={i}
-                      className="inline-flex items-center gap-1.5 text-[11px] font-sans font-medium text-[var(--accent)] bg-[var(--accent)]/10 border border-[var(--accent)]/20 px-3 py-1 rounded-full"
+                      className="inline-flex items-center gap-1.5 text-[10px] font-sans font-medium text-[#ECB365] bg-[#ECB365]/10 border border-[#ECB365]/20 px-2.5 py-0.5 rounded-full"
                     >
                       <GearSix size={12} className="animate-spin" />
                       {m}
@@ -206,29 +238,35 @@ export function AboutMinimalist() {
               </motion.div>
             </AnimatePresence>
 
-            {/* Minimalist Metrics Strip */}
+            {/* Minimalist Metrics Strip with Animated Numbers */}
             <div className="grid grid-cols-3 gap-4 pt-4 border-t border-white/10 text-center">
               <div>
-                <span className="text-2xl sm:text-3xl font-heading font-bold text-white">50+</span>
+                <span className="text-2xl sm:text-3xl font-heading font-bold text-white">
+                  <AnimatedNumber value={50} suffix="+" />
+                </span>
                 <p className="text-[11px] font-sans text-zinc-400 mt-0.5">Automations Built</p>
               </div>
               <div className="border-x border-white/10 px-2">
-                <span className="text-2xl sm:text-3xl font-heading font-bold text-[var(--accent)]">70%</span>
-                <p className="text-[11px] font-sans text-zinc-400 mt-0.5">Workload Cut</p>
+                <span className="text-2xl sm:text-3xl font-heading font-bold text-[#ECB365]">
+                  <AnimatedNumber value={70} suffix="%" />
+                </span>
+                <p className="text-[11px] font-sans text-zinc-400 mt-0.5 font-medium">Workload Cut</p>
               </div>
               <div>
-                <span className="text-2xl sm:text-3xl font-heading font-bold text-white">99.9%</span>
+                <span className="text-2xl sm:text-3xl font-heading font-bold text-white">
+                  <AnimatedNumber value={99.9} suffix="%" isDecimal />
+                </span>
                 <p className="text-[11px] font-sans text-zinc-400 mt-0.5">System Uptime</p>
               </div>
             </div>
 
-            {/* CTA Link */}
-            <div className="pt-2 flex justify-start">
+            {/* CTA Button */}
+            <div className="pt-1 flex justify-start">
               <a
                 href="/contact"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[var(--accent)] text-black font-sans font-bold text-xs hover:bg-white transition-all shadow-lg group"
+                className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-[#ECB365] text-black font-sans font-bold text-xs hover:bg-white transition-all shadow-lg group"
               >
-                <span>Request Custom CRM Architecture</span>
+                <span>Book a CRM Automation Audit</span>
                 <ArrowUpRight size={16} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
               </a>
             </div>
