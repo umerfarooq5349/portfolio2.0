@@ -33,7 +33,7 @@ export function StatsBar() {
           </p>
         </motion.div>
 
-        {/* StatisticCard2 Component Grid */}
+        {/* StatisticCard2 Component Grid
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -41,7 +41,7 @@ export function StatsBar() {
           transition={{ duration: 0.6, delay: 0.15 }}
         >
           <StatisticCard2 />
-        </motion.div>
+        </motion.div> */}
 
         {/* StatCard (card-10) Interactive Animated Metrics */}
         <motion.div
@@ -69,6 +69,13 @@ export function StatsBar() {
               className="bg-[#112335]/70 border-white/10 text-white shadow-xl hover:border-[var(--accent)]/30 transition-colors"
             />
             <StatCard
+              title="Webhook System Reliability"
+              value={99}
+              change={0.9}
+              changeDescription="last 30 days"
+              icon={<ShieldCheck className="h-4 w-4 text-[var(--accent)]" />}
+              className="bg-[#112335]/70 border-white/10 text-white shadow-xl hover:border-[var(--accent)]/30 transition-colors"
+            /><StatCard
               title="Webhook System Reliability"
               value={99}
               change={0.9}

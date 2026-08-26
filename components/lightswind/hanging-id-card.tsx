@@ -384,7 +384,7 @@ export const HangingIdCard = ({
               </div>
 
               {/* Card Body */}
-              <div className="bg-[#162738] px-5 py-4.5 flex flex-col items-center gap-2">
+              <div className="bg-[#162738] px-5 py-4.5 flex flex-col items-center gap-2 text-center">
                 <p className="text-base sm:text-lg font-bold text-white text-center leading-snug font-heading">
                   {name}
                 </p>
@@ -392,35 +392,38 @@ export const HangingIdCard = ({
                   {role}
                 </p>
 
-                <div className="my-1.5 w-full border-t border-white/10" />
+                <div className="my-1 w-full border-t border-white/10" />
 
-                {/* 100% Scannable Large QR Code + Barcode Combo */}
-                <div className="w-full flex items-center justify-between gap-3 px-1">
-                  {/* Real Scannable QR Code (Links to LinkedIn profile) */}
-                  <ScannableQRCode size={76} color="#000000" bgColor="#ffffff" />
+                {/* Prominently Centered 100% Scannable QR Code */}
+                <div className="flex flex-col items-center justify-center space-y-1.5 my-1">
+                  <ScannableQRCode size={90} color="#000000" bgColor="#ffffff" />
+                  <span className="text-[10px] font-mono text-[var(--ice)]/80 tracking-wider font-semibold">
+                    SCAN &bull; LINKEDIN PROFILE
+                  </span>
+                </div>
 
-                  {/* Barcode & Serial Number */}
-                  <div className="flex flex-col items-end grow justify-center space-y-1">
-                    <div className="flex gap-[2px] items-end h-7 w-full justify-end">
-                      {Array.from({ length: 20 }).map((_, i) => (
-                        <div
-                          key={i}
-                          className="bg-zinc-200 rounded-[1px]"
-                          style={{
-                            width: i % 3 === 0 ? "3px" : "1.5px",
-                            height: `${55 + Math.sin(i * 1.4) * 35}%`,
-                          }}
-                        />
-                      ))}
-                    </div>
-                    <p
-                      className="text-[11px] font-mono font-bold tracking-widest"
-                      style={{ color: accentColor }}
-                    >
-                      {badgeId}
-                    </p>
-                    <span className="text-[9px] font-mono text-zinc-400">SCAN &bull; LINKEDIN</span>
+                <div className="my-1 w-full border-t border-white/10" />
+
+                {/* Barcode & Serial Number */}
+                <div className="w-full flex flex-col items-center justify-center space-y-1">
+                  <div className="flex gap-[2.5px] items-end h-6 justify-center">
+                    {Array.from({ length: 28 }).map((_, i) => (
+                      <div
+                        key={i}
+                        className="bg-zinc-200 rounded-[1px]"
+                        style={{
+                          width: i % 3 === 0 ? "3px" : "1.5px",
+                          height: `${55 + Math.sin(i * 1.4) * 35}%`,
+                        }}
+                      />
+                    ))}
                   </div>
+                  <p
+                    className="text-[11px] font-mono font-bold tracking-widest"
+                    style={{ color: accentColor }}
+                  >
+                    {badgeId}
+                  </p>
                 </div>
 
                 {/* Status badge */}
