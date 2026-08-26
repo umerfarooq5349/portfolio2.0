@@ -84,11 +84,9 @@ export function AboutMinimalist() {
     <section
       id="about-minimalist"
       aria-label="About — Minimalist Editorial Edition"
-      className="relative z-10 py-24 sm:py-32 lg:py-36 bg-[var(--background)] text-white overflow-hidden"
+      className="relative z-10 py-16 sm:py-24 lg:py-28 bg-[var(--background)] text-white overflow-hidden"
     >
-      {/* Soft Ambient Radial Light Spill */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_45%_at_50%_0%,rgba(236,179,101,0.06),transparent_80%)] pointer-events-none z-0" />
-      <div className="absolute top-1/2 left-0 w-96 h-96 bg-[#ECB365]/5 rounded-full blur-3xl pointer-events-none" />
+      {/* Enhanced Soft Ambient Radial Light Spill */}
 
       <div className="max-w-6xl mx-auto px-6 lg:px-8 relative z-10">
         {/* Section Header */}
@@ -99,9 +97,11 @@ export function AboutMinimalist() {
           transition={{ duration: 0.6 }}
           className="mb-16 sm:mb-20 text-center max-w-3xl mx-auto space-y-4"
         >
+
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#ECB365]/10 border border-[#ECB365]/25 text-xs font-sans font-semibold uppercase tracking-widest text-[#ECB365]">
-            <Sparkle size={14} className="text-[#ECB365] animate-pulse" />
-            <span>Muhammad Umer Farooq &bull; About Me</span>
+            {/* <Sparkle size={14} className="text-[#ECB365] animate-pulse" /> */}
+            <p className="text-[var(--accent)] font-sans uppercase tracking-[0.2em] text-sm font-semibold ">Who I Am</p>
+            {/* <span>Muhammad Umer Farooq &bull; About Me</span> */}
           </div>
 
           <h2 className="text-3xl sm:text-5xl lg:text-6xl font-heading font-semibold text-white tracking-tight leading-[1.12]">
@@ -136,17 +136,7 @@ export function AboutMinimalist() {
               />
             </div>
 
-            {/* Quick Experience Badge */}
-            <div className="mt-8 pt-4 border-t border-white/10 w-full flex items-center justify-between text-xs font-sans text-[#B8DBD9]/75">
-              <span className="flex items-center gap-1.5">
-                <Code size={14} className="text-[#ECB365]" />
-                1.5+ Yrs Experience
-              </span>
-              <span className="flex items-center gap-1.5">
-                <TrendUp size={14} className="text-[var(--emerald)]" />
-                70% Efficiency Gain
-              </span>
-            </div>
+
           </motion.div>
 
           {/* Right Column (7 Cols) — Editorial Content & Interactive Pillars (Equal Height) */}

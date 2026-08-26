@@ -4,6 +4,8 @@ import { AboutMinimalist } from "@/components/sections/about-minimalist";
 import { StatsBar } from "@/components/sections/stats-bar";
 import { TrustedBy } from "@/components/sections/trusted-by";
 import { MiniTestimonials } from "@/components/sections/mini-testimonials";
+import { SlantedGlassMarquee } from "@/components/ui/slanted-glass-marquee";
+import { TOOLS_DATA } from "@/lib/marquee-tools";
 
 export const metadata: Metadata = {
   title: "About Muhammad Umer Farooq | CRM & Automation Expert",
@@ -13,19 +15,27 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <main className="pt-32 pb-20 bg-[var(--background)] min-h-screen">
-      <div className="max-w-5xl mx-auto px-6 mb-16 text-center">
+      {/* <div className="max-w-5xl mx-auto px-6 mb-16 text-center">
         <p className="text-[var(--accent)] font-sans uppercase tracking-[0.2em] text-sm font-semibold mb-4">Who I Am</p>
         <h1 className="text-5xl md:text-7xl font-heading font-semibold text-white tracking-tight">
           About <span className="text-[var(--accent)] italic">Me</span>
         </h1>
         <p className="mt-6 text-zinc-400 font-sans text-lg max-w-2xl mx-auto">
-          I&apos;m Muhammad Umer Farooq — a CRM &amp; Automation Expert helping businesses automate operations and grow faster.
+          I&apos;m Muhammad Umer Farooq, a CRM &amp; Automation Expert helping businesses automate operations and grow faster.
         </p>
-      </div>
+      </div> */}
 
       {/* Main Minimalist About Section */}
       <AboutMinimalist />
-
+      {/* Full-Width Slanted Glassmorphic Marquee (-3deg) embedded in Hero */}
+      <div className="w-full relative z-20 pb-6 pt-2 overflow-visible pointer-events-auto">
+        <SlantedGlassMarquee
+          items={TOOLS_DATA}
+          angle={-3}
+          speed={1}
+          pauseOnHover={true}
+        />
+      </div>
       {/* <AboutVariationsContainer /> */}
 
       {/* Experience & Skills */}
@@ -67,12 +77,11 @@ export default function AboutPage() {
         </div>
       </section>
 
+
       <StatsBar />
 
       {/* Inline mini testimonials for trust */}
       <MiniTestimonials heading="Don't take my word for it" />
-
-      <TrustedBy />
     </main>
   );
 }

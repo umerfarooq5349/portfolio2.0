@@ -9,6 +9,7 @@ import { VisualShowcase } from "@/components/sections/visual-showcase";
 import { ProjectsShowcase } from "@/components/sections/projects-showcase";
 import { Testimonials } from "@/components/sections/testimonials";
 import { ContactCTA } from "@/components/sections/contact-cta";
+import AboutMinimalist from "@/components/sections/about-minimalist";
 
 export default function Home() {
   return (
@@ -17,7 +18,8 @@ export default function Home() {
       {/* <TrustedBy /> */}
       <StatsBar />
 
-      <AboutSection />
+
+      <AboutMinimalist />
       <ServicesBento />
       <AutomationVisual />
       <VisualShowcase />
