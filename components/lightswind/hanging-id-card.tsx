@@ -27,33 +27,32 @@ export interface HangingIdCardProps {
   avatarUrl?: string;
 }
 
-// ─── SVG QR Code Component ──────────────────────────────────────────────────
-const QRCodeGraphic = ({ size = 44, color = "#ECB365" }: { size?: number; color?: string }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" className="shrink-0 rounded-md border border-white/10 shadow-sm">
-    <rect width="24" height="24" rx="3" fill="#112335" />
-    {/* Top-Left Finder */}
-    <rect x="2" y="2" width="7" height="7" rx="1.5" stroke={color} strokeWidth="1.5" />
-    <rect x="4" y="4" width="3" height="3" fill={color} />
-    {/* Top-Right Finder */}
-    <rect x="15" y="2" width="7" height="7" rx="1.5" stroke={color} strokeWidth="1.5" />
-    <rect x="17" y="4" width="3" height="3" fill={color} />
-    {/* Bottom-Left Finder */}
-    <rect x="2" y="15" width="7" height="7" rx="1.5" stroke={color} strokeWidth="1.5" />
-    <rect x="4" y="17" width="3" height="3" fill={color} />
-    {/* Data Matrix Pixels */}
-    <rect x="11" y="3" width="2" height="2" fill={color} />
-    <rect x="10" y="7" width="2" height="2" fill={color} />
-    <rect x="11" y="11" width="2" height="2" fill={color} />
-    <rect x="15" y="11" width="2" height="2" fill={color} />
-    <rect x="19" y="11" width="2" height="2" fill={color} />
-    <rect x="11" y="15" width="2" height="2" fill={color} />
-    <rect x="15" y="15" width="2" height="2" fill={color} />
-    <rect x="19" y="15" width="2" height="2" fill={color} />
-    <rect x="11" y="19" width="2" height="2" fill={color} />
-    <rect x="15" y="19" width="2" height="2" fill={color} />
-    <rect x="19" y="19" width="2" height="2" fill={color} />
-    <rect x="7" y="11" width="2" height="2" fill={color} />
-  </svg>
+// ─── 100% Scannable QR Code for https://www.linkedin.com/in/umer-ai-agents/ ──────
+const ScannableQRCode = ({ size = 76, color = "#000000", bgColor = "#ffffff" }: { size?: number; color?: string; bgColor?: string }) => (
+  <a
+    href="https://www.linkedin.com/in/umer-ai-agents/"
+    target="_blank"
+    rel="noopener noreferrer"
+    title="Scan or Click to open LinkedIn Profile"
+    className="inline-block p-1.5 rounded-lg bg-white shadow-md border border-white/20 hover:scale-105 transition-transform shrink-0 cursor-pointer pointer-events-auto"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={size}
+      height={size}
+      viewBox="0 0 35 35"
+      shapeRendering="crispEdges"
+      className="block"
+    >
+      <path fill={bgColor} d="M0 0h35v35H0z" />
+      <path
+        stroke={color}
+        strokeWidth="1"
+        fill="none"
+        d="M1 1.5h7m2 0h2m1 0h1m3 0h1m1 0h4m1 0h1m2 0h7M1 2.5h1m5 0h1m2 0h1m1 0h1m3 0h2m1 0h1m2 0h1m2 0h1m1 0h1m5 0h1M1 3.5h1m1 0h3m1 0h1m1 0h1m5 0h3m2 0h4m3 0h1m1 0h3m1 0h1M1 4.5h1m1 0h3m1 0h1m1 0h1m1 0h1m1 0h1m2 0h1m2 0h2m1 0h1m1 0h2m1 0h1m1 0h3m1 0h1M1 5.5h1m1 0h3m1 0h1m1 0h1m1 0h7m3 0h1m1 0h1m3 0h1m1 0h3m1 0h1M1 6.5h1m5 0h1m1 0h5m1 0h1m2 0h3m1 0h1m1 0h2m1 0h1m5 0h1M1 7.5h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7M9 8.5h3m3 0h1m1 0h1m2 0h5M1 9.5h1m1 0h5m2 0h1m2 0h3m1 0h2m1 0h1m2 0h3m1 0h5M1 10.5h1m1 0h1m8 0h1m1 0h1m2 0h4m3 0h1m2 0h2m1 0h2m1 0h1M1 11.5h1m2 0h7m1 0h1m1 0h5m4 0h1m1 0h2m2 0h1m1 0h2M2 12.5h1m2 0h2m4 0h1m1 0h2m2 0h5m2 0h1m1 0h1m2 0h4M5 13.5h4m1 0h4m1 0h1m1 0h1m2 0h7m1 0h3m1 0h2M2 14.5h4m8 0h1m1 0h1m1 0h2m5 0h1m1 0h1m3 0h3M1 15.5h7m1 0h1m1 0h1m2 0h1m3 0h2m1 0h1m1 0h2m2 0h1m4 0h4M1 16.5h1m3 0h1m2 0h1m1 0h1m3 0h3m5 0h1m1 0h1m1 0h2m2 0h2M2 17.5h1m4 0h2m1 0h1m2 0h1m1 0h2m1 0h1m4 0h4m1 0h2m3 0h1M1 18.5h3m1 0h2m1 0h2m2 0h2m1 0h1m3 0h4m1 0h5m1 0h2m1 0h1M1 19.5h1m1 0h8m3 0h3m2 0h1m1 0h2m3 0h4m1 0h1M1 20.5h3m1 0h2m1 0h2m1 0h1m5 0h1m4 0h3m2 0h5m1 0h1M1 21.5h1m4 0h2m2 0h4m1 0h1m3 0h2m1 0h1m2 0h2m1 0h3M1 22.5h1m1 0h4m1 0h2m2 0h3m1 0h3m2 0h1m1 0h5m5 0h1M1 23.5h1m3 0h1m1 0h1m2 0h1m2 0h1m6 0h1m5 0h1m3 0h3M1 24.5h1m1 0h2m7 0h4m1 0h1m2 0h9m2 0h3M1 25.5h1m1 0h1m1 0h1m1 0h3m2 0h3m3 0h3m2 0h1m1 0h5m3 0h1M9 26.5h5m3 0h5m2 0h2m3 0h1m1 0h3M1 27.5h7m3 0h1m1 0h1m2 0h3m4 0h3m1 0h1m1 0h1m1 0h2M1 28.5h1m5 0h1m1 0h2m3 0h1m1 0h1m1 0h2m1 0h1m2 0h2m3 0h4M1 29.5h1m1 0h3m1 0h1m1 0h1m4 0h2m1 0h1m3 0h3m1 0h6m1 0h1M1 30.5h1m1 0h3m1 0h1m1 0h1m1 0h1m1 0h1m1 0h2m1 0h2m2 0h1m1 0h1m1 0h1m2 0h2m2 0h1M1 31.5h1m1 0h3m1 0h1m1 0h1m1 0h2m1 0h5m2 0h8m1 0h2M1 32.5h1m5 0h1m3 0h1m4 0h1m5 0h3m1 0h1m2 0h3M1 33.5h7m1 0h1m1 0h1m2 0h3m1 0h1m4 0h3m2 0h1m3 0h1"
+      />
+    </svg>
+  </a>
 );
 
 // ─── SVG Black Lanyard Rope & Metal Lock Clip ──────────────────────────────────
@@ -331,7 +330,7 @@ export const HangingIdCard = ({
         </div>
 
         {/* ID Card */}
-        <div className="relative w-[260px] sm:w-[285px] h-fit shrink-0 rounded-2xl overflow-hidden shadow-2xl border border-white/20 bg-[#162738] text-white pointer-events-none mt-[-16px]">
+        <div className="relative w-[260px] sm:w-[295px] h-fit shrink-0 rounded-2xl overflow-hidden shadow-2xl border border-white/20 bg-[#162738] text-white pointer-events-none mt-[-16px]">
           {/* Punched Slot Hole for Lanyard Clip */}
           <div className="flex justify-center pt-3 pb-1 bg-zinc-900/90 border-b border-white/10 relative z-20">
             <div className="w-9 h-3 rounded-full bg-black border border-zinc-700 shadow-inner flex items-center justify-center">
@@ -343,7 +342,7 @@ export const HangingIdCard = ({
             <div className="flex flex-col">
               {/* Card Header Banner with Blurred Avatar Image Background */}
               <div className="px-5 pt-4 pb-4 flex flex-col items-center gap-2.5 relative overflow-hidden bg-zinc-950">
-                {/* Blurred Image Background (Replaces gradient) */}
+                {/* Blurred Image Background */}
                 {avatarUrl && (
                   <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
                     <Image
@@ -367,17 +366,17 @@ export const HangingIdCard = ({
                 </div>
 
                 {/* User Profile Avatar Photo */}
-                <div className="flex h-18 w-18 sm:h-20 sm:w-20 items-center justify-center rounded-full overflow-hidden border-2 border-white/40 shadow-2xl mt-1 bg-zinc-800 relative z-10 shrink-0">
+                <div className="flex h-20 w-20 sm:h-22 sm:w-22 items-center justify-center rounded-full overflow-hidden border-2 border-white/40 shadow-2xl mt-1 bg-zinc-800 relative z-10 shrink-0">
                   {avatarUrl ? (
                     <Image
                       src={avatarUrl}
                       alt={name}
-                      width={80}
-                      height={80}
+                      width={88}
+                      height={88}
                       className="w-full h-full object-cover object-center"
                     />
                   ) : (
-                    <svg className="w-9 h-9 text-white/90" fill="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-10 h-10 text-white/90" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
                     </svg>
                   )}
@@ -385,47 +384,48 @@ export const HangingIdCard = ({
               </div>
 
               {/* Card Body */}
-              <div className="bg-[#162738] px-5 py-4.5 flex flex-col items-center gap-1.5">
+              <div className="bg-[#162738] px-5 py-4.5 flex flex-col items-center gap-2">
                 <p className="text-base sm:text-lg font-bold text-white text-center leading-snug font-heading">
                   {name}
                 </p>
-                <p className="text-xs sm:text-sm text-[var(--ice)]/80 font-medium text-center">
+                <p className="text-xs sm:text-sm text-[var(--ice)]/85 font-medium text-center">
                   {role}
                 </p>
 
-                <div className="my-2 w-full border-t border-white/10" />
+                <div className="my-1.5 w-full border-t border-white/10" />
 
-                {/* QR Code + Barcode Combo Verification Strip */}
+                {/* 100% Scannable Large QR Code + Barcode Combo */}
                 <div className="w-full flex items-center justify-between gap-3 px-1">
-                  {/* Real SVG QR Code */}
-                  <QRCodeGraphic size={44} color={accentColor} />
+                  {/* Real Scannable QR Code (Links to LinkedIn profile) */}
+                  <ScannableQRCode size={76} color="#000000" bgColor="#ffffff" />
 
-                  {/* Barcode & Badge Serial */}
-                  <div className="flex flex-col items-end grow">
-                    <div className="flex gap-[2px] items-end h-6 w-full justify-end">
-                      {Array.from({ length: 22 }).map((_, i) => (
+                  {/* Barcode & Serial Number */}
+                  <div className="flex flex-col items-end grow justify-center space-y-1">
+                    <div className="flex gap-[2px] items-end h-7 w-full justify-end">
+                      {Array.from({ length: 20 }).map((_, i) => (
                         <div
                           key={i}
                           className="bg-zinc-200 rounded-[1px]"
                           style={{
                             width: i % 3 === 0 ? "3px" : "1.5px",
-                            height: `${50 + Math.sin(i * 1.3) * 35}%`,
+                            height: `${55 + Math.sin(i * 1.4) * 35}%`,
                           }}
                         />
                       ))}
                     </div>
                     <p
-                      className="text-[10px] font-mono font-bold tracking-widest mt-1"
+                      className="text-[11px] font-mono font-bold tracking-widest"
                       style={{ color: accentColor }}
                     >
                       {badgeId}
                     </p>
+                    <span className="text-[9px] font-mono text-zinc-400">SCAN &bull; LINKEDIN</span>
                   </div>
                 </div>
 
                 {/* Status badge */}
                 <div
-                  className="mt-2 px-3.5 py-1 rounded-full text-[10px] font-bold text-black uppercase tracking-widest shadow-md"
+                  className="mt-1 px-4 py-1 rounded-full text-[10px] font-bold text-black uppercase tracking-widest shadow-md"
                   style={{ background: accentColor }}
                 >
                   ACTIVE SPECIALIST
@@ -436,9 +436,9 @@ export const HangingIdCard = ({
         </div>
       </div>
 
-      {/* Drag hint */}
-      <p className="mt-6 text-[11px] text-zinc-500 font-medium select-none pointer-events-none">
-        Drag or click the card to swing
+      {/* Drag / Scan hint */}
+      <p className="mt-6 text-[11px] text-zinc-400 font-medium select-none pointer-events-none text-center">
+        Scan QR Code to open LinkedIn profile &bull; Drag to swing
       </p>
     </div>
   );
