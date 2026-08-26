@@ -302,19 +302,19 @@ export const HangingIdCard = ({
         </div>
 
         {/* ID Card */}
-        <div className="relative w-56 sm:w-60 rounded-2xl overflow-hidden shadow-2xl border border-zinc-700/80 bg-zinc-900 text-white pointer-events-none mt-[-16px]">
+        <div className="relative w-[210px] sm:w-[225px] rounded-2xl overflow-hidden shadow-2xl border border-white/15 bg-[#162738] text-white pointer-events-none mt-[-16px] shrink-0">
           {/* Punched Slot Hole for Lanyard Clip */}
-          <div className="flex justify-center pt-2.5 pb-1 bg-zinc-800/90 border-b border-zinc-700/80">
-            <div className="w-8 h-2.5 rounded-full bg-black border border-zinc-600 shadow-inner flex items-center justify-center">
+          <div className="flex justify-center pt-2.5 pb-1 bg-zinc-900/90 border-b border-white/10">
+            <div className="w-8 h-2.5 rounded-full bg-black border border-zinc-700 shadow-inner flex items-center justify-center">
               <div className="w-6 h-1 rounded-full bg-zinc-950 opacity-90" />
             </div>
           </div>
 
           {children ?? (
-            <div className="flex flex-col h-full">
+            <div className="flex flex-col">
               {/* Card Header Banner */}
               <div
-                className="px-4 pt-3 pb-4 flex flex-col items-center gap-2 relative overflow-hidden"
+                className="px-4 pt-3 pb-3 flex flex-col items-center gap-2 relative overflow-hidden"
                 style={{ background: `linear-gradient(135deg, ${accentColor} 0%, #11283D 100%)` }}
               >
                 {/* Security Chip Icon */}
@@ -328,17 +328,17 @@ export const HangingIdCard = ({
                 </div>
 
                 {/* User Profile Avatar Photo */}
-                <div className="flex h-16 w-16 items-center justify-center rounded-full overflow-hidden border-2 border-white/30 shadow-lg mt-1 bg-zinc-800 relative">
+                <div className="flex h-14 w-14 items-center justify-center rounded-full overflow-hidden border-2 border-white/30 shadow-lg mt-1 bg-zinc-800 relative shrink-0">
                   {avatarUrl ? (
                     <Image
                       src={avatarUrl}
                       alt={name}
-                      width={64}
-                      height={64}
+                      width={56}
+                      height={56}
                       className="w-full h-full object-cover object-center"
                     />
                   ) : (
-                    <svg className="w-8 h-8 text-white/90" fill="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-7 h-7 text-white/90" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
                     </svg>
                   )}
@@ -346,7 +346,7 @@ export const HangingIdCard = ({
               </div>
 
               {/* Card Body */}
-              <div className="bg-zinc-900 px-4 py-4 flex flex-col items-center gap-1.5 flex-1">
+              <div className="bg-[#162738] px-4 py-3.5 flex flex-col items-center gap-1">
                 <p className="text-sm font-bold text-white text-center leading-tight font-heading">
                   {name}
                 </p>
