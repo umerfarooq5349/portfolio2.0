@@ -6,6 +6,7 @@ import { AboutSection } from "@/components/sections/about-section";
 import { AboutBrutalist } from "@/components/sections/about-brutalist";
 import { AboutMinimalist } from "@/components/sections/about-minimalist";
 import { Lightning, SquaresFour, Sparkle } from "@phosphor-icons/react";
+import { MagneticButton } from "@/components/lightswind/magnetic-button";
 
 export function AboutVariationsContainer() {
   const [activeTab, setActiveTab] = useState<"original" | "brutalist" | "minimalist">("original");
@@ -15,41 +16,44 @@ export function AboutVariationsContainer() {
       {/* Design Variation Switcher Bar */}
       <div className="max-w-6xl mx-auto px-6 mb-12 flex flex-col items-center">
         <div className="inline-flex items-center gap-2 p-1.5 rounded-full bg-white/[0.06] border border-white/15 backdrop-blur-xl shadow-xl">
-          <button
+          <MagneticButton
             onClick={() => setActiveTab("original")}
-            className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-sans font-bold transition-all cursor-pointer ${
+            className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-sans font-bold transition-all cursor-pointer border-none ${
               activeTab === "original"
-                ? "bg-[var(--accent)] text-black shadow-md"
-                : "text-[var(--ice)]/80 hover:text-white hover:bg-white/10"
+                ? "bg-[var(--accent)] text-black shadow-md hover:bg-[var(--accent)] hover:text-black"
+                : "text-[var(--ice)]/80 hover:text-white hover:bg-white/10 bg-transparent"
             }`}
+            variant="ghost"
           >
             <Lightning size={14} />
             Original About
-          </button>
+          </MagneticButton>
 
-          <button
+          <MagneticButton
             onClick={() => setActiveTab("brutalist")}
-            className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-sans font-bold transition-all cursor-pointer ${
+            className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-sans font-bold transition-all cursor-pointer border-none ${
               activeTab === "brutalist"
-                ? "bg-white text-black shadow-md"
-                : "text-[var(--ice)]/80 hover:text-white hover:bg-white/10"
+                ? "bg-white text-black shadow-md hover:bg-white hover:text-black"
+                : "text-[var(--ice)]/80 hover:text-white hover:bg-white/10 bg-transparent"
             }`}
+            variant="ghost"
           >
             <SquaresFour size={14} />
             Brutalism Edition
-          </button>
+          </MagneticButton>
 
-          <button
+          <MagneticButton
             onClick={() => setActiveTab("minimalist")}
-            className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-sans font-bold transition-all cursor-pointer ${
+            className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-sans font-bold transition-all cursor-pointer border-none ${
               activeTab === "minimalist"
-                ? "bg-[var(--ice)] text-black shadow-md"
-                : "text-[var(--ice)]/80 hover:text-white hover:bg-white/10"
+                ? "bg-[var(--ice)] text-black shadow-md hover:bg-[var(--ice)] hover:text-black"
+                : "text-[var(--ice)]/80 hover:text-white hover:bg-white/10 bg-transparent"
             }`}
+            variant="ghost"
           >
             <Sparkle size={14} />
             Minimalist White Space
-          </button>
+          </MagneticButton>
         </div>
       </div>
 

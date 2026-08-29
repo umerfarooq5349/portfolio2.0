@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 import { List, X, CalendarCheck } from "@phosphor-icons/react";
 import { cn } from "@/lib/utils";
+import RippleButton from "@/components/lightswind/ripple-button";
 
 const links = [
   { name: "Home", href: "/" },
@@ -112,13 +113,11 @@ export function Header() {
 
         {/* Desktop CTA */}
         <div className="hidden lg:flex items-center">
-          <Link
-            href="/contact"
-            id="book-call-cta"
-            className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-[var(--accent)] text-black font-bold text-xs sm:text-sm hover:opacity-95 hover:shadow-[0_4px_16px_rgba(236,179,101,0.35)] transition-all cursor-pointer border border-[var(--accent)]/50"
-          >
-            <CalendarCheck size={16} />
-            Start a Project
+          <Link href="/contact" id="book-call-cta">
+            <RippleButton>
+              <CalendarCheck size={16} />
+              Start a Project
+            </RippleButton>
           </Link>
         </div>
 
@@ -179,10 +178,12 @@ export function Header() {
                 <Link
                   href="/contact"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="flex items-center justify-center gap-2 w-full px-6 py-3.5 rounded-full bg-[var(--accent)] text-black font-bold text-sm cursor-pointer shadow-lg shadow-[var(--accent)]/20"
+                  className="block w-full"
                 >
-                  <CalendarCheck size={18} />
-                  Start a Project
+                  <RippleButton className="w-full">
+                    <CalendarCheck size={18} />
+                    Start a Project
+                  </RippleButton>
                 </Link>
               </motion.div>
             </div>

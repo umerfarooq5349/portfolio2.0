@@ -3,7 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import Link from "next/link";
-import { MagneticButton } from "@/components/ui/magnetic-button";
+import { MagneticButton } from "@/components/lightswind/magnetic-button";
+import RippleButton from "@/components/lightswind/ripple-button";
 import HeroShutterText from "@/components/ui/hero-shutter-text";
 import { DotGrid } from "@/components/ui/DotGrid";
 import { ArrowRight, CalendarCheck, CheckCircle, Star, Lightning, SpeakerHigh, SpeakerSimpleSlash } from "@phosphor-icons/react";
@@ -186,17 +187,17 @@ export function HeroScroll() {
                 className="flex flex-wrap items-center gap-3 sm:gap-4"
               >
                 <Link href="/contact">
-                  <MagneticButton className="inline-flex items-center gap-2 bg-[var(--accent)] text-black px-6 sm:px-7 py-3 sm:py-3.5 rounded-full font-sans font-bold text-xs sm:text-sm hover:opacity-90 transition-all cursor-pointer shadow-lg shadow-[var(--accent)]/15">
+                  <RippleButton>
                     <CalendarCheck size={16} />
                     <span>Book a Free Audit Call</span>
-                  </MagneticButton>
+                  </RippleButton>
                 </Link>
 
                 <Link href="/projects">
-                  <button className="inline-flex items-center gap-2 text-xs sm:text-sm font-sans font-medium text-white hover:text-[var(--accent)] transition-colors px-5 sm:px-6 py-3 sm:py-3.5 rounded-full border border-[var(--border-subtle)] hover:border-white/30 cursor-pointer bg-[var(--surface)]/50">
+                  <MagneticButton variant="outline" size="md">
                     <span>View Case Studies</span>
                     <ArrowRight size={14} />
-                  </button>
+                  </MagneticButton>
                 </Link>
               </motion.div>
             </div>

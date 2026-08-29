@@ -1,7 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { MagneticButton } from "@/components/ui/magnetic-button";
+import { MagneticButton } from "@/components/lightswind/magnetic-button";
+import RippleButton from "@/components/lightswind/ripple-button";
 import Link from "next/link";
 import { CalendarCheck, ArrowRight } from "@phosphor-icons/react";
 
@@ -50,16 +51,16 @@ export function ContactCTA() {
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link href="/contact">
-                <MagneticButton className="inline-flex items-center gap-2 bg-[var(--accent)] text-black px-10 py-5 rounded-full font-sans font-semibold text-sm hover:opacity-90 transition-all tracking-wide cursor-pointer">
+                <RippleButton>
                   <CalendarCheck size={18} />
                   Start a Project
-                </MagneticButton>
+                </RippleButton>
               </Link>
               <Link href="/services">
-                <button className="inline-flex items-center gap-2 text-sm font-sans text-zinc-300 hover:text-white transition-colors px-8 py-5 rounded-full border border-white/10 hover:border-white/30 cursor-pointer">
+                <MagneticButton variant="outline" size="md">
                   <span>View My Services</span>
                   <ArrowRight size={14} />
-                </button>
+                </MagneticButton>
               </Link>
             </div>
           </div>

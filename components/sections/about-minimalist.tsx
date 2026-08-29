@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
+import Link from "next/link";
+import RippleButton from "@/components/lightswind/ripple-button";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import { HangingIdCard } from "@/components/lightswind/hanging-id-card";
 import {
@@ -251,13 +253,12 @@ export function AboutMinimalist() {
 
             {/* CTA Button */}
             <div className="pt-2 w-full">
-              <a
-                href="/contact"
-                className="flex w-full justify-center items-center gap-2 px-6 py-3.5 rounded-full bg-[#ECB365] text-black font-sans font-bold text-sm hover:bg-white transition-all shadow-lg group"
-              >
-                <span>Book a CRM Automation Audit</span>
-                <ArrowUpRight size={18} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-              </a>
+              <Link href="/contact" className="block w-full">
+                <RippleButton className="w-full">
+                  <span>Book a CRM Automation Audit</span>
+                  <ArrowUpRight size={18} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                </RippleButton>
+              </Link>
             </div>
           </motion.div>
         </div>

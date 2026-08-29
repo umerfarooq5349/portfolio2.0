@@ -2,7 +2,8 @@
 
 import { motion } from "framer-motion";
 import { Download, Calendar, Mail, MessageCircle, FileText, CheckCircle2, Zap } from "lucide-react";
-import { MagneticButton } from "@/components/ui/magnetic-button";
+import { MagneticButton } from "@/components/lightswind/magnetic-button";
+import RippleButton from "@/components/lightswind/ripple-button";
 import Link from "next/link";
 
 const experience = [
@@ -59,16 +60,16 @@ export default function ResumePage() {
             className="flex items-center gap-4"
           >
             <Link href="/contact">
-              <MagneticButton className="flex items-center gap-2 bg-[var(--accent)] text-black px-6 py-3 rounded-full font-sans font-semibold text-sm hover:opacity-90 transition-all">
+              <RippleButton>
                 <Calendar size={18} />
                 <span>Book a Call</span>
-              </MagneticButton>
+              </RippleButton>
             </Link>
             <a href="/resume.pdf" download className="hidden sm:inline-block">
-              <button className="flex items-center gap-2 text-zinc-300 hover:text-white transition-colors px-6 py-3 rounded-full border border-white/10 hover:border-white/30 font-sans text-sm">
+              <MagneticButton variant="outline" size="sm">
                 <Download size={16} />
                 <span>Download PDF</span>
-              </button>
+              </MagneticButton>
             </a>
           </motion.div>
         </div>

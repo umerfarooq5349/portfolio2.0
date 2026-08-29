@@ -1,7 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { MagneticButton } from "@/components/ui/magnetic-button";
+import { MagneticButton } from "@/components/lightswind/magnetic-button";
+import RippleButton from "@/components/lightswind/ripple-button";
 import { ArrowRight, CheckCircle, Lightning } from "@phosphor-icons/react";
 import Link from "next/link";
 
@@ -100,15 +101,15 @@ export function AboutSection() {
 
             <div className="mt-12 flex flex-wrap gap-4">
               <Link href="/about">
-                <MagneticButton className="inline-flex items-center space-x-2 bg-white text-black px-8 py-4 rounded-full font-sans font-semibold text-sm hover:bg-[var(--accent)] transition-colors cursor-pointer">
+                <RippleButton>
                   <span>More About Me</span>
                   <ArrowRight size={16} />
-                </MagneticButton>
+                </RippleButton>
               </Link>
               <Link href="/contact">
-                <button className="inline-flex items-center gap-2 text-sm font-sans text-[var(--ice)] hover:text-white transition-colors px-6 py-4 rounded-full border border-[var(--border-subtle)] hover:border-white/40 cursor-pointer bg-[var(--surface)]/50">
+                <MagneticButton variant="outline" size="md">
                   Start a Project
-                </button>
+                </MagneticButton>
               </Link>
             </div>
           </motion.div>
