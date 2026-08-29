@@ -7,13 +7,13 @@ import Link from "next/link";
 
 // ─── Physics constants ────────────────────────────────────────────────────────
 const SPRING_K = 0;          // Real pendulum relies on gravity
-const DAMPING  = 0.92;       // Air resistance for smooth natural swing
-const GRAVITY  = 3000;       // Gravity scalar for snappy momentum
-const MASS     = 1;
+const DAMPING = 0.92;       // Air resistance for smooth natural swing
+const GRAVITY = 3000;       // Gravity scalar for snappy momentum
+const MASS = 1;
 
 interface CardPhysicsState {
-  angle:  number;   // radians from vertical
-  vel:    number;   // angular velocity rad/s
+  angle: number;   // radians from vertical
+  vel: number;   // angular velocity rad/s
 }
 
 export interface HangingIdCardProps {
@@ -180,7 +180,7 @@ const Lanyard = ({ length, color }: { length: number; color: string }) => {
         strokeWidth="3.5"
         strokeLinecap="round"
       />
-      
+
       {/* Spring Clip Latch Lever */}
       <line
         x1="20.5"
@@ -197,25 +197,25 @@ const Lanyard = ({ length, color }: { length: number; color: string }) => {
 // ─── Main Component ───────────────────────────────────────────────────────────
 export const HangingIdCard = ({
   children,
-  ropeLength  = 120,
-  ropeColor   = "#18181b",
+  ropeLength = 120,
+  ropeColor = "#18181b",
   className,
-  name        = "Muhammad Umer Farooq",
-  role        = "CRM & Automation Expert",
-  badgeId     = "MUF-89240-CRM",
+  name = "Muhammad Umer Farooq",
+  role = "CRM & Automation Expert",
+  badgeId = "MUF-89240-CRM",
   accentColor = "#ECB365",
-  avatarUrl   = "/hero-portrait.png",
+  avatarUrl = "/hero-portrait.png",
 }: HangingIdCardProps) => {
-  const physRef      = useRef<CardPhysicsState>({ angle: 0, vel: 0 });
-  const rafRef       = useRef<number | null>(null);
-  const prevTimeRef  = useRef<number | null>(null);
+  const physRef = useRef<CardPhysicsState>({ angle: 0, vel: 0 });
+  const rafRef = useRef<number | null>(null);
+  const prevTimeRef = useRef<number | null>(null);
   const prevAngleRef = useRef<number>(0);
-  const isDraggingRef= useRef(false);
+  const isDraggingRef = useRef(false);
 
   const [angle, setAngle] = useState(0);
   const [, setIsDragState] = useState(false);
-  const dragStartX   = useRef(0);
-  const dragAngle0   = useRef(0);
+  const dragStartX = useRef(0);
+  const dragAngle0 = useRef(0);
 
   // ── Physics loop ────────────────────────────────────────────────────────────
   const tick = useCallback((now: number) => {
@@ -226,14 +226,14 @@ export const HangingIdCard = ({
     const s = physRef.current;
     if (!isDraggingRef.current) {
       // Realistic pendulum: L is approximate center of mass
-      const L = ropeLength + 100; 
+      const L = ropeLength + 100;
       const torque =
-        -(GRAVITY / L)    * Math.sin(s.angle) -
-        (DAMPING  / MASS) * s.vel             -
+        -(GRAVITY / L) * Math.sin(s.angle) -
+        (DAMPING / MASS) * s.vel -
         (SPRING_K / MASS) * s.angle;
 
-      s.vel   += torque * dt;
-      s.angle += s.vel  * dt;
+      s.vel += torque * dt;
+      s.angle += s.vel * dt;
 
       setAngle(s.angle);
 
@@ -265,8 +265,8 @@ export const HangingIdCard = ({
     e.currentTarget.setPointerCapture(e.pointerId);
     isDraggingRef.current = true;
     setIsDragState(true);
-    dragStartX.current   = e.clientX;
-    dragAngle0.current   = physRef.current.angle;
+    dragStartX.current = e.clientX;
+    dragAngle0.current = physRef.current.angle;
     prevAngleRef.current = physRef.current.angle;
     if (rafRef.current) cancelAnimationFrame(rafRef.current);
     prevTimeRef.current = null;
@@ -276,9 +276,9 @@ export const HangingIdCard = ({
   const onPointerMove = useCallback((e: React.PointerEvent) => {
     if (!isDraggingRef.current) return;
     const dx = e.clientX - dragStartX.current;
-    const L = ropeLength + 100; 
+    const L = ropeLength + 100;
     const newAngle = dragAngle0.current - dx / L;
-    const clamped  = Math.max(-1.4, Math.min(1.4, newAngle));
+    const clamped = Math.max(-1.4, Math.min(1.4, newAngle));
     physRef.current.angle = clamped;
     setAngle(clamped);
   }, [ropeLength]);
@@ -312,7 +312,7 @@ export const HangingIdCard = ({
       />
 
       {/* The Pendulum Assembly (Rope + Lock Clip + Card) */}
-      <div 
+      <div
         className="flex flex-col items-center cursor-grab active:cursor-grabbing h-fit shrink-0"
         onPointerDown={onPointerDown}
         onPointerMove={onPointerMove}
@@ -350,21 +350,21 @@ export const HangingIdCard = ({
                       src={avatarUrl}
                       alt=""
                       fill
-                      className="object-cover object-center scale-150 blur-xl opacity-60 saturate-150"
+                      className="object-cover object-center scale-120 blur-sm "
                     />
                     <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-[#162738]" />
                   </div>
                 )}
 
                 {/* Security Chip Icon */}
-                <div className="absolute top-3 left-3.5 w-7 h-5.5 rounded bg-amber-400/90 border border-amber-500/80 shadow-sm flex items-center justify-center z-10">
+                {/* <div className="absolute top-3 left-3.5 w-7 h-5.5 rounded bg-amber-400/90 border border-amber-500/80 shadow-sm flex items-center justify-center z-10">
                   <div className="w-5 h-3.5 border border-amber-700/40 rounded-[1px] grid grid-cols-2 gap-[1px] p-[1px]">
                     <div className="bg-amber-600/40" />
                     <div className="bg-amber-600/40" />
                     <div className="bg-amber-600/40" />
                     <div className="bg-amber-600/40" />
                   </div>
-                </div>
+                </div> */}
 
                 {/* User Profile Avatar Photo */}
                 <div className="flex h-20 w-20 sm:h-22 sm:w-22 items-center justify-center rounded-full overflow-hidden border-2 border-white/40 shadow-2xl mt-1 bg-zinc-800 relative z-10 shrink-0">
@@ -409,14 +409,14 @@ export const HangingIdCard = ({
                 </p>
 
                 {/* Status CTA button to /contact */}
-                <Link
+                {/* <Link
                   href="/contact"
                   className="mt-1 px-5 py-1.5 rounded-full text-xs font-bold text-black uppercase tracking-widest shadow-lg hover:scale-105 active:scale-95 transition-all duration-200 cursor-pointer pointer-events-auto flex items-center gap-1.5 hover:brightness-110"
                   style={{ background: accentColor }}
                   title="Contact Me"
                 >
                   ACTIVE SPECIALIST &rarr;
-                </Link>
+                </Link> */}
               </div>
             </div>
           )}
@@ -424,9 +424,9 @@ export const HangingIdCard = ({
       </div>
 
       {/* Drag hint */}
-      <p className="mt-6 text-[11px] text-zinc-400 font-medium select-none pointer-events-none text-center">
+      {/* <p className="mt-6 text-[11px] text-zinc-400 font-medium select-none pointer-events-none text-center">
         Drag or click the card to swing
-      </p>
+      </p> */}
     </div>
   );
 };

@@ -20,7 +20,7 @@ export function AutomationVisual() {
       className="py-24 bg-[var(--background)] overflow-hidden"
     >
       <div className="max-w-6xl mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
 
           {/* Left — Text */}
           <div>

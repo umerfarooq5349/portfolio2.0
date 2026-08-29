@@ -173,7 +173,7 @@ export function AboutMinimalist() {
                     <button
                       key={pillar.id}
                       onClick={() => setActivePillar(idx)}
-                      className={`p-3.5 rounded-xl text-left border transition-all duration-300 cursor-pointer flex flex-col justify-between h-28 ${isActive
+                      className={`p-5 rounded-xl text-left border transition-all duration-300 cursor-pointer flex flex-col justify-between h-36 gap-2 ${isActive
                         ? "bg-[#ECB365]/15 border-[#ECB365] text-white shadow-lg"
                         : "bg-white/[0.02] border-white/10 text-zinc-400 hover:border-white/20 hover:text-white"
                         }`}
@@ -183,8 +183,8 @@ export function AboutMinimalist() {
                         {isActive && <CheckCircle size={14} className="text-[#ECB365]" />}
                       </div>
                       <div>
-                        <h4 className="text-xs font-sans font-bold text-white line-clamp-1">{pillar.title}</h4>
-                        <p className="text-[10px] font-sans text-zinc-400 line-clamp-1 mt-0.5">{pillar.tag}</p>
+                        <h4 className="text-[16px] font-sans font-bold text-white leading-tight whitespace-normal line-clamp-2 tracking-wide">{pillar.title}</h4>
+                        <p className="text-[12px] font-sans text-zinc-400 mt-1 line-clamp-1 tracking-wide">{pillar.tag}</p>
                       </div>
                     </button>
                   );
@@ -250,13 +250,13 @@ export function AboutMinimalist() {
             </div>
 
             {/* CTA Button */}
-            <div className="pt-1 flex justify-start">
+            <div className="pt-2 w-full">
               <a
                 href="/contact"
-                className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-[#ECB365] text-black font-sans font-bold text-xs hover:bg-white transition-all shadow-lg group"
+                className="flex w-full justify-center items-center gap-2 px-6 py-3.5 rounded-full bg-[#ECB365] text-black font-sans font-bold text-sm hover:bg-white transition-all shadow-lg group"
               >
                 <span>Book a CRM Automation Audit</span>
-                <ArrowUpRight size={16} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                <ArrowUpRight size={18} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
               </a>
             </div>
           </motion.div>

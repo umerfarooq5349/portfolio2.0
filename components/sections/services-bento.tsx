@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { Gear, Lightning, Funnel, Users, Envelope, Robot, CalendarCheck, SquaresFour, Globe } from "@phosphor-icons/react";
+import { GlowCard } from "@/components/ui/spotlight-card";
 
 const services = [
   {
@@ -112,32 +113,27 @@ export function ServicesBento() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.07, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              className={`${service.colSpan} relative group p-8 rounded-3xl border flex flex-col justify-between overflow-hidden cursor-default transition-all duration-300 ${service.featured
+              className={`${service.colSpan} h-full`}
+            >
+              <GlowCard 
+                customSize={true} 
+                glowColor="orange"
+                className={`w-full h-full relative group p-8 rounded-3xl border flex flex-col justify-between overflow-hidden cursor-default transition-all duration-300 ${service.featured
                   ? "bg-[#171717] border-[var(--accent)]/20 hover:border-[var(--accent)]/50"
                   : "bg-[#111111] border-white/5 hover:border-white/15"
                 }`}
-            >
+              >
               {service.featured && (
                 <div className="absolute inset-0 bg-gradient-to-br from-[var(--accent)]/5 to-transparent pointer-events-none" />
               )}
-              <div className={`mb-4 ${service.featured ? "text-[var(--accent)]" : "text-zinc-400 group-hover:text-[var(--accent)] transition-colors"}`}>
+              <div className={`mb-4 relative z-10 ${service.featured ? "text-[var(--accent)]" : "text-zinc-400 group-hover:text-[var(--accent)] transition-colors"}`}>
                 {service.icon}
               </div>
-              <div>
+              <div className="relative z-10">
                 <h3 className="text-xl font-heading font-semibold text-white mb-3">{service.title}</h3>
                 <p className="text-zinc-500 font-sans text-sm leading-relaxed">{service.description}</p>
               </div>
-              {/* {service.featured && (
-                <div className="mt-6 rounded-xl overflow-hidden border border-white/5">
-                  <Image
-                    src="/crm-dashboard.png"
-                    alt="CRM dashboard mockup"
-                    width={600}
-                    height={300}
-                    className="w-full h-auto object-cover object-top opacity-80 hover:opacity-100 transition-opacity"
-                  />
-                </div>
-              )} */}
+              </GlowCard>
             </motion.div>
           ))}
         </div>

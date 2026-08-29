@@ -122,7 +122,7 @@ export function HeroScroll() {
       {/* Main hero content */}
       <div className="relative z-10 flex-1 flex items-center mt-8 pt-40 lg:pt-22 pb-8">
         <div className="max-w-6xl mx-auto px-6 w-full">
-          <div className="grid grid-cols-3 lg:grid-cols-12 gap-8 xl:gap-12 items-center ">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 xl:gap-12 items-center ">
 
             {/* Left — Text Content (7 cols) */}
             <div className="lg:col-span-7">

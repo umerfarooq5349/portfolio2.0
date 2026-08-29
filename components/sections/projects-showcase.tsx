@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight, House, FirstAid, Envelope, Robot, Rocket, Gear } from "@phosphor-icons/react";
 import Link from "next/link";
+import { GlowCard } from "@/components/ui/spotlight-card";
 
 const projects = [
   {
@@ -104,30 +105,31 @@ export function ProjectsShowcase() {
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.7, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
             >
-              <Link href={`/projects/${project.id}`} className="group flex flex-col h-full p-8 rounded-3xl bg-[#111111] border border-white/5 hover:border-[var(--accent)]/30 hover:bg-[#171717] transition-all duration-300">
+              <Link href={`/projects/${project.id}`} className="block h-full">
+                <GlowCard customSize={true} glowColor="orange" className="group flex flex-col h-full w-full p-8 rounded-3xl bg-[#111111] border border-white/5 hover:border-[var(--accent)]/30 hover:bg-[#171717] transition-all duration-300">
                 {/* Header */}
-                <div className="flex items-start justify-between mb-6">
+                <div className="flex items-start justify-between mb-6 relative z-10">
                   {project.icon}
                   <ArrowUpRight size={20} className="text-zinc-600 group-hover:text-[var(--accent)] transition-colors mt-1" />
                 </div>
 
                 {/* Category */}
-                <p className="text-[var(--accent)] font-sans text-xs tracking-widest uppercase mb-2">
+                <p className="text-[var(--accent)] font-sans text-xs tracking-widest uppercase mb-2 relative z-10">
                   {project.category}
                 </p>
 
                 {/* Title */}
-                <h3 className="text-xl font-heading font-semibold text-white mb-3 group-hover:text-[var(--accent)] transition-colors leading-tight">
+                <h3 className="text-xl font-heading font-semibold text-white mb-3 group-hover:text-[var(--accent)] transition-colors leading-tight relative z-10">
                   {project.title}
                 </h3>
 
                 {/* Description */}
-                <p className="text-zinc-500 font-sans text-sm leading-relaxed mb-6 flex-1 line-clamp-3">
+                <p className="text-zinc-500 font-sans text-sm leading-relaxed mb-6 flex-1 line-clamp-3 relative z-10">
                   {project.description}
                 </p>
 
                 {/* Result badge */}
-                <div className="mb-4">
+                <div className="mb-4 relative z-10">
                   <span className="inline-flex items-center gap-1.5 text-xs font-sans font-medium text-green-400 bg-green-400/10 border border-green-400/20 px-3 py-1 rounded-full">
                     <span className="w-1.5 h-1.5 rounded-full bg-green-400" />
                     {project.result}
@@ -135,13 +137,14 @@ export function ProjectsShowcase() {
                 </div>
 
                 {/* Tags */}
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-2 relative z-10">
                   {project.tags.map((tag) => (
                     <span key={tag} className="px-3 py-1 rounded-full border border-white/10 text-xs font-sans text-zinc-400 bg-white/5">
                       {tag}
                     </span>
                   ))}
                 </div>
+                </GlowCard>
               </Link>
             </motion.div>
           ))}
