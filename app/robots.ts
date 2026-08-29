@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: '*',
       allow: '/',
     },
-    sitemap: 'https://muhammadumerfarooq.com/sitemap.xml',
+    sitemap: 'https://muhammadumer.coderacks.com/sitemap.xml',
   };
 }

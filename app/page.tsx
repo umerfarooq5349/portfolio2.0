@@ -11,9 +11,29 @@ import { Testimonials } from "@/components/sections/testimonials";
 import { ContactCTA } from "@/components/sections/contact-cta";
 import AboutMinimalist from "@/components/sections/about-minimalist";
 
+import Script from "next/script";
+
 export default function Home() {
   return (
     <>
+      <Script
+        id="structured-data"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Person",
+            name: "Muhammad Umer Farooq",
+            url: "https://muhammadumer.coderacks.com",
+            jobTitle: "CRM & Automation Expert",
+            sameAs: [
+              "https://www.linkedin.com/in/umer-ai-agents/",
+              "https://www.instagram.com/muhammad.umer.faro.oq",
+              "https://github.com/umerfarooq5349/"
+            ]
+          }),
+        }}
+      />
       <HeroScroll />
       {/* <TrustedBy /> */}
       <StatsBar />
