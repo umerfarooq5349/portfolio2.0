@@ -32,12 +32,12 @@ const RippleButton: React.FC<RippleButtonProps> = ({
         }}
         onClick={onClick}
       >
-        <span className="circle1"></span>
-        <span className="circle2"></span>
-        <span className="circle3"></span>
-        <span className="circle4"></span>
-        <span className="circle5"></span>
-        <span className="text">{children || text}</span>
+        <span className="ripple-circle circle1"></span>
+        <span className="ripple-circle circle2"></span>
+        <span className="ripple-circle circle3"></span>
+        <span className="ripple-circle circle4"></span>
+        <span className="ripple-circle circle5"></span>
+        <span className="ripple-text">{children || text}</span>
       </button>
 
       <style dangerouslySetInnerHTML={{ __html: `
@@ -63,7 +63,7 @@ const RippleButton: React.FC<RippleButtonProps> = ({
           color: black;
         }
 
-        .ripple-btn span:not(:nth-child(6)) {
+        .ripple-btn .ripple-circle {
           position: absolute;
           left: 50%;
           top: 50%;
@@ -76,7 +76,7 @@ const RippleButton: React.FC<RippleButtonProps> = ({
           pointer-events: none;
         }
 
-        .ripple-btn span:nth-child(6) {
+        .ripple-btn .ripple-text {
           position: relative;
           z-index: 1;
           display: inline-flex;
@@ -84,13 +84,13 @@ const RippleButton: React.FC<RippleButtonProps> = ({
           gap: 0.5rem;
         }
 
-        .ripple-btn span:nth-child(1) { transform: translate(-3.3em, -4em); }
-        .ripple-btn span:nth-child(2) { transform: translate(-6em, 1.3em); }
-        .ripple-btn span:nth-child(3) { transform: translate(-0.2em, 1.8em); }
-        .ripple-btn span:nth-child(4) { transform: translate(3.5em, 1.4em); }
-        .ripple-btn span:nth-child(5) { transform: translate(3.5em, -3.8em); }
+        .ripple-btn .circle1 { transform: translate(-3.3em, -4em); }
+        .ripple-btn .circle2 { transform: translate(-6em, 1.3em); }
+        .ripple-btn .circle3 { transform: translate(-0.2em, 1.8em); }
+        .ripple-btn .circle4 { transform: translate(3.5em, 1.4em); }
+        .ripple-btn .circle5 { transform: translate(3.5em, -3.8em); }
 
-        .ripple-btn:hover span:not(:nth-child(6)) {
+        .ripple-btn:hover .ripple-circle {
           transform: translate(-50%, -50%) scale(5);
           transition: 1.5s ease;
         }

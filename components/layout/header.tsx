@@ -13,9 +13,8 @@ const links = [
   { name: "About", href: "/about" },
   { name: "Services", href: "/services" },
   { name: "Projects", href: "/projects" },
-  { name: "Testimonials", href: "/testimonials" },
+  { name: "Testimonials", href: "/#testimonials" },
   { name: "Blog", href: "/blog" },
-  { name: "Resume", href: "/resume" },
 ];
 
 export function Header() {

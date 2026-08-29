@@ -79,7 +79,7 @@ export default function RootLayout({
       >
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
           <LenisProvider>
-            <Header />
+            {/* <Header /> */}
             <main>
               {children}
             </main>

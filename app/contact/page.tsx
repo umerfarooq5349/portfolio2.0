@@ -3,7 +3,9 @@
 import type { Metadata } from "next";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { MagneticButton } from "@/components/ui/magnetic-button";
+import { MagneticButton } from "@/components/lightswind/magnetic-button";
+import { LinkPreview } from "@/components/ui/link-preview";
+import { GlowCard } from "@/components/ui/spotlight-card";
 
 const contactLinks = [
   {
@@ -14,8 +16,9 @@ const contactLinks = [
       </svg>
     ),
     label: "Email",
-    value: "umer@example.com",
-    href: "mailto:umer@example.com"
+    value: "mumerfarooq557@gmail.com",
+    href: "mailto:mumerfarooq557@gmail.com",
+    disablePreview: true
   },
   {
     icon: (
@@ -24,8 +27,9 @@ const contactLinks = [
       </svg>
     ),
     label: "WhatsApp",
-    value: "+1 234 567 890",
-    href: "https://wa.me/1234567890"
+    value: "+92 301 4044102",
+    href: "https://wa.me/923014044102",
+    // disablePreview: true
   },
   {
     icon: (
@@ -36,8 +40,9 @@ const contactLinks = [
       </svg>
     ),
     label: "LinkedIn",
-    value: "linkedin.com/in/umerfarooq",
-    href: "https://linkedin.com"
+    value: "in/umer-ai-agents",
+    href: "https://www.linkedin.com/in/umer-ai-agents/",
+    previewImage: "/linkedin.png"
   },
   {
     icon: (
@@ -48,21 +53,9 @@ const contactLinks = [
       </svg>
     ),
     label: "Instagram",
-    value: "@umerfarooq",
-    href: "https://instagram.com"
-  },
-  {
-    icon: (
-      <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
-        <line x1="16" y1="2" x2="16" y2="6" />
-        <line x1="8" y1="2" x2="8" y2="6" />
-        <line x1="3" y1="10" x2="21" y2="10" />
-      </svg>
-    ),
-    label: "Book a Call",
-    value: "calendly.com/umerfarooq",
-    href: "https://calendly.com"
+    value: "@muhammad.umer.faro.oq",
+    href: "https://www.instagram.com/muhammad.umer.faro.oq",
+    previewImage: "/instagram.png"
   },
   {
     icon: (
@@ -71,8 +64,8 @@ const contactLinks = [
       </svg>
     ),
     label: "GitHub",
-    value: "github.com/umerfarooq",
-    href: "https://github.com"
+    value: "umerfarooq5349",
+    href: "https://github.com/umerfarooq5349/"
   },
 ];
 
@@ -119,24 +112,44 @@ export default function ContactPage() {
           >
             <h2 className="text-xl font-heading font-semibold text-white mb-6">Reach Out Directly</h2>
             {contactLinks.map((link, i) => (
-              <motion.a
+              <motion.div
                 key={i}
-                href={link.href}
-                target={link.href.startsWith("mailto") ? "_self" : "_blank"}
-                rel="noopener noreferrer"
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: 0.4 + i * 0.08 }}
-                className="flex items-center gap-4 p-4 rounded-2xl bg-[#111111] border border-white/5 hover:border-[var(--accent)]/30 hover:bg-[#171717] transition-all duration-200 group"
               >
-                <div className="w-10 h-10 rounded-xl bg-[var(--accent)]/10 border border-[var(--accent)]/20 flex items-center justify-center text-[var(--accent)] group-hover:bg-[var(--accent)]/20 transition-colors">
-                  {link.icon}
-                </div>
-                <div>
-                  <p className="text-xs font-sans text-zinc-500 uppercase tracking-widest">{link.label}</p>
-                  <p className="text-sm font-sans text-zinc-200 group-hover:text-white transition-colors">{link.value}</p>
-                </div>
-              </motion.a>
+                {link.disablePreview ? (
+                  <a
+                    href={link.href}
+                    target={link.href.startsWith("mailto") ? "_self" : "_blank"}
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-4 p-4 rounded-2xl bg-[#111111] border border-white/5 hover:border-[var(--accent)]/30 hover:bg-[#171717] transition-all duration-200 group w-full text-left block"
+                  >
+                    <div className="w-10 h-10 rounded-xl bg-[var(--accent)]/10 border border-[var(--accent)]/20 flex items-center justify-center text-[var(--accent)] group-hover:bg-[var(--accent)]/20 transition-colors shrink-0">
+                      {link.icon}
+                    </div>
+                    <div>
+                      <p className="text-xs font-sans text-zinc-500 uppercase tracking-widest">{link.label}</p>
+                      <p className="text-sm font-sans text-zinc-200 group-hover:text-white transition-colors break-all">{link.value}</p>
+                    </div>
+                  </a>
+                ) : (
+                  <LinkPreview
+                    url={link.href}
+                    isStatic={!!link.previewImage}
+                    imageSrc={link.previewImage || ""}
+                    className="flex items-center gap-4 p-4 rounded-2xl bg-[#111111] border border-white/5 hover:border-[var(--accent)]/30 hover:bg-[#171717] transition-all duration-200 group w-full text-left"
+                  >
+                    <div className="w-10 h-10 rounded-xl bg-[var(--accent)]/10 border border-[var(--accent)]/20 flex items-center justify-center text-[var(--accent)] group-hover:bg-[var(--accent)]/20 transition-colors shrink-0">
+                      {link.icon}
+                    </div>
+                    <div>
+                      <p className="text-xs font-sans text-zinc-500 uppercase tracking-widest">{link.label}</p>
+                      <p className="text-sm font-sans text-zinc-200 group-hover:text-white transition-colors break-all">{link.value}</p>
+                    </div>
+                  </LinkPreview>
+                )}
+              </motion.div>
             ))}
           </motion.div>
 
@@ -152,18 +165,18 @@ export default function ContactPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label htmlFor="name" className="text-sm font-sans text-zinc-400">Your Name</label>
-                  <input 
-                    type="text" 
-                    id="name" 
+                  <input
+                    type="text"
+                    id="name"
                     className="w-full bg-transparent border-b border-white/10 py-3 text-white focus:outline-none focus:border-[var(--accent)] transition-colors font-sans text-sm"
                     placeholder="John Smith"
                   />
                 </div>
                 <div className="space-y-2">
                   <label htmlFor="email" className="text-sm font-sans text-zinc-400">Email Address</label>
-                  <input 
-                    type="email" 
-                    id="email" 
+                  <input
+                    type="email"
+                    id="email"
                     className="w-full bg-transparent border-b border-white/10 py-3 text-white focus:outline-none focus:border-[var(--accent)] transition-colors font-sans text-sm"
                     placeholder="john@company.com"
                   />
@@ -187,8 +200,8 @@ export default function ContactPage() {
               </div>
               <div className="space-y-2">
                 <label htmlFor="message" className="text-sm font-sans text-zinc-400">Tell Me About Your Business</label>
-                <textarea 
-                  id="message" 
+                <textarea
+                  id="message"
                   rows={4}
                   className="w-full bg-transparent border-b border-white/10 py-3 text-white focus:outline-none focus:border-[var(--accent)] transition-colors font-sans resize-none text-sm"
                   placeholder="What repetitive tasks are costing you the most time?"

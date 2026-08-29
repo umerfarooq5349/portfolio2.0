@@ -4,13 +4,12 @@ import React, { useRef, useState } from "react";
 import { motion, useSpring, useTransform } from "framer-motion";
 import { cn } from "@/lib/utils";
 
-interface MagneticButtonProps {
+interface MagneticButtonProps extends React.ComponentPropsWithoutRef<typeof motion.button> {
   children: React.ReactNode;
   strength?: number;
   radius?: number;
   variant?: "primary" | "outline" | "ghost" | "dark";
   size?: "sm" | "md" | "lg";
-  onClick?: () => void;
   className?: string;
 }
 
@@ -20,8 +19,9 @@ export function MagneticButton({
   radius = 80,
   variant = "outline",
   size = "md",
-  onClick,
   className,
+  type = "button",
+  ...props
 }: MagneticButtonProps) {
   const buttonRef = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
@@ -87,8 +87,8 @@ export function MagneticButton({
       style={{ display: "inline-flex", padding: radius * 0.25 }}
     >
       <motion.button
-        type="button"
-        onClick={onClick}
+        type={type}
+        {...props}
         style={{ x: rawX, y: rawY }}
         animate={{ scale: isHovered ? 1.04 : 1 }}
         transition={{ type: "spring", stiffness: 300, damping: 20 }}
