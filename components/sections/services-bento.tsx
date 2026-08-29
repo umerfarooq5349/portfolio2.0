@@ -118,7 +118,7 @@ export function ServicesBento() {
               <GlowCard 
                 customSize={true} 
                 glowColor="orange"
-                className={`w-full h-full relative group p-8 rounded-3xl border flex flex-col justify-between overflow-hidden cursor-default transition-all duration-300 ${service.featured
+                className={`w-full h-full relative group p-8 rounded-3xl border flex flex-col justify-between cursor-default transition-all duration-300 ${service.featured
                   ? "bg-[#171717] border-[var(--accent)]/20 hover:border-[var(--accent)]/50"
                   : "bg-[#111111] border-white/5 hover:border-white/15"
                 }`}

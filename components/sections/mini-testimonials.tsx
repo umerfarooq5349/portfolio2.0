@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Star, Quotes } from "@phosphor-icons/react";
+import { GlowCard } from "@/components/ui/spotlight-card";
 
 const featured = [
   {
@@ -83,35 +84,37 @@ export function MiniTestimonials({
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              className="relative p-7 rounded-3xl bg-[#111111] border border-white/5 flex flex-col justify-between hover:border-[var(--accent)]/20 transition-colors duration-300"
+              className="h-full"
             >
-              {/* Stars */}
-              <div className="flex items-center gap-1 mb-4">
-                {[...Array(t.stars)].map((_, s) => (
-                  <Star key={s} size={13} className="fill-[var(--accent)] text-[var(--accent)]" />
-                ))}
-              </div>
-
-              {/* Quote mark */}
-              <span className="text-5xl font-heading text-[var(--accent)]/20 absolute top-5 right-6 font-serif select-none leading-none">
-                &ldquo;
-              </span>
-
-              {/* Quote text */}
-              <p className="font-sans text-sm text-zinc-300 italic leading-relaxed flex-1">
-                {t.quote}
-              </p>
-
-              {/* Author */}
-              <div className="flex items-center gap-3 border-t border-white/8 pt-5 mt-5">
-                <div className="w-9 h-9 rounded-full bg-gradient-to-br from-[var(--accent)]/40 to-[var(--accent)]/10 flex items-center justify-center text-xs font-bold text-[var(--accent)] shrink-0 font-heading">
-                  {t.initial}
+              <GlowCard customSize glowColor="orange" className="h-full relative p-7 rounded-3xl border border-white/10 bg-[#111111] flex flex-col justify-between hover:border-[var(--accent)]/30 transition-colors duration-300">
+                {/* Stars */}
+                <div className="flex items-center gap-1 mb-4 relative z-10">
+                  {[...Array(t.stars)].map((_, s) => (
+                    <Star key={s} size={13} className="fill-[var(--accent)] text-[var(--accent)]" />
+                  ))}
                 </div>
-                <div>
-                  <h4 className="font-heading font-semibold text-white text-sm">{t.name}</h4>
-                  <p className="font-sans text-xs text-zinc-500 mt-0.5">{t.role}</p>
+
+                {/* Quote mark */}
+                <span className="text-5xl font-heading text-[var(--accent)]/20 absolute top-5 right-6 font-serif select-none leading-none z-10">
+                  &ldquo;
+                </span>
+
+                {/* Quote text */}
+                <p className="font-sans text-sm text-zinc-300 italic leading-relaxed flex-1 relative z-10">
+                  {t.quote}
+                </p>
+
+                {/* Author */}
+                <div className="flex items-center gap-3 border-t border-white/8 pt-5 mt-5 relative z-10">
+                  <div className="w-9 h-9 rounded-full bg-gradient-to-br from-[var(--accent)]/40 to-[var(--accent)]/10 flex items-center justify-center text-xs font-bold text-[var(--accent)] shrink-0 font-heading">
+                    {t.initial}
+                  </div>
+                  <div>
+                    <h4 className="font-heading font-semibold text-white text-sm">{t.name}</h4>
+                    <p className="font-sans text-xs text-zinc-500 mt-0.5">{t.role}</p>
+                  </div>
                 </div>
-              </div>
+              </GlowCard>
             </motion.div>
           ))}
         </div>
