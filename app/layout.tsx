@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://muhammadumerfarooq.com"),
+  metadataBase: new URL("https://muhammadumer.coderacks.com"),
   title: "Muhammad Umer Farooq | CRM & Automation Expert | GoHighLevel Specialist",
   description:
     "Muhammad Umer Farooq is a CRM & Automation Expert specializing in GoHighLevel, n8n, Zapier, and AI automation. I help businesses automate operations, generate more leads, and close deals faster.",
@@ -35,20 +35,20 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://muhammadumerfarooq.com",
+    url: "https://muhammadumer.coderacks.com",
     siteName: "Muhammad Umer Farooq",
     title: "Muhammad Umer Farooq | CRM & Automation Expert",
     description:
       "CRM & Automation Expert specializing in GoHighLevel, n8n, Zapier. Helping businesses automate operations, generate leads, and scale faster.",
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Muhammad Umer Farooq – CRM & Automation Expert" }],
+    images: [{ url: "/preview-img.png", width: 1200, height: 630, alt: "Muhammad Umer Farooq – CRM & Automation Expert" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Muhammad Umer Farooq | CRM & Automation Expert",
     description: "Automating business operations with GoHighLevel, n8n, Zapier & AI. 50+ automations built.",
-    images: ["/og-image.png"],
+    images: ["/preview-img.png"],
   },
-  alternates: { canonical: "https://muhammadumerfarooq.com" },
+  alternates: { canonical: "https://muhammadumer.coderacks.com" },
 };
 
 import { Header } from "@/components/layout/header";
@@ -79,7 +79,8 @@ export default function RootLayout({
       >
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
           <LenisProvider>
-            {/* <Header /> */}
+            <Header />
+
             <main>
               {children}
             </main>

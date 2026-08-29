@@ -20,7 +20,6 @@ export function Footer() {
   // Helpful links
   const helpfulLinks = [
     { label: "Blog", href: "/blog" },
-    { label: "Resume", href: "/resume" },
     { label: "Contact Us", href: "/contact" },
     { label: "Book a Call", href: "/contact", pulse: true },
   ];
