@@ -62,39 +62,41 @@ const projects = [
   },
 ];
 
-export function ProjectsShowcase() {
+export function ProjectsShowcase({ showHeader = true }: { showHeader?: boolean } = {}) {
   return (
-    <section aria-label="Portfolio Case Studies" className="py-32 bg-[var(--background)]">
+    <section aria-label="Portfolio Case Studies" className={showHeader ? "py-24 sm:py-32 bg-[var(--background)]" : "pb-24 pt-4 bg-[var(--background)]"}>
       <div className="max-w-5xl mx-auto px-6">
-        <div className="text-center mb-16 md:mb-20">
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-[var(--accent)] font-sans uppercase tracking-[0.2em] text-sm font-semibold mb-4"
-          >
-            Case Studies
-          </motion.p>
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="text-4xl md:text-6xl font-heading font-semibold text-white leading-[1.1] max-w-3xl mx-auto"
-          >
-            Real Automations.{" "}
-            <span className="text-[var(--accent)] italic">Real Results.</span>
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="mt-6 text-[var(--ice)]/80 font-sans text-base max-w-xl mx-auto"
-          >
-            Examples of automation systems I&apos;ve built for businesses across industries.
-          </motion.p>
-        </div>
+        {showHeader && (
+          <div className="text-center mb-16 md:mb-20">
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-[var(--accent)] font-sans uppercase tracking-[0.2em] text-sm font-semibold mb-4"
+            >
+              Case Studies
+            </motion.p>
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="text-3xl sm:text-5xl md:text-6xl font-heading font-semibold text-white leading-[1.1] max-w-3xl mx-auto"
+            >
+              Real Automations.{" "}
+              <span className="text-[var(--accent)] italic">Real Results.</span>
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="mt-4 sm:mt-6 text-[var(--ice)]/80 font-sans text-sm sm:text-base max-w-xl mx-auto"
+            >
+              Examples of automation systems I&apos;ve built for businesses across industries.
+            </motion.p>
+          </div>
+        )}
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((project, index) => (
@@ -106,7 +108,7 @@ export function ProjectsShowcase() {
               transition={{ duration: 0.7, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
             >
               <Link href={`/projects/${project.id}`} className="block h-full">
-                <GlowCard customSize={true} glowColor="orange" className="group flex flex-col h-full w-full p-8 rounded-3xl bg-[var(--surface)] border border-[var(--border-subtle)] hover:border-[var(--accent)]/40 hover:bg-[var(--surface-elevated)] transition-all duration-300 shadow-lg">
+                <GlowCard customSize={true} glowColor="orange" className="group flex flex-col h-full w-full p-6 sm:p-8 rounded-3xl bg-[var(--surface)] border border-[var(--border-subtle)] hover:border-[var(--accent)]/40 hover:bg-[var(--surface-elevated)] transition-all duration-300 shadow-lg">
                 {/* Header */}
                 <div className="flex items-start justify-between mb-6 relative z-10">
                   {project.icon}

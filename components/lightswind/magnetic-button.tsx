@@ -11,6 +11,8 @@ interface MagneticButtonProps extends React.ComponentPropsWithoutRef<typeof moti
   variant?: "primary" | "outline" | "ghost" | "dark";
   size?: "sm" | "md" | "lg";
   className?: string;
+  wrapperClassName?: string;
+  fullWidth?: boolean;
 }
 
 export function MagneticButton({
@@ -20,6 +22,8 @@ export function MagneticButton({
   variant = "outline",
   size = "md",
   className,
+  wrapperClassName,
+  fullWidth = false,
   type = "button",
   ...props
 }: MagneticButtonProps) {
@@ -64,17 +68,17 @@ export function MagneticButton({
 
   const variants = {
     primary:
-      "bg-[var(--accent)] text-black hover:bg-white shadow-lg shadow-[var(--accent)]/20 border border-[var(--accent)]",
+      "bg-[var(--accent)] text-black hover:bg-white shadow-lg shadow-[var(--accent)]/20 border border-[var(--accent)] font-bold",
     outline:
-      "border border-white/20 text-zinc-300 hover:border-white/40 hover:text-white bg-[var(--surface)]/30",
+      "border border-[var(--border-subtle)] text-[var(--ice)] hover:border-[var(--accent)]/50 hover:text-white bg-[var(--surface)]/50",
     ghost:
-      "text-zinc-300 hover:bg-white/10 hover:text-white",
+      "text-[var(--ice)]/80 hover:bg-white/10 hover:text-white",
     dark:
       "bg-black text-white shadow-lg border border-white/10",
   };
 
   const sizes = {
-    sm: "h-10 px-5 text-sm rounded-full",
+    sm: "h-10 px-5 text-xs sm:text-sm rounded-full",
     md: "h-12 px-7 text-sm rounded-full",
     lg: "h-14 px-10 text-base rounded-full",
   };
@@ -84,16 +88,18 @@ export function MagneticButton({
       ref={buttonRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      style={{ display: "inline-flex", padding: radius * 0.25 }}
+      className={cn(fullWidth ? "w-full flex" : "inline-flex", wrapperClassName)}
+      style={{ padding: fullWidth ? 0 : radius * 0.25 }}
     >
       <motion.button
         type={type}
         {...props}
         style={{ x: rawX, y: rawY }}
-        animate={{ scale: isHovered ? 1.04 : 1 }}
+        animate={{ scale: isHovered ? 1.02 : 1 }}
         transition={{ type: "spring", stiffness: 300, damping: 20 }}
         className={cn(
           "relative inline-flex items-center justify-center font-sans font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white overflow-hidden",
+          fullWidth && "w-full",
           variants[variant],
           sizes[size],
           className

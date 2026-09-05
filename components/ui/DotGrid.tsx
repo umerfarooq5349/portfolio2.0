@@ -114,6 +114,8 @@ export function DotGrid({
   useEffect(() => {
     let rafId: number;
     let isVisible = true;
+    let isRunning = false;
+    let needsRender = true;
     const radius = dotSize / 2;
     const proxSq = proximity * proximity;
 
@@ -122,6 +124,10 @@ export function DotGrid({
       (entries) => {
         const [entry] = entries;
         isVisible = entry.isIntersecting;
+        if (isVisible && !isRunning) {
+          needsRender = true;
+          startLoop();
+        }
       },
       { threshold: 0.02 }
     );
@@ -130,78 +136,109 @@ export function DotGrid({
       observer.observe(wrapperRef.current);
     }
 
+    const startLoop = () => {
+      if (isRunning) return;
+      isRunning = true;
+      rafId = requestAnimationFrame(render);
+    };
+
     const render = () => {
-      if (isVisible && canvasRef.current) {
-        const canvas = canvasRef.current;
-        const ctx = canvas.getContext("2d");
-        if (ctx) {
-          const dpr = Math.min(window.devicePixelRatio || 1, 2);
-          ctx.setTransform(1, 0, 0, 1, 0, 0);
-          ctx.clearRect(0, 0, canvas.width, canvas.height);
-          ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      if (!isVisible || !canvasRef.current) {
+        isRunning = false;
+        return;
+      }
 
-          const { x: px, y: py } = pointerRef.current;
-          const dots = dotsRef.current;
+      const canvas = canvasRef.current;
+      const ctx = canvas.getContext("2d");
+      if (ctx) {
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        ctx.setTransform(1, 0, 0, 1, 0, 0);
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-          // Highly optimized batch rendering pass
-          const baseDotsPath = new Path2D();
-          let hasBaseDots = false;
+        const { x: px, y: py } = pointerRef.current;
+        const dots = dotsRef.current;
 
-          for (let i = 0; i < dots.length; i++) {
-            const dot = dots[i];
+        const baseDotsPath = new Path2D();
+        let hasBaseDots = false;
+        let totalKineticEnergy = 0;
+        let activeDotsCount = 0;
 
-            // Ultra-fast spring physics computation
-            dot.vx += (0 - dot.xOffset) * 0.08;
-            dot.vy += (0 - dot.yOffset) * 0.08;
-            dot.vx *= 0.84; // Spring damping
-            dot.vy *= 0.84;
-            dot.xOffset += dot.vx;
-            dot.yOffset += dot.vy;
+        for (let i = 0; i < dots.length; i++) {
+          const dot = dots[i];
 
-            const ox = dot.cx + dot.xOffset;
-            const oy = dot.cy + dot.yOffset;
+          // Ultra-fast spring physics computation
+          dot.vx += (0 - dot.xOffset) * 0.08;
+          dot.vy += (0 - dot.yOffset) * 0.08;
+          dot.vx *= 0.84; // Spring damping
+          dot.vy *= 0.84;
+          dot.xOffset += dot.vx;
+          dot.yOffset += dot.vy;
 
-            const dx = dot.cx - px;
-            const dy = dot.cy - py;
-            const dsq = dx * dx + dy * dy;
+          totalKineticEnergy += Math.abs(dot.vx) + Math.abs(dot.vy) + Math.abs(dot.xOffset) + Math.abs(dot.yOffset);
 
-            if (dsq <= proxSq) {
-              // Active dot near pointer - render with interpolated theme color
-              const dist = Math.sqrt(dsq);
-              const t = Math.pow(1 - dist / proximity, 1.5);
-              const r = Math.round(baseRgb.r + (activeRgb.r - baseRgb.r) * t);
-              const g = Math.round(baseRgb.g + (activeRgb.g - baseRgb.g) * t);
-              const b = Math.round(baseRgb.b + (activeRgb.b - baseRgb.b) * t);
-              const alpha = 0.3 + 0.7 * t;
+          const ox = dot.cx + dot.xOffset;
+          const oy = dot.cy + dot.yOffset;
 
-              ctx.beginPath();
-              ctx.arc(ox, oy, radius * (1 + 0.4 * t), 0, Math.PI * 2);
-              ctx.fillStyle = `rgba(${r},${g},${b},${alpha})`;
-              ctx.fill();
-            } else {
-              // Inactive dot - add to batch path for single-call execution
-              baseDotsPath.moveTo(ox + radius, oy);
-              baseDotsPath.arc(ox, oy, radius, 0, Math.PI * 2);
-              hasBaseDots = true;
-            }
+          const dx = dot.cx - px;
+          const dy = dot.cy - py;
+          const dsq = dx * dx + dy * dy;
+
+          if (dsq <= proxSq) {
+            activeDotsCount++;
+            const dist = Math.sqrt(dsq);
+            const t = Math.pow(1 - dist / proximity, 1.5);
+            const r = Math.round(baseRgb.r + (activeRgb.r - baseRgb.r) * t);
+            const g = Math.round(baseRgb.g + (activeRgb.g - baseRgb.g) * t);
+            const b = Math.round(baseRgb.b + (activeRgb.b - baseRgb.b) * t);
+            const alpha = 0.3 + 0.7 * t;
+
+            ctx.beginPath();
+            ctx.arc(ox, oy, radius * (1 + 0.4 * t), 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(${r},${g},${b},${alpha})`;
+            ctx.fill();
+          } else {
+            baseDotsPath.moveTo(ox + radius, oy);
+            baseDotsPath.arc(ox, oy, radius, 0, Math.PI * 2);
+            hasBaseDots = true;
           }
+        }
 
-          // Single batch fill call for all inactive dots (maximum canvas performance)
-          if (hasBaseDots) {
-            ctx.fillStyle = baseColor;
-            ctx.fill(baseDotsPath);
-          }
+        if (hasBaseDots) {
+          ctx.fillStyle = baseColor;
+          ctx.fill(baseDotsPath);
+        }
+
+        // If dots have settled and pointer is inactive, pause loop until next movement
+        if (totalKineticEnergy < 0.05 && activeDotsCount === 0 && px < -100) {
+          isRunning = false;
+          return;
         }
       }
 
       rafId = requestAnimationFrame(render);
     };
 
-    render();
+    // Expose trigger for pointer movement
+    (wrapperRef.current as any)?._wakeDotGrid?.();
+    const handlePointerWake = () => {
+      if (!isRunning && isVisible) {
+        startLoop();
+      }
+    };
+    const wrapEl = wrapperRef.current;
+    if (wrapEl) {
+      wrapEl.addEventListener("pointermove", handlePointerWake, { passive: true });
+    }
+
+    startLoop();
 
     return () => {
       cancelAnimationFrame(rafId);
       observer.disconnect();
+      if (wrapEl) {
+        wrapEl.removeEventListener("pointermove", handlePointerWake);
+      }
     };
   }, [proximity, baseColor, activeRgb, baseRgb, dotSize]);
 
@@ -304,12 +341,12 @@ export function DotGrid({
       }
     };
 
-    window.addEventListener("mousemove", onPointerMove, { passive: true });
+    wrap.addEventListener("mousemove", onPointerMove, { passive: true });
     wrap.addEventListener("mouseleave", onPointerLeave, { passive: true });
     wrap.addEventListener("click", onClick, { passive: true });
 
     return () => {
-      window.removeEventListener("mousemove", onPointerMove);
+      wrap.removeEventListener("mousemove", onPointerMove);
       wrap.removeEventListener("mouseleave", onPointerLeave);
       wrap.removeEventListener("click", onClick);
     };

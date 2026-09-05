@@ -12,11 +12,12 @@ export interface StatCardProps extends React.HTMLAttributes<HTMLDivElement> {
   change: number;
   changeDescription: string;
   icon: React.ReactNode;
+  suffix?: string;
   glowColor?: 'blue' | 'purple' | 'green' | 'red' | 'orange';
 }
 
 const StatCard = React.forwardRef<HTMLDivElement, StatCardProps>(
-  ({ title, value, change, changeDescription, icon, className, glowColor = "orange", ...props }, ref) => {
+  ({ title, value, change, changeDescription, icon, className, suffix = "%", glowColor = "orange", ...props }, ref) => {
     const internalRef = React.useRef<HTMLDivElement>(null);
     const combinedRef = (ref as React.RefObject<HTMLDivElement>) || internalRef;
     const isInView = useInView(combinedRef, { once: true, amount: 0.3 });
@@ -43,13 +44,13 @@ const StatCard = React.forwardRef<HTMLDivElement, StatCardProps>(
     }, [isInView, value, motionValue]);
 
     // Construct a meaningful ARIA label for accessibility
-    const ariaLabel = `${title}: ${value}. Change is ${change > 0 ? '+' : ''}${change}% ${changeDescription}.`;
+    const ariaLabel = `${title}: ${value}${suffix}. Change is ${change > 0 ? '+' : ''}${change}% ${changeDescription}.`;
 
     return (
       <GlowCard
         customSize={true}
         glowColor={glowColor}
-        className={cn("w-full h-full min-h-[160px] flex flex-col justify-between", className)}
+        className={cn("w-full h-full min-h-[160px] flex flex-col justify-between p-6 rounded-3xl bg-[var(--surface)] border border-[var(--border-subtle)]", className)}
       >
         <div
           ref={combinedRef}
@@ -63,7 +64,7 @@ const StatCard = React.forwardRef<HTMLDivElement, StatCardProps>(
             <motion.h3 className="text-4xl sm:text-5xl font-bold tracking-tighter font-heading text-white">
               {displayValue}
             </motion.h3>
-            <span className="text-2xl font-semibold text-[var(--accent)]">%</span>
+            <span className="text-2xl font-semibold text-[var(--accent)]">{suffix}</span>
           </div>
 
           {/* Title */}
@@ -79,7 +80,7 @@ const StatCard = React.forwardRef<HTMLDivElement, StatCardProps>(
             >
               {icon}
             </span>
-            <p className="text-xs sm:text-sm text-zinc-300 font-sans">
+            <p className="text-xs sm:text-sm text-[var(--ice)]/80 font-sans">
               <span
                 className={cn(
                   "font-semibold",
@@ -89,7 +90,7 @@ const StatCard = React.forwardRef<HTMLDivElement, StatCardProps>(
                 {isPositive ? "+" : ""}
                 {change}%
               </span>
-              <span className="text-zinc-400"> {changeDescription}</span>
+              <span className="text-[var(--ice)]/60"> {changeDescription}</span>
             </p>
           </div>
         </div>

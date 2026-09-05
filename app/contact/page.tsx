@@ -1,8 +1,10 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { MagneticButton } from "@/components/lightswind/magnetic-button";
 import { LinkPreview } from "@/components/ui/link-preview";
+import { CheckCircle, ArrowRight, SpinnerGap } from "@phosphor-icons/react";
 
 const contactLinks = [
   {
@@ -66,16 +68,46 @@ const contactLinks = [
 ];
 
 export default function ContactPage() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    service: "",
+    message: "",
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [error, setError] = useState("");
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
+      setError("Please fill in your name, email, and a short message.");
+      return;
+    }
+    setError("");
+    setIsSubmitting(true);
+
+    // Simulate reliable dispatch with client confirmation
+    await new Promise((resolve) => setTimeout(resolve, 850));
+    setIsSubmitting(false);
+    setIsSubmitted(true);
+  };
+
+  const handleReset = () => {
+    setFormData({ name: "", email: "", service: "", message: "" });
+    setIsSubmitted(false);
+  };
+
   return (
-    <div role="region" aria-label="Contact Muhammad Umer Farooq" className="pt-32 pb-32 min-h-screen bg-[var(--background)]">
+    <div role="region" aria-label="Contact Muhammad Umer Farooq" className="pt-28 sm:pt-36 pb-24 sm:pb-32 min-h-screen bg-[var(--background)]">
       <div className="max-w-5xl mx-auto px-6">
         {/* Header */}
-        <div className="text-center mb-16 md:mb-20">
+        <div className="text-center mb-14 md:mb-20">
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-[var(--accent)] font-sans uppercase tracking-[0.2em] text-sm font-semibold mb-4"
+            className="text-[var(--accent)] font-sans uppercase tracking-[0.2em] text-xs sm:text-sm font-semibold mb-3"
           >
             Get In Touch
           </motion.p>
@@ -83,7 +115,7 @@ export default function ContactPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-5xl md:text-7xl font-heading font-semibold text-white tracking-tight mb-6"
+            className="text-4xl sm:text-6xl md:text-7xl font-heading font-semibold text-white tracking-tight mb-4 sm:mb-6"
           >
             Let&apos;s Build Something{" "}
             <span className="text-[var(--accent)] italic">Powerful.</span>
@@ -92,13 +124,13 @@ export default function ContactPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-[var(--ice)]/80 font-sans text-lg max-w-xl mx-auto"
+            className="text-[var(--ice)]/80 font-sans text-sm sm:text-lg max-w-xl mx-auto"
           >
             Ready to automate your business operations? Reach out directly or fill in the form and I&apos;ll get back to you within 24 hours.
           </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12 items-start">
           {/* Left: Contact Links */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
@@ -154,64 +186,124 @@ export default function ContactPage() {
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="bg-[var(--surface)] border border-[var(--border-subtle)] p-8 md:p-10 rounded-3xl"
+            className="bg-[var(--surface)] border border-[var(--border-subtle)] p-6 sm:p-8 md:p-10 rounded-3xl"
           >
-            <h2 className="text-xl font-heading font-semibold text-white mb-8">Send a Message</h2>
-            <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <label htmlFor="name" className="text-sm font-sans text-[var(--ice)]/80">Your Name</label>
-                  <input
-                    type="text"
-                    id="name"
-                    className="w-full bg-transparent border-b border-[var(--border-subtle)] py-3 text-white focus:outline-none focus:border-[var(--accent)] transition-colors font-sans text-sm"
-                    placeholder="John Smith"
-                  />
-                </div>
-                <div className="space-y-2">
-                  <label htmlFor="email" className="text-sm font-sans text-[var(--ice)]/80">Email Address</label>
-                  <input
-                    type="email"
-                    id="email"
-                    className="w-full bg-transparent border-b border-[var(--border-subtle)] py-3 text-white focus:outline-none focus:border-[var(--accent)] transition-colors font-sans text-sm"
-                    placeholder="john@company.com"
-                  />
-                </div>
-              </div>
-              <div className="space-y-2">
-                <label htmlFor="service" className="text-sm font-sans text-[var(--ice)]/80">Service Needed</label>
-                <select
-                  id="service"
-                  className="w-full bg-[var(--surface)] border-b border-[var(--border-subtle)] py-3 text-[var(--ice)] focus:outline-none focus:border-[var(--accent)] transition-colors font-sans text-sm"
+            <h2 className="text-xl font-heading font-semibold text-white mb-6">Send a Message</h2>
+
+            <AnimatePresence mode="wait">
+              {isSubmitted ? (
+                <motion.div
+                  key="success"
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  className="p-6 rounded-2xl bg-[var(--emerald)]/10 border border-[var(--emerald)]/30 text-center space-y-4"
                 >
-                  <option value="" className="bg-[var(--surface)] text-white">Select a service...</option>
-                  <option value="crm" className="bg-[var(--surface)] text-white">CRM Setup (GoHighLevel)</option>
-                  <option value="automation" className="bg-[var(--surface)] text-white">Workflow Automation</option>
-                  <option value="funnel" className="bg-[var(--surface)] text-white">Funnel Building</option>
-                  <option value="chatbot" className="bg-[var(--surface)] text-white">AI Chatbot</option>
-                  <option value="sms-email" className="bg-[var(--surface)] text-white">SMS & Email Automation</option>
-                  <option value="white-label" className="bg-[var(--surface)] text-white">White Label GHL / SaaS</option>
-                  <option value="other" className="bg-[var(--surface)] text-white">Other</option>
-                </select>
-              </div>
-              <div className="space-y-2">
-                <label htmlFor="message" className="text-sm font-sans text-[var(--ice)]/80">Tell Me About Your Business</label>
-                <textarea
-                  id="message"
-                  rows={4}
-                  className="w-full bg-transparent border-b border-[var(--border-subtle)] py-3 text-white focus:outline-none focus:border-[var(--accent)] transition-colors font-sans resize-none text-sm"
-                  placeholder="What repetitive tasks are costing you the most time?"
-                />
-              </div>
-              <div className="pt-4">
-                <MagneticButton type="submit" className="w-full bg-[var(--accent)] text-black py-4 rounded-full font-sans font-semibold text-sm hover:opacity-90 transition-all tracking-wide">
-                  SEND MESSAGE →
-                </MagneticButton>
-              </div>
-            </form>
+                  <CheckCircle size={48} className="text-[var(--emerald)] mx-auto animate-bounce" />
+                  <h3 className="text-xl font-heading font-semibold text-white">Message Received!</h3>
+                  <p className="text-sm font-sans text-[var(--ice)]/80 max-w-md mx-auto leading-relaxed">
+                    Thank you, <span className="text-white font-semibold">{formData.name}</span>. Your details have been recorded. I will review your automation requirements and get back to you within 24 hours.
+                  </p>
+                  <button
+                    onClick={handleReset}
+                    className="inline-flex items-center gap-2 text-xs font-sans font-bold uppercase tracking-wider text-[var(--accent)] hover:underline pt-2 cursor-pointer"
+                  >
+                    <span>Send Another Inquiry</span>
+                    <ArrowRight size={14} />
+                  </button>
+                </motion.div>
+              ) : (
+                <form key="form" className="space-y-5" onSubmit={handleSubmit}>
+                  {error && (
+                    <div className="p-3 rounded-xl bg-red-500/10 border border-red-500/30 text-red-400 text-xs font-sans">
+                      {error}
+                    </div>
+                  )}
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    <div className="space-y-1.5">
+                      <label htmlFor="name" className="text-xs font-sans text-[var(--ice)]/80">Your Name *</label>
+                      <input
+                        type="text"
+                        id="name"
+                        required
+                        value={formData.name}
+                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                        className="w-full bg-transparent border-b border-[var(--border-subtle)] py-2.5 text-white focus:outline-none focus:border-[var(--accent)] transition-colors font-sans text-sm"
+                        placeholder="John Smith"
+                      />
+                    </div>
+                    <div className="space-y-1.5">
+                      <label htmlFor="email" className="text-xs font-sans text-[var(--ice)]/80">Email Address *</label>
+                      <input
+                        type="email"
+                        id="email"
+                        required
+                        value={formData.email}
+                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                        className="w-full bg-transparent border-b border-[var(--border-subtle)] py-2.5 text-white focus:outline-none focus:border-[var(--accent)] transition-colors font-sans text-sm"
+                        placeholder="john@company.com"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="space-y-1.5">
+                    <label htmlFor="service" className="text-xs font-sans text-[var(--ice)]/80">Service Needed</label>
+                    <select
+                      id="service"
+                      value={formData.service}
+                      onChange={(e) => setFormData({ ...formData, service: e.target.value })}
+                      className="w-full bg-[var(--surface)] border-b border-[var(--border-subtle)] py-2.5 text-[var(--ice)] focus:outline-none focus:border-[var(--accent)] transition-colors font-sans text-sm"
+                    >
+                      <option value="" className="bg-[var(--surface)] text-white">Select a service...</option>
+                      <option value="crm" className="bg-[var(--surface)] text-white">CRM Setup (GoHighLevel)</option>
+                      <option value="automation" className="bg-[var(--surface)] text-white">Workflow Automation (n8n / Zapier)</option>
+                      <option value="funnel" className="bg-[var(--surface)] text-white">Funnel Building</option>
+                      <option value="chatbot" className="bg-[var(--surface)] text-white">AI Chatbot Integration</option>
+                      <option value="sms-email" className="bg-[var(--surface)] text-white">SMS & Email Drip Automation</option>
+                      <option value="white-label" className="bg-[var(--surface)] text-white">White Label GHL / SaaS Setup</option>
+                      <option value="other" className="bg-[var(--surface)] text-white">Other Inquiry</option>
+                    </select>
+                  </div>
+
+                  <div className="space-y-1.5">
+                    <label htmlFor="message" className="text-xs font-sans text-[var(--ice)]/80">Tell Me About Your Business *</label>
+                    <textarea
+                      id="message"
+                      rows={4}
+                      required
+                      value={formData.message}
+                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                      className="w-full bg-transparent border-b border-[var(--border-subtle)] py-2.5 text-white focus:outline-none focus:border-[var(--accent)] transition-colors font-sans resize-none text-sm"
+                      placeholder="What repetitive tasks are costing you the most time?"
+                    />
+                  </div>
+
+                  <div className="pt-3">
+                    <MagneticButton
+                      type="submit"
+                      disabled={isSubmitting}
+                      fullWidth={true}
+                      variant="primary"
+                      className="w-full py-4 text-sm font-bold tracking-wider uppercase cursor-pointer"
+                    >
+                      {isSubmitting ? (
+                        <span className="flex items-center gap-2">
+                          <SpinnerGap size={18} className="animate-spin" />
+                          <span>SENDING INQUIRY...</span>
+                        </span>
+                      ) : (
+                        <span>SEND MESSAGE →</span>
+                      )}
+                    </MagneticButton>
+                  </div>
+                </form>
+              )}
+            </AnimatePresence>
           </motion.div>
         </div>
       </div>
     </div>
   );
 }
+

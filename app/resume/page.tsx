@@ -65,7 +65,7 @@ export default function ResumePage() {
                 <span>Book a Call</span>
               </RippleButton>
             </Link>
-            <a href="/resume.pdf" download="Muhammad_Umer_Farooq_Resume.pdf" className="hidden sm:inline-block">
+            <a href="/muhammad-umer-farooq-gohighlevel-expert.pdf" download="Muhammad_Umer_Farooq_Resume.pdf" className="inline-block">
               <MagneticButton variant="outline" size="sm">
                 <Download size={16} />
                 <span>Download PDF</span>

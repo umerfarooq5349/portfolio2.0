@@ -70,39 +70,41 @@ const services = [
   },
 ];
 
-export function ServicesBento() {
+export function ServicesBento({ showHeader = true }: { showHeader?: boolean } = {}) {
   return (
-    <section aria-label="Services" className="py-32 bg-[var(--background)]">
+    <section aria-label="Services" className={showHeader ? "py-24 sm:py-32 bg-[var(--background)]" : "pb-24 pt-4 bg-[var(--background)]"}>
       <div className="max-w-5xl mx-auto px-6">
-        <div className="mb-16 md:mb-20 text-center">
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-[var(--accent)] font-sans uppercase tracking-[0.2em] text-sm font-semibold mb-4"
-          >
-            What I Do
-          </motion.p>
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="text-4xl md:text-6xl font-heading font-semibold text-white leading-[1.1] max-w-3xl mx-auto"
-          >
-            I transform manual processes into{" "}
-            <span className="text-[var(--accent)] italic">intelligent automation.</span>
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="mt-6 text-[var(--ice)]/80 font-sans text-lg max-w-2xl mx-auto"
-          >
-            Every service is designed with one goal: replace repetitive manual tasks with systems that work 24/7.
-          </motion.p>
-        </div>
+        {showHeader && (
+          <div className="mb-14 md:mb-20 text-center">
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-[var(--accent)] font-sans uppercase tracking-[0.2em] text-sm font-semibold mb-3"
+            >
+              What I Do
+            </motion.p>
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="text-3xl sm:text-5xl md:text-6xl font-heading font-semibold text-white leading-[1.1] max-w-3xl mx-auto"
+            >
+              I transform manual processes into{" "}
+              <span className="text-[var(--accent)] italic">intelligent automation.</span>
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="mt-4 sm:mt-6 text-[var(--ice)]/80 font-sans text-sm sm:text-lg max-w-2xl mx-auto"
+            >
+              Every service is designed with one goal: replace repetitive manual tasks with systems that work 24/7.
+            </motion.p>
+          </div>
+        )}
 
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 auto-rows-[minmax(180px,auto)]">
           {services.map((service, index) => (
@@ -117,7 +119,7 @@ export function ServicesBento() {
               <GlowCard 
                 customSize={true} 
                 glowColor="orange"
-                className={`w-full h-full relative group p-8 rounded-3xl border flex flex-col justify-between cursor-default transition-all duration-300 ${service.featured
+                className={`w-full h-full relative group p-6 sm:p-8 rounded-3xl border flex flex-col justify-between cursor-default transition-all duration-300 ${service.featured
                   ? "bg-[var(--surface-elevated)] border-[var(--accent)]/30 hover:border-[var(--accent)]/60 shadow-xl"
                   : "bg-[var(--surface)] border-[var(--border-subtle)] hover:border-[var(--accent)]/40 shadow-lg"
                 }`}
@@ -129,8 +131,8 @@ export function ServicesBento() {
                 {service.icon}
               </div>
               <div className="relative z-10">
-                <h3 className="text-xl font-heading font-semibold text-white mb-3">{service.title}</h3>
-                <p className="text-[var(--ice)]/75 font-sans text-sm leading-relaxed">{service.description}</p>
+                <h3 className="text-lg sm:text-xl font-heading font-semibold text-white mb-2 sm:mb-3">{service.title}</h3>
+                <p className="text-[var(--ice)]/75 font-sans text-xs sm:text-sm leading-relaxed">{service.description}</p>
               </div>
               </GlowCard>
             </motion.div>

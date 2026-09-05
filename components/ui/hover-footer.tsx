@@ -45,9 +45,10 @@ export const TextHoverEffect = ({
         <linearGradient
           id="textGradient"
           gradientUnits="userSpaceOnUse"
-          cx="50%"
-          cy="50%"
-          r="25%"
+          x1="0%"
+          y1="0%"
+          x2="100%"
+          y2="0%"
         >
           {hovered && (
             <>
@@ -86,7 +87,7 @@ export const TextHoverEffect = ({
         y="50%"
         textAnchor="middle"
         dominantBaseline="middle"
-        className="fill-white/5 font-[helvetica] text-7xl font-bold"
+        className="fill-white/5 font-heading text-7xl font-bold tracking-tight"
       >
         {text}<tspan className="fill-[var(--accent)]/50">.</tspan>
       </text>
@@ -96,7 +97,7 @@ export const TextHoverEffect = ({
         textAnchor="middle"
         dominantBaseline="middle"
         strokeWidth="0.3"
-        className="fill-transparent stroke-[var(--accent)] font-[helvetica] text-7xl font-bold opacity-30"
+        className="fill-transparent stroke-[var(--accent)] font-heading text-7xl font-bold tracking-tight opacity-30"
         initial={{ strokeDashoffset: 1000, strokeDasharray: 1000 }}
         animate={{
           strokeDashoffset: 0,
@@ -116,7 +117,7 @@ export const TextHoverEffect = ({
         dominantBaseline="middle"
         fill="url(#textGradient)"
         mask="url(#textMask)"
-        className="font-[helvetica] text-7xl font-bold"
+        className="font-heading text-7xl font-bold tracking-tight"
       >
         {text}<tspan fill="var(--accent)">.</tspan>
       </text>

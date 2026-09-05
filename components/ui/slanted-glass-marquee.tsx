@@ -70,13 +70,13 @@ export function SlantedGlassMarquee({
 
   return (
     <div
-      className="w-full relative overflow-visible flex items-center justify-center py-8 md:py-10"
+      className="w-full relative overflow-hidden flex items-center justify-center py-6 sm:py-8 md:py-10"
       onMouseEnter={() => pauseOnHover && setIsHovered(true)}
       onMouseLeave={() => pauseOnHover && setIsHovered(false)}
     >
       {/* Slanted Glassmorphic Container tilted at -4deg */}
       <div
-        className="w-[112%] max-w-none relative flex items-center overflow-hidden transition-transform duration-300"
+        className="w-[118%] max-w-none relative flex items-center overflow-hidden transition-transform duration-300"
         style={{
           transform: `rotate(${angle}deg)`,
           background: "linear-gradient(90deg, rgba(255,255,255,0.02) 0%, rgba(255,255,255,0.06) 20%, rgba(255,255,255,0.06) 80%, rgba(255,255,255,0.02) 100%)",
@@ -85,7 +85,7 @@ export function SlantedGlassMarquee({
           borderTop: "1px solid rgba(255, 255, 255, 0.12)",
           borderBottom: "1px solid rgba(255, 255, 255, 0.12)",
           boxShadow: "0 15px 40px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.15)",
-          padding: "18px 0",
+          padding: "14px 0",
           cursor: pauseOnHover ? "pointer" : "default",
         }}
       >
@@ -97,10 +97,10 @@ export function SlantedGlassMarquee({
           {displayItems.map((item, i) => (
             <div
               key={i}
-              className="inline-flex items-center gap-3.5 px-8 transition-all duration-300 hover:scale-110 shrink-0"
+              className="inline-flex items-center gap-2.5 sm:gap-3.5 px-5 sm:px-8 transition-all duration-300 hover:scale-105 shrink-0"
               style={{
                 fontFamily: FONT_FAMILY,
-                fontSize: "1.35rem",
+                fontSize: "1.15rem",
                 fontWeight: 700,
                 color: item.color || "#FFFFFF",
                 letterSpacing: "-0.02em",

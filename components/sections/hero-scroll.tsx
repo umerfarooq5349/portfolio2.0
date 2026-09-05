@@ -83,7 +83,7 @@ export function HeroScroll() {
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_90%_75%_at_50%_0%,rgba(236,179,101,0.1),transparent_80%),radial-gradient(ellipse_70%_50%_at_20%_40%,rgba(32,71,108,0.4),transparent_90%)] pointer-events-none z-0" />
 
       {/* Main hero content */}
-      <div className="relative z-10 flex-1 flex items-center mt-8 pt-40 lg:pt-22 pb-8">
+      <div className="relative z-10 flex-1 flex items-center mt-4 sm:mt-8 pt-28 sm:pt-32 lg:pt-24 pb-8">
         <div className="max-w-6xl mx-auto px-6 w-full">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 xl:gap-12 items-center ">
 
@@ -259,7 +259,7 @@ export function HeroScroll() {
       </div>
 
       {/* Full-Width Slanted Glassmorphic Marquee (-3deg) embedded in Hero */}
-      <div className="w-full relative z-20 pb-6 pt-2 overflow-visible pointer-events-auto">
+      <div className="w-full relative z-20 pb-6 pt-2 overflow-hidden pointer-events-auto">
         <SlantedGlassMarquee
           items={TOOLS_DATA}
           angle={-3}

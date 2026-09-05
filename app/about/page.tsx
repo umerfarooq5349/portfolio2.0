@@ -17,7 +17,7 @@ export default function AboutPage() {
       <AboutMinimalist isPageHeading={true} />
 
       {/* Full-Width Slanted Glassmorphic Marquee (-3deg) */}
-      <div className="w-full relative z-20 pb-6 pt-2 overflow-visible pointer-events-auto">
+      <div className="w-full relative z-20 pb-6 pt-2 overflow-hidden pointer-events-auto">
         <SlantedGlassMarquee
           items={TOOLS_DATA}
           angle={-3}

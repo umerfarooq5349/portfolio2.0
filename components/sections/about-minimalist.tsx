@@ -134,7 +134,7 @@ export function AboutMinimalist({ isPageHeading = false }: { isPageHeading?: boo
                 role="CRM & Automation Specialist"
                 badgeId="MUF-89240-CRM"
                 accentColor="#ECB365"
-                ropeLength={150}
+                ropeLength={110}
                 avatarUrl="/hero-portrait.png"
               />
             </div>
@@ -240,16 +240,16 @@ export function AboutMinimalist({ isPageHeading = false }: { isPageHeading?: boo
                 <p className="text-[11px] font-sans text-[var(--ice)]/70 mt-0.5">Automations Built</p>
               </div>
               <div className="border-x border-white/10 px-2">
-                <span className="text-2xl sm:text-3xl font-heading font-bold text-[#ECB365]">
+                <span className="text-2xl sm:text-3xl font-heading font-bold text-[var(--accent)]">
                   <AnimatedNumber value={70} suffix="%" />
                 </span>
-                <p className="text-[11px] font-sans text-zinc-400 mt-0.5 font-medium">Workload Cut</p>
+                <p className="text-[11px] font-sans text-[var(--ice)]/80 mt-0.5 font-medium">Workload Cut</p>
               </div>
               <div>
                 <span className="text-2xl sm:text-3xl font-heading font-bold text-white">
                   <AnimatedNumber value={99.9} suffix="%" isDecimal />
                 </span>
-                <p className="text-[11px] font-sans text-zinc-400 mt-0.5">System Uptime</p>
+                <p className="text-[11px] font-sans text-[var(--ice)]/70 mt-0.5">System Uptime</p>
               </div>
             </div>
 
