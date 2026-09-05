@@ -15,7 +15,7 @@ export function ContactCTA() {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#1e1e1e] to-[#141414] border border-white/10 p-8 sm:p-12 md:p-20 text-center"
+          className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[var(--surface-elevated)] to-[var(--surface)] border border-[var(--border-subtle)] p-8 sm:p-12 md:p-20 text-center"
         >
           {/* Background glow */}
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--accent)/10_0%,_transparent_70%)] pointer-events-none" />
@@ -44,7 +44,7 @@ export function ContactCTA() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              className="text-zinc-400 font-sans text-lg mb-10 max-w-xl mx-auto"
+              className="text-[var(--ice)]/80 font-sans text-lg mb-10 max-w-xl mx-auto"
             >
               Book a consultation today. We&apos;ll map out exactly how to automate your business operations, improve your systems, and scale with powerful CRM automation.
             </motion.p>

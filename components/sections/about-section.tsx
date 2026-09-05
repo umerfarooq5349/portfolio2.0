@@ -24,7 +24,7 @@ export function AboutSection() {
 
       <div className="max-w-5xl mx-auto px-6 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          {/* Left — Visual */}
+          {/* Left: Visual */}
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -58,7 +58,7 @@ export function AboutSection() {
             </div>
           </motion.div>
 
-          {/* Right — Content */}
+          {/* Right: Content */}
           <motion.div
             initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -79,7 +79,7 @@ export function AboutSection() {
                 I&apos;m <strong className="text-white">Muhammad Umer Farooq</strong>, a CRM &amp; Automation Expert with 1.5+ years of experience building smart, scalable business systems.
               </p>
               <p>
-                I specialize in designing automation workflows that reduce manual work, improve lead handling, and increase overall business efficiency. I&apos;ve worked with <strong className="text-white">real estate, healthcare, and service-based businesses</strong> — helping them streamline operations and grow faster.
+                I specialize in designing automation workflows that reduce manual work, improve lead handling, and increase overall business efficiency. I&apos;ve worked with <strong className="text-white">real estate, healthcare, and service-based businesses</strong>, helping them streamline operations and grow faster.
               </p>
             </div>
 

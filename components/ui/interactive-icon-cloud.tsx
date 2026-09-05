@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useMemo, useState } from "react"
+import React, { useEffect, useMemo, useState, useSyncExternalStore } from "react"
 import { useTheme } from "next-themes"
 import {
   Cloud,
@@ -58,7 +58,7 @@ export const renderCustomIcon = (icon: SimpleIcon, theme: string) => {
       href: undefined,
       target: undefined,
       rel: undefined,
-      onClick: (e: any) => e.preventDefault(),
+      onClick: (e: React.MouseEvent) => e.preventDefault(),
     },
   })
 }
@@ -71,11 +71,14 @@ type IconData = Awaited<ReturnType<typeof fetchSimpleIcons>>
 
 export function IconCloud({ iconSlugs }: DynamicCloudProps) {
   const [data, setData] = useState<IconData | null>(null)
-  const [mounted, setMounted] = useState(false)
+  const mounted = useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false
+  )
   const { theme } = useTheme()
 
   useEffect(() => {
-    setMounted(true)
     fetchSimpleIcons({ slugs: iconSlugs }).then(setData)
   }, [iconSlugs])
 
@@ -98,7 +101,6 @@ export function IconCloud({ iconSlugs }: DynamicCloudProps) {
 
   return (
     <div className="w-full flex items-center justify-center [transform:translateZ(0)] [will-change:transform]">
-      {/* @ts-ignore */}
       <Cloud {...cloudProps}>
         <>{renderedIcons}</>
       </Cloud>

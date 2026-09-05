@@ -1,15 +1,14 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
 import { HangingIdCard } from "@/components/lightswind/hanging-id-card";
-import { Terminal, Shield, Cpu, ArrowUpRight, CheckSquare } from "@phosphor-icons/react";
+import { Terminal, Cpu, ArrowUpRight, CheckSquare } from "@phosphor-icons/react";
 
 export function AboutBrutalist() {
   return (
     <section
       id="about-brutalist"
-      aria-label="About — Brutalist Industrial Edition"
+      aria-label="About: Brutalist Industrial Edition"
       className="relative z-10 py-20 lg:py-28 bg-zinc-950 text-white border-y-4 border-white font-mono overflow-hidden"
     >
       <div className="max-w-6xl mx-auto px-6">
@@ -30,9 +29,9 @@ export function AboutBrutalist() {
           </div>
         </div>
 
-        {/* Main Grid: Left — Hanging ID Card + Terminal Specs | Right — Raw Content */}
+        {/* Main Grid: Left (Hanging ID Card + Terminal Specs) | Right (Raw Content) */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
-          {/* Left Column (5 cols) — Hanging ID Card (Brutalist Theme) */}
+          {/* Left Column (5 cols): Hanging ID Card (Brutalist Theme) */}
           <div className="lg:col-span-5 flex flex-col items-center">
             <HangingIdCard
               name="Muhammad Umer Farooq"
@@ -71,7 +70,7 @@ export function AboutBrutalist() {
             </div>
           </div>
 
-          {/* Right Column (7 cols) — Brutalist Text Content & Grid Cards */}
+          {/* Right Column (7 cols): Brutalist Text Content & Grid Cards */}
           <div className="lg:col-span-7 space-y-8">
             {/* Main Manifesto Box */}
             <div className="border-4 border-white bg-zinc-900 p-6 sm:p-8 shadow-[8px_8px_0px_#ffffff]">

@@ -9,7 +9,7 @@ import HeroShutterText from "@/components/ui/hero-shutter-text";
 import { DotGrid } from "@/components/ui/DotGrid";
 import { ArrowRight, CalendarCheck, CheckCircle, Star, Lightning, SpeakerHigh, SpeakerSimpleSlash } from "@phosphor-icons/react";
 import { SlantedGlassMarquee } from "@/components/ui/slanted-glass-marquee";
-import { BrandLogos, TOOLS_DATA } from "@/lib/marquee-tools";
+import { TOOLS_DATA } from "@/lib/marquee-tools";
 
 export function HeroScroll() {
   const containerRef = useRef<HTMLElement>(null);
@@ -17,66 +17,25 @@ export function HeroScroll() {
   const [isMuted, setIsMuted] = useState(true);
   const isInView = useInView(containerRef, { amount: 0.3 });
 
-  // Force unmuted audio play on page load & on any initial gesture/movement
+  // Standard polite video initialization: autoplay muted
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
 
-    const forceUnmuteAndPlay = () => {
-      video.muted = false;
-      video.volume = 1.0;
-      video
-        .play()
-        .then(() => setIsMuted(false))
-        .catch(() => {
-          // If browser policy temporarily blocks unmuted play before interaction, fallback to muted autoplay until first micro-gesture
-          video.muted = true;
-          setIsMuted(true);
-          video.play().catch(() => { });
-        });
-    };
-
-    // Attempt unmuted playback immediately on page load
-    forceUnmuteAndPlay();
-
-    // Aggressively unmute audio on the very first frame of user interaction (mousemove, scroll, touch, click, keydown)
-    const handleGesture = () => {
-      forceUnmuteAndPlay();
-    };
-
-    window.addEventListener("pointerdown", handleGesture, { once: true, capture: true });
-    window.addEventListener("mousemove", handleGesture, { once: true, capture: true });
-    window.addEventListener("touchstart", handleGesture, { once: true, capture: true });
-    window.addEventListener("scroll", handleGesture, { once: true, capture: true });
-    window.addEventListener("keydown", handleGesture, { once: true, capture: true });
-    window.addEventListener("click", handleGesture, { once: true, capture: true });
-
-    return () => {
-      window.removeEventListener("pointerdown", handleGesture, { capture: true });
-      window.removeEventListener("mousemove", handleGesture, { capture: true });
-      window.removeEventListener("touchstart", handleGesture, { capture: true });
-      window.removeEventListener("scroll", handleGesture, { capture: true });
-      window.removeEventListener("keydown", handleGesture, { capture: true });
-      window.removeEventListener("click", handleGesture, { capture: true });
-    };
+    video.muted = true;
+    setIsMuted(true);
+    video.play().catch(() => {
+      // Browser autoplay fallback
+    });
   }, []);
 
-  // Viewport playback control (Auto play & force unmute whenever scrolled into view)
+  // Viewport playback control: pause when out of view, resume when scrolled back in
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
 
     if (isInView) {
-      video.muted = false;
-      video.volume = 1.0;
-      video
-        .play()
-        .then(() => setIsMuted(false))
-        .catch(() => {
-          video.muted = true;
-          setIsMuted(true);
-          video.play().catch(() => { });
-        });
+      video.play().catch(() => { });
     } else {
       video.pause();
     }
@@ -90,7 +49,10 @@ export function HeroScroll() {
     if (video.muted) {
       video.muted = false;
       video.volume = 1.0;
-      video.play().then(() => setIsMuted(false)).catch(() => { });
+      video
+        .play()
+        .then(() => setIsMuted(false))
+        .catch(() => { });
     } else {
       video.muted = true;
       setIsMuted(true);
@@ -101,7 +63,7 @@ export function HeroScroll() {
     <section
       ref={containerRef}
       id="hero"
-      aria-label="Hero — Muhammad Umer Farooq CRM Automation Expert"
+      aria-label="Hero: Muhammad Umer Farooq CRM Automation Expert"
       className="relative min-h-screen lg:min-h-screen bg-[var(--background)] text-white overflow-visible flex flex-col justify-between"
     >
       {/* Interactive DotGrid background */}
@@ -125,7 +87,7 @@ export function HeroScroll() {
         <div className="max-w-6xl mx-auto px-6 w-full">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 xl:gap-12 items-center ">
 
-            {/* Left — Text Content (7 cols) */}
+            {/* Left: Text Content (7 cols) */}
             <div className="lg:col-span-7">
               {/* Availability badge */}
               <motion.div
@@ -140,7 +102,7 @@ export function HeroScroll() {
                 </span>
               </motion.div>
 
-              {/* H1 Headline — GPU-Accelerated Shutter Text */}
+              {/* H1 Headline: GPU-Accelerated Shutter Text */}
               <motion.h1
                 initial={{ opacity: 0, y: 18 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -161,7 +123,7 @@ export function HeroScroll() {
                 transition={{ duration: 0.5, delay: 0.25 }}
                 className="text-xs sm:text-sm lg:text-base font-sans text-[var(--ice)]/80 leading-relaxed mb-5 max-w-xl"
               >
-                Specializing in GoHighLevel, n8n, Zapier &amp; AI workflows to automate lead capture, client follow-ups, and business operations — 24/7.
+                Specializing in GoHighLevel, n8n, Zapier &amp; AI workflows to automate lead capture, client follow-ups, and business operations, 24/7.
               </motion.p>
 
               {/* Vertical Trust Checklist */}
@@ -179,22 +141,22 @@ export function HeroScroll() {
                 ))}
               </motion.div>
 
-              {/* CTA Buttons */}
+              {/* CTAs */}
               <motion.div
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.45 }}
-                className="flex flex-wrap items-center gap-3 sm:gap-4"
+                className="flex flex-wrap items-center gap-3.5 pt-1"
               >
                 <Link href="/contact">
                   <RippleButton>
-                    <CalendarCheck size={16} />
-                    <span>Book a Free Audit Call</span>
+                    <CalendarCheck size={18} />
+                    <span>Book a Call</span>
                   </RippleButton>
                 </Link>
 
                 <Link href="/projects">
-                  <MagneticButton variant="outline" size="md">
+                  <MagneticButton variant="outline" size="sm">
                     <span>View Case Studies</span>
                     <ArrowRight size={14} />
                   </MagneticButton>
@@ -202,7 +164,7 @@ export function HeroScroll() {
               </motion.div>
             </div>
 
-            {/* Right — Visual Card with Video & Sound Controls (5 cols) */}
+            {/* Right: Visual Card with Video & Sound Controls (5 cols) */}
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               animate={{ opacity: 1, x: 0 }}
@@ -211,7 +173,7 @@ export function HeroScroll() {
             >
               {/* Portrait video card */}
               <div className="relative rounded-2xl overflow-hidden border border-[var(--border-subtle)] bg-[var(--surface)] shadow-2xl max-h-[380px] xl:max-h-[420px] group">
-                {/* Hero video with poster thumbnail — NO LOOP */}
+                {/* Hero video with poster thumbnail: NO LOOP */}
                 <div
                   className="relative aspect-[4/4.5] w-full max-h-[380px] xl:max-h-[420px] overflow-hidden cursor-pointer"
                   onClick={toggleSound}

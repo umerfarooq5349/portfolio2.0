@@ -1,7 +1,24 @@
+import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowLeft, Calendar, Clock, User, Zap, BookOpen } from "lucide-react";
+import { ArrowLeft, Calendar, Clock, BookOpen } from "lucide-react";
 
-const blogPostsData: Record<string, any> = {
+interface BlogContentSection {
+  sectionTitle: string;
+  paragraphs: string[];
+}
+
+interface BlogPostItem {
+  title: string;
+  category: string;
+  date: string;
+  readTime: string;
+  author: string;
+  overview: string;
+  content: BlogContentSection[];
+  takeaways: string[];
+}
+
+const blogPostsData: Record<string, BlogPostItem> = {
   "1": {
     title: "How to Save 10+ Hours/Week with GHL Workflow Automation",
     category: "CRM Setup",
@@ -112,6 +129,20 @@ const blogPostsData: Record<string, any> = {
   }
 };
 
+export function generateStaticParams() {
+  return Object.keys(blogPostsData).map((id) => ({ id }));
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
+  const { id } = await params;
+  const post = blogPostsData[id];
+  if (!post) return { title: "Blog Post Not Found" };
+  return {
+    title: `${post.title} | Muhammad Umer Farooq`,
+    description: post.overview.slice(0, 160),
+  };
+}
+
 export default async function BlogPostDetail({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   const post = blogPostsData[id];
@@ -119,7 +150,7 @@ export default async function BlogPostDetail({ params }: { params: Promise<{ id:
   if (!post) {
     return (
       <div className="pt-40 pb-20 text-center min-h-screen bg-[var(--background)]">
-        <p className="text-zinc-400 font-sans mb-4">Blog Post not found</p>
+        <p className="text-[var(--ice)]/70 font-sans mb-4">Blog Post not found</p>
         <Link href="/blog" className="text-[var(--accent)] hover:underline">
           Return to Blog
         </Link>
@@ -128,12 +159,12 @@ export default async function BlogPostDetail({ params }: { params: Promise<{ id:
   }
 
   return (
-    <main className="pt-32 pb-32 bg-[var(--background)] min-h-screen">
+    <div className="pt-32 pb-32 bg-[var(--background)] min-h-screen">
       <article className="max-w-4xl mx-auto px-6">
         
         {/* Back Link */}
         <div className="mb-12">
-          <Link href="/blog" className="inline-flex items-center gap-2 text-zinc-400 hover:text-white transition-colors text-sm font-sans mb-8">
+          <Link href="/blog" className="inline-flex items-center gap-2 text-[var(--ice)]/70 hover:text-white transition-colors text-sm font-sans mb-8">
             <ArrowLeft size={16} />
             <span>Back to Blog</span>
           </Link>
@@ -146,10 +177,10 @@ export default async function BlogPostDetail({ params }: { params: Promise<{ id:
               {post.title}
             </h1>
             
-            <div className="flex flex-wrap items-center gap-6 text-sm text-zinc-500 font-sans border-b border-white/10 pb-6">
+            <div className="flex flex-wrap items-center gap-6 text-sm text-[var(--ice)]/60 font-sans border-b border-[var(--border-subtle)] pb-6">
               <div className="flex items-center gap-2">
                 <span className="w-6 h-6 rounded-full bg-[var(--accent)]/20 flex items-center justify-center text-[10px] text-[var(--accent)] font-bold">UF</span>
-                <span className="text-zinc-300 font-medium">{post.author}</span>
+                <span className="text-white font-medium">{post.author}</span>
               </div>
               <div className="flex items-center gap-1.5">
                 <Calendar size={14} />
@@ -164,19 +195,19 @@ export default async function BlogPostDetail({ params }: { params: Promise<{ id:
         </div>
 
         {/* Content Box */}
-        <div className="bg-[#111111] border border-white/5 rounded-3xl p-8 md:p-12 mb-12">
-          <p className="text-lg text-zinc-300 font-sans italic leading-relaxed border-l-2 border-[var(--accent)] pl-6 mb-10">
+        <div className="bg-[var(--surface)] border border-[var(--border-subtle)] rounded-3xl p-8 md:p-12 mb-12 shadow-2xl">
+          <p className="text-lg text-[var(--ice)] font-sans italic leading-relaxed border-l-2 border-[var(--accent)] pl-6 mb-10">
             {post.overview}
           </p>
 
           <div className="space-y-12">
-            {post.content.map((sec: any, index: number) => (
+            {post.content.map((sec: BlogContentSection, index: number) => (
               <section key={index} className="space-y-4">
                 <h2 className="text-2xl font-heading font-semibold text-white">
                   {sec.sectionTitle}
                 </h2>
                 {sec.paragraphs.map((para: string, idx: number) => (
-                  <p key={idx} className="text-zinc-400 font-sans text-base md:text-lg leading-relaxed">
+                  <p key={idx} className="text-[var(--ice)]/80 font-sans text-base md:text-lg leading-relaxed">
                     {para}
                   </p>
                 ))}
@@ -185,12 +216,12 @@ export default async function BlogPostDetail({ params }: { params: Promise<{ id:
           </div>
 
           {/* Key Takeaways */}
-          <div className="mt-12 pt-8 border-t border-white/5 space-y-4">
-            <h3 className="text-xs font-sans uppercase tracking-[0.2em] text-zinc-500 flex items-center gap-2">
+          <div className="mt-12 pt-8 border-t border-[var(--border-subtle)] space-y-4">
+            <h3 className="text-xs font-sans uppercase tracking-[0.2em] text-[var(--ice)]/60 flex items-center gap-2">
               <BookOpen size={14} className="text-[var(--accent)]" />
               Key Takeaways
             </h3>
-            <ul className="space-y-3 pl-5 list-disc text-zinc-400 font-sans text-sm md:text-base leading-relaxed">
+            <ul className="space-y-3 pl-5 list-disc text-[var(--ice)]/80 font-sans text-sm md:text-base leading-relaxed">
               {post.takeaways.map((takeaway: string, idx: number) => (
                 <li key={idx}>
                   {takeaway}
@@ -201,15 +232,15 @@ export default async function BlogPostDetail({ params }: { params: Promise<{ id:
         </div>
 
         {/* CTA to Consultation */}
-        <div className="text-center p-8 rounded-3xl bg-[var(--accent)]/5 border border-[var(--accent)]/20">
-          <h2 className="text-2xl font-heading font-semibold text-white mb-2">Want to automate your workflows?</h2>
-          <p className="text-zinc-400 font-sans text-sm mb-6">Let&apos;s build an automation framework specifically for your business operations.</p>
-          <Link href="/contact" className="inline-flex items-center gap-2 bg-[var(--accent)] text-black px-8 py-3 rounded-full font-sans font-semibold text-sm hover:opacity-90 transition-all">
+        <div className="text-center p-8 sm:p-10 rounded-3xl bg-gradient-to-br from-[var(--surface-elevated)] to-[var(--surface)] border border-[var(--border-subtle)] shadow-xl">
+          <h2 className="text-2xl sm:text-3xl font-heading font-semibold text-white mb-2">Want to automate your workflows?</h2>
+          <p className="text-[var(--ice)]/70 font-sans text-sm sm:text-base mb-6 max-w-lg mx-auto">Let&apos;s build an automation framework specifically for your business operations.</p>
+          <Link href="/contact" className="inline-flex items-center gap-2 bg-[var(--accent)] text-black px-8 py-3.5 rounded-full font-sans font-semibold text-sm hover:bg-[var(--accent-hover)] transition-all shadow-md">
             Book a Free Consultation
           </Link>
         </div>
 
       </article>
-    </main>
+    </div>
   );
 }

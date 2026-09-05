@@ -13,7 +13,7 @@ const projects = [
     icon: <House size={28} className="text-[var(--accent)]" />,
     tags: ["GoHighLevel", "n8n", "SMS Automation"],
     result: "85% faster follow-up",
-    description: "End-to-end automated lead capture & follow-up system for a real estate agency. Leads from Facebook Ads instantly entered the CRM, triggered personalized SMS/email sequences, and notified agents — all without manual work.",
+    description: "End-to-end automated lead capture & follow-up system for a real estate agency. Leads from Facebook Ads instantly entered the CRM, triggered personalized SMS/email sequences, and notified agents, all without manual work.",
   },
   {
     id: 2,
@@ -40,7 +40,7 @@ const projects = [
     icon: <Robot size={28} className="text-[var(--accent)]" />,
     tags: ["AI Chatbot", "GoHighLevel", "API"],
     result: "40% more qualified leads",
-    description: "Custom AI-powered chatbot integrated into a service business's website. The bot qualifies leads, answers FAQs, and books discovery calls directly — all without human intervention.",
+    description: "Custom AI-powered chatbot integrated into a service business's website. The bot qualifies leads, answers FAQs, and books discovery calls directly, all without human intervention.",
   },
   {
     id: 5,
@@ -58,7 +58,7 @@ const projects = [
     icon: <Gear size={28} className="text-[var(--accent)]" />,
     tags: ["n8n", "Zapier", "GoHighLevel"],
     result: "70% less manual work",
-    description: "Complete operational automation for a service-based business: lead intake, CRM pipeline, invoice reminders, client follow-ups, and review requests — all connected and automated.",
+    description: "Complete operational automation for a service-based business: lead intake, CRM pipeline, invoice reminders, client follow-ups, and review requests, all connected and automated.",
   },
 ];
 
@@ -90,7 +90,7 @@ export function ProjectsShowcase() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="mt-6 text-zinc-400 font-sans text-base max-w-xl mx-auto"
+            className="mt-6 text-[var(--ice)]/80 font-sans text-base max-w-xl mx-auto"
           >
             Examples of automation systems I&apos;ve built for businesses across industries.
           </motion.p>
@@ -106,15 +106,15 @@ export function ProjectsShowcase() {
               transition={{ duration: 0.7, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
             >
               <Link href={`/projects/${project.id}`} className="block h-full">
-                <GlowCard customSize={true} glowColor="orange" className="group flex flex-col h-full w-full p-8 rounded-3xl bg-[#111111] border border-white/5 hover:border-[var(--accent)]/30 hover:bg-[#171717] transition-all duration-300">
+                <GlowCard customSize={true} glowColor="orange" className="group flex flex-col h-full w-full p-8 rounded-3xl bg-[var(--surface)] border border-[var(--border-subtle)] hover:border-[var(--accent)]/40 hover:bg-[var(--surface-elevated)] transition-all duration-300 shadow-lg">
                 {/* Header */}
                 <div className="flex items-start justify-between mb-6 relative z-10">
                   {project.icon}
-                  <ArrowUpRight size={20} className="text-zinc-600 group-hover:text-[var(--accent)] transition-colors mt-1" />
+                  <ArrowUpRight size={20} className="text-[var(--ice)]/60 group-hover:text-[var(--accent)] transition-colors mt-1" />
                 </div>
 
                 {/* Category */}
-                <p className="text-[var(--accent)] font-sans text-xs tracking-widest uppercase mb-2 relative z-10">
+                <p className="text-[var(--accent)] font-sans text-xs tracking-widest uppercase mb-2 relative z-10 font-medium">
                   {project.category}
                 </p>
 
@@ -124,14 +124,14 @@ export function ProjectsShowcase() {
                 </h3>
 
                 {/* Description */}
-                <p className="text-zinc-500 font-sans text-sm leading-relaxed mb-6 flex-1 line-clamp-3 relative z-10">
+                <p className="text-[var(--ice)]/75 font-sans text-sm leading-relaxed mb-6 flex-1 line-clamp-3 relative z-10">
                   {project.description}
                 </p>
 
                 {/* Result badge */}
                 <div className="mb-4 relative z-10">
-                  <span className="inline-flex items-center gap-1.5 text-xs font-sans font-medium text-green-400 bg-green-400/10 border border-green-400/20 px-3 py-1 rounded-full">
-                    <span className="w-1.5 h-1.5 rounded-full bg-green-400" />
+                  <span className="inline-flex items-center gap-1.5 text-xs font-sans font-medium text-emerald-400 bg-emerald-400/10 border border-emerald-400/20 px-3 py-1 rounded-full">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
                     {project.result}
                   </span>
                 </div>
@@ -139,7 +139,7 @@ export function ProjectsShowcase() {
                 {/* Tags */}
                 <div className="flex flex-wrap gap-2 relative z-10">
                   {project.tags.map((tag) => (
-                    <span key={tag} className="px-3 py-1 rounded-full border border-white/10 text-xs font-sans text-zinc-400 bg-white/5">
+                    <span key={tag} className="px-3 py-1 rounded-full border border-[var(--border-subtle)] text-xs font-sans text-[var(--ice)] bg-[var(--surface-elevated)]">
                       {tag}
                     </span>
                   ))}
@@ -157,7 +157,7 @@ export function ProjectsShowcase() {
           transition={{ delay: 0.3 }}
           className="mt-12 text-center"
         >
-          <Link href="/projects" className="inline-flex items-center space-x-2 text-zinc-400 hover:text-[var(--accent)] transition-colors pb-1 border-b border-white/20 hover:border-[var(--accent)]/50">
+          <Link href="/projects" className="inline-flex items-center space-x-2 text-[var(--ice)]/80 hover:text-[var(--accent)] transition-colors pb-1 border-b border-[var(--border-subtle)] hover:border-[var(--accent)]/50">
             <span className="font-sans text-sm tracking-widest uppercase">View All Case Studies</span>
             <ArrowUpRight size={16} />
           </Link>

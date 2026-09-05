@@ -6,7 +6,7 @@ import Link from "next/link";
 import { ArrowRight, CheckCircle } from "@phosphor-icons/react";
 
 const benefits = [
-  "Instant lead follow-up under 2 minutes — automated",
+  "Instant lead follow-up under 2 minutes (automated)",
   "CRM pipeline with visual deal tracking stages",
   "Multi-step email + SMS sequences on autopilot",
   "AI chatbot for 24/7 lead qualification",
@@ -22,7 +22,7 @@ export function AutomationVisual() {
       <div className="max-w-6xl mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
 
-          {/* Left — Text */}
+          {/* Left: Text */}
           <div>
             <motion.p
               initial={{ opacity: 0, y: 16 }}
@@ -47,9 +47,9 @@ export function AutomationVisual() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              className="text-zinc-400 font-sans text-base leading-relaxed mb-8"
+              className="text-[var(--ice)]/80 font-sans text-base leading-relaxed mb-8"
             >
-              Every automation I build follows a battle-tested framework — from the moment a lead enters your funnel to the moment they sign the deal. Nothing slips through the cracks.
+              Every automation I build follows a battle-tested framework: from the moment a lead enters your funnel to the moment they sign the deal. Nothing slips through the cracks.
             </motion.p>
 
             <motion.ul
@@ -60,7 +60,7 @@ export function AutomationVisual() {
               className="space-y-3 mb-10"
             >
               {benefits.map((item, i) => (
-                <li key={i} className="flex items-start gap-3 text-sm font-sans text-zinc-300">
+                <li key={i} className="flex items-start gap-3 text-sm font-sans text-[var(--ice)]/90">
                   <CheckCircle size={16} className="text-[var(--accent)] shrink-0 mt-0.5" />
                   {item}
                 </li>
@@ -83,7 +83,7 @@ export function AutomationVisual() {
             </motion.div>
           </div>
 
-          {/* Right — Visual */}
+          {/* Right: Visual */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -94,7 +94,7 @@ export function AutomationVisual() {
             {/* Glow behind */}
             <div className="absolute inset-0 bg-[var(--accent)]/10 rounded-3xl blur-3xl scale-90" />
 
-            <div className="relative rounded-3xl overflow-hidden border border-white/8 shadow-2xl">
+            <div className="relative rounded-3xl overflow-hidden border border-[var(--border-subtle)] shadow-2xl">
               <Image
                 src="/automation-workflow.png"
                 alt="Automation workflow diagram showing lead capture through CRM pipeline to booking"

@@ -8,7 +8,7 @@ export function StatsBar() {
   return (
     <section
       aria-label="Key Statistics & Performance Metrics"
-      className="relative z-20 py-12 lg:py-16 border-y border-white/10 bg-[var(--background)]"
+      className="relative z-20 py-12 lg:py-16 border-y border-[var(--border-subtle)] bg-[var(--background)]"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         {/* Section Heading */}
@@ -32,7 +32,7 @@ export function StatsBar() {
           </p>
         </motion.div>
 
-        {/* StatCard (card-10) Interactive Animated Metrics — Single Line Row of 4 */}
+        {/* StatCard (card-10) Interactive Animated Metrics: Single Line Row of 4 */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -46,7 +46,7 @@ export function StatsBar() {
               change={32}
               changeDescription="this month"
               icon={<ArrowUpRight className="h-4 w-4 text-emerald-400" />}
-              className="bg-[#112335]/80 border-white/10 text-white shadow-xl hover:border-[var(--accent)]/40 transition-colors"
+              className="bg-[var(--surface)] border-[var(--border-subtle)] text-white shadow-xl hover:border-[var(--accent)]/40 transition-colors"
             />
             <StatCard
               title="Manual Workload Cut"
@@ -54,7 +54,7 @@ export function StatsBar() {
               change={-70}
               changeDescription="hours saved"
               icon={<ArrowDownRight className="h-4 w-4 text-emerald-400" />}
-              className="bg-[#112335]/80 border-white/10 text-white shadow-xl hover:border-[var(--accent)]/40 transition-colors"
+              className="bg-[var(--surface)] border-[var(--border-subtle)] text-white shadow-xl hover:border-[var(--accent)]/40 transition-colors"
             />
             <StatCard
               title="System Uptime Reliability"
@@ -62,15 +62,15 @@ export function StatsBar() {
               change={0.9}
               changeDescription="last 30 days"
               icon={<ShieldCheck className="h-4 w-4 text-[var(--accent)]" />}
-              className="bg-[#112335]/80 border-white/10 text-white shadow-xl hover:border-[var(--accent)]/40 transition-colors"
+              className="bg-[var(--surface)] border-[var(--border-subtle)] text-white shadow-xl hover:border-[var(--accent)]/40 transition-colors"
             />
             <StatCard
               title="Conversion Rate Gain"
               value={45}
               change={18}
               changeDescription="vs benchmark"
-              icon={<Zap className="h-4 w-4 text-[#ECB365]" />}
-              className="bg-[#112335]/80 border-white/10 text-white shadow-xl hover:border-[var(--accent)]/40 transition-colors"
+              icon={<Zap className="h-4 w-4 text-[var(--accent)]" />}
+              className="bg-[var(--surface)] border-[var(--border-subtle)] text-white shadow-xl hover:border-[var(--accent)]/40 transition-colors"
             />
           </div>
         </motion.div>

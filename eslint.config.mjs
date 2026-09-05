@@ -12,7 +12,10 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    "convert.js",
+    "setup_styles.js",
   ]),
 ]);
 
 export default eslintConfig;
+

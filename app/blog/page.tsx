@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { ArrowUpRight, Calendar, BookOpen, Clock } from "lucide-react";
+import { ArrowUpRight, Calendar, Clock } from "lucide-react";
 
 const posts = [
   {
@@ -33,7 +33,7 @@ const posts = [
 
 export default function BlogPage() {
   return (
-    <main className="pt-32 pb-32 min-h-screen bg-[var(--background)]">
+    <div className="pt-32 pb-32 min-h-screen bg-[var(--background)]">
       <div className="max-w-5xl mx-auto px-6">
         
         {/* Header */}
@@ -57,7 +57,7 @@ export default function BlogPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="mt-6 text-zinc-400 font-sans text-lg max-w-xl mx-auto"
+            className="mt-6 text-[var(--ice)]/80 font-sans text-lg max-w-xl mx-auto"
           >
             Tips, tutorials, and strategies on scaling your operations with modern CRM tools and custom automated workflows.
           </motion.p>
@@ -71,21 +71,21 @@ export default function BlogPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1, duration: 0.8 }}
-              className="group relative border-b border-white/10 pb-10 last:border-0 last:pb-0"
+              className="group relative border-b border-[var(--border-subtle)] pb-10 last:border-0 last:pb-0"
             >
               <Link href={`/blog/${post.id}`} className="block">
                 <div className="flex flex-col md:flex-row md:items-start justify-between gap-6">
                   <div className="space-y-4">
                     {/* Metadata row */}
                     <div className="flex items-center gap-4 text-xs font-sans">
-                      <span className="text-[var(--accent)] uppercase tracking-wider font-semibold bg-[var(--accent)]/10 px-3 py-1 rounded-full">
+                      <span className="text-[var(--accent)] uppercase tracking-wider font-semibold bg-[var(--accent)]/10 px-3 py-1 rounded-full border border-[var(--accent)]/20">
                         {post.category}
                       </span>
-                      <span className="text-zinc-500 flex items-center gap-1">
+                      <span className="text-[var(--ice)]/60 flex items-center gap-1">
                         <Calendar size={12} />
                         {post.date}
                       </span>
-                      <span className="text-zinc-500 flex items-center gap-1">
+                      <span className="text-[var(--ice)]/60 flex items-center gap-1">
                         <Clock size={12} />
                         {post.readTime}
                       </span>
@@ -97,14 +97,14 @@ export default function BlogPage() {
                     </h2>
 
                     {/* Excerpt */}
-                    <p className="text-zinc-400 font-sans text-sm md:text-base leading-relaxed">
+                    <p className="text-[var(--ice)]/80 font-sans text-sm md:text-base leading-relaxed">
                       {post.excerpt}
                     </p>
                   </div>
 
                   {/* Arrow Indicator */}
-                  <div className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center shrink-0 group-hover:bg-[var(--accent)] group-hover:text-black group-hover:border-[var(--accent)] transition-all duration-300 hidden md:flex">
-                    <ArrowUpRight size={24} className="opacity-50 group-hover:opacity-100 transition-opacity" />
+                  <div className="w-12 h-12 rounded-full border border-[var(--border-subtle)] bg-[var(--surface-elevated)] flex items-center justify-center shrink-0 group-hover:bg-[var(--accent)] group-hover:text-black group-hover:border-[var(--accent)] transition-all duration-300 hidden md:flex">
+                    <ArrowUpRight size={22} className="opacity-70 group-hover:opacity-100 transition-opacity" />
                   </div>
                 </div>
               </Link>
@@ -112,19 +112,19 @@ export default function BlogPage() {
           ))}
         </div>
 
-        {/* CTA to newsletter or contact */}
-        <div className="mt-20 max-w-3xl mx-auto p-8 rounded-3xl bg-[#111111] border border-white/5 text-center">
-          <h3 className="text-xl font-heading font-semibold text-white mb-2">Want to streamline your operations?</h3>
-          <p className="text-zinc-400 font-sans text-sm mb-6">Let&apos;s build an automation framework specifically for your workflow.</p>
+        {/* CTA to consultation */}
+        <div className="mt-20 max-w-3xl mx-auto p-8 sm:p-10 rounded-3xl bg-gradient-to-br from-[var(--surface-elevated)] to-[var(--surface)] border border-[var(--border-subtle)] text-center shadow-xl">
+          <h3 className="text-xl sm:text-2xl font-heading font-semibold text-white mb-2">Want to streamline your operations?</h3>
+          <p className="text-[var(--ice)]/70 font-sans text-sm sm:text-base mb-6 max-w-lg mx-auto">Let&apos;s build an automation framework specifically for your workflow.</p>
           <Link
             href="/contact"
-            className="inline-flex items-center gap-2 bg-[var(--accent)] text-black px-8 py-3 rounded-full font-sans font-semibold text-sm hover:opacity-90 transition-all"
+            className="inline-flex items-center gap-2 bg-[var(--accent)] text-black px-8 py-3.5 rounded-full font-sans font-semibold text-sm hover:bg-[var(--accent-hover)] transition-all shadow-md"
           >
             Schedule a Free Consultation
           </Link>
         </div>
 
       </div>
-    </main>
+    </div>
   );
 }

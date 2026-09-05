@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Star, Quotes } from "@phosphor-icons/react";
+import { Star } from "@phosphor-icons/react";
 import { GlowCard } from "@/components/ui/spotlight-card";
 
 const featured = [
@@ -68,7 +68,7 @@ export function MiniTestimonials({
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              className="mt-3 text-zinc-400 font-sans text-base"
+              className="mt-3 text-[var(--ice)]/80 font-sans text-base"
             >
               {subheading}
             </motion.p>
@@ -86,7 +86,7 @@ export function MiniTestimonials({
               transition={{ delay: i * 0.1, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
               className="h-full"
             >
-              <GlowCard customSize glowColor="orange" className="h-full relative p-7 rounded-3xl border border-white/10 bg-[#111111] flex flex-col justify-between hover:border-[var(--accent)]/30 transition-colors duration-300">
+              <GlowCard customSize glowColor="orange" className="h-full relative p-7 rounded-3xl border border-[var(--border-subtle)] bg-[var(--surface)] flex flex-col justify-between hover:border-[var(--accent)]/40 transition-colors duration-300 shadow-lg">
                 {/* Stars */}
                 <div className="flex items-center gap-1 mb-4 relative z-10">
                   {[...Array(t.stars)].map((_, s) => (
@@ -100,18 +100,18 @@ export function MiniTestimonials({
                 </span>
 
                 {/* Quote text */}
-                <p className="font-sans text-sm text-zinc-300 italic leading-relaxed flex-1 relative z-10">
+                <p className="font-sans text-sm text-[var(--ice)]/90 italic leading-relaxed flex-1 relative z-10">
                   {t.quote}
                 </p>
 
                 {/* Author */}
-                <div className="flex items-center gap-3 border-t border-white/8 pt-5 mt-5 relative z-10">
+                <div className="flex items-center gap-3 border-t border-[var(--border-subtle)] pt-5 mt-5 relative z-10">
                   <div className="w-9 h-9 rounded-full bg-gradient-to-br from-[var(--accent)]/40 to-[var(--accent)]/10 flex items-center justify-center text-xs font-bold text-[var(--accent)] shrink-0 font-heading">
                     {t.initial}
                   </div>
                   <div>
                     <h4 className="font-heading font-semibold text-white text-sm">{t.name}</h4>
-                    <p className="font-sans text-xs text-zinc-500 mt-0.5">{t.role}</p>
+                    <p className="font-sans text-xs text-[var(--ice)]/65 mt-0.5">{t.role}</p>
                   </div>
                 </div>
               </GlowCard>

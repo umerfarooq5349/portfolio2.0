@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { CaretLeft, CaretRight } from "@phosphor-icons/react";
 import React from "react";
+import Image from "next/image";
 import {
   Autoplay,
   EffectCoverflow,
@@ -103,12 +104,18 @@ const Carousel_003 = ({
     background-position: center;
     background-size: cover;
     width: 300px;
+    position: relative;
+    border-radius: 1rem;
+    overflow: hidden;
   }
 
   .swiper-pagination-bullet {
-    background-color: #000 !important;
+    background-color: rgba(184, 219, 217, 0.4) !important;
   }
 
+  .swiper-pagination-bullet-active {
+    background-color: var(--accent) !important;
+  }
 `;
   return (
     <motion.div
@@ -133,7 +140,7 @@ const Carousel_003 = ({
           autoplay={
             autoplay
               ? {
-                  delay: 1500,
+                  delay: 2000,
                   disableOnInteraction: true,
                 }
               : false
@@ -144,7 +151,7 @@ const Carousel_003 = ({
           centeredSlides={true}
           loop={loop}
           coverflowEffect={{
-            rotate: 40,
+            rotate: 35,
             stretch: 0,
             depth: 100,
             modifier: 1,
@@ -169,9 +176,11 @@ const Carousel_003 = ({
           modules={[EffectCoverflow, Autoplay, Pagination, Navigation]}
         >
           {images.map((image, index) => (
-            <SwiperSlide key={index} className="">
-              <img
-                className="h-full w-full object-cover"
+            <SwiperSlide key={index} className="rounded-2xl border border-[var(--border-subtle)] overflow-hidden">
+              <Image
+                fill
+                sizes="(max-width: 768px) 100vw, 320px"
+                className="object-cover"
                 src={image.src}
                 alt={image.alt}
               />
@@ -196,7 +205,7 @@ const Carousel_003 = ({
 export { Carousel_003 };
 
 /**
- * Skiper 49 Carousel_003 — React + Swiper
+ * Skiper 49 Carousel_003: React + Swiper
  * Built with Swiper.js - Read docs to learn more https://swiperjs.com/
  * Illustrations by AarzooAly - https://x.com/AarzooAly
  *

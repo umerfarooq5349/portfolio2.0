@@ -25,10 +25,15 @@ const getPageTitle = (path: string) => {
 export function PageCurtains({ children }: PageCurtainsProps) {
   const pathname = usePathname();
   const pageTitle = getPageTitle(pathname);
+  const [activePath, setActivePath] = useState(pathname);
   const [isPresent, setIsPresent] = useState(true);
 
-  useEffect(() => {
+  if (activePath !== pathname) {
+    setActivePath(pathname);
     setIsPresent(true);
+  }
+
+  useEffect(() => {
     const timer = setTimeout(() => {
       setIsPresent(false);
     }, 700);
@@ -45,10 +50,10 @@ export function PageCurtains({ children }: PageCurtainsProps) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.45, ease: "easeInOut" }}
-            className="fixed inset-0 z-[9999] flex items-center justify-center bg-[#0B0B0C]"
+            className="fixed inset-0 z-[9999] flex items-center justify-center bg-[var(--background)]"
           >
             {/* Ambient subtle glow background */}
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,145,77,0.12)_0%,transparent_70%)] pointer-events-none" />
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(236,179,101,0.12)_0%,transparent_70%)] pointer-events-none" />
 
             {/* Deliberate, High-End Branding Card */}
             <motion.div
@@ -56,7 +61,7 @@ export function PageCurtains({ children }: PageCurtainsProps) {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.98, y: -5 }}
               transition={{ duration: 0.35, ease: "easeOut" }}
-              className="relative z-10 flex flex-col items-center justify-center text-center px-10 py-8 bg-[#141416]/95 backdrop-blur-2xl border border-white/15 rounded-3xl shadow-[0_20px_60px_rgba(0,0,0,0.85)] max-w-sm mx-4"
+              className="relative z-10 flex flex-col items-center justify-center text-center px-10 py-8 bg-[var(--surface-elevated)]/95 backdrop-blur-2xl border border-[var(--border-subtle)] rounded-3xl shadow-[0_20px_60px_rgba(0,0,0,0.85)] max-w-sm mx-4"
             >
               {/* Active Page Badge */}
               <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-[var(--accent)]/15 px-4 py-1 border border-[var(--accent)]/30">
@@ -72,12 +77,12 @@ export function PageCurtains({ children }: PageCurtainsProps) {
               </h2>
 
               {/* Tagline */}
-              <p className="font-sans text-xs sm:text-sm text-zinc-400 mt-1.5 font-medium tracking-wide">
+              <p className="font-sans text-xs sm:text-sm text-[var(--ice)]/80 mt-1.5 font-medium tracking-wide">
                 CRM &amp; Automation Specialist
               </p>
 
               {/* Animated Progress Line */}
-              <div className="mt-5 w-32 h-[2px] bg-zinc-800 rounded-full overflow-hidden relative">
+              <div className="mt-5 w-32 h-[2px] bg-[var(--surface)] rounded-full overflow-hidden relative">
                 <motion.div
                   initial={{ x: "-100%" }}
                   animate={{ x: "0%" }}

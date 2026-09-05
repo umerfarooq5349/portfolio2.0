@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
 import { Gear, Lightning, Funnel, Users, Envelope, Robot, CalendarCheck, SquaresFour, Globe } from "@phosphor-icons/react";
 import { GlowCard } from "@/components/ui/spotlight-card";
 
@@ -44,7 +43,7 @@ const services = [
   {
     icon: <Robot size={28} />,
     title: "AI Chatbots",
-    description: "Smart AI-powered chat systems for lead qualification and 24/7 customer support — integrated directly into your CRM.",
+    description: "Smart AI-powered chat systems for lead qualification and 24/7 customer support, integrated directly into your CRM.",
     colSpan: "md:col-span-2",
     featured: true,
   },
@@ -99,7 +98,7 @@ export function ServicesBento() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="mt-6 text-zinc-400 font-sans text-lg max-w-2xl mx-auto"
+            className="mt-6 text-[var(--ice)]/80 font-sans text-lg max-w-2xl mx-auto"
           >
             Every service is designed with one goal: replace repetitive manual tasks with systems that work 24/7.
           </motion.p>
@@ -119,19 +118,19 @@ export function ServicesBento() {
                 customSize={true} 
                 glowColor="orange"
                 className={`w-full h-full relative group p-8 rounded-3xl border flex flex-col justify-between cursor-default transition-all duration-300 ${service.featured
-                  ? "bg-[#171717] border-[var(--accent)]/20 hover:border-[var(--accent)]/50"
-                  : "bg-[#111111] border-white/5 hover:border-white/15"
+                  ? "bg-[var(--surface-elevated)] border-[var(--accent)]/30 hover:border-[var(--accent)]/60 shadow-xl"
+                  : "bg-[var(--surface)] border-[var(--border-subtle)] hover:border-[var(--accent)]/40 shadow-lg"
                 }`}
               >
               {service.featured && (
-                <div className="absolute inset-0 bg-gradient-to-br from-[var(--accent)]/5 to-transparent pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-br from-[var(--accent)]/10 to-transparent pointer-events-none rounded-3xl" />
               )}
-              <div className={`mb-4 relative z-10 ${service.featured ? "text-[var(--accent)]" : "text-zinc-400 group-hover:text-[var(--accent)] transition-colors"}`}>
+              <div className={`mb-4 relative z-10 ${service.featured ? "text-[var(--accent)]" : "text-[var(--ice)]/70 group-hover:text-[var(--accent)] transition-colors"}`}>
                 {service.icon}
               </div>
               <div className="relative z-10">
                 <h3 className="text-xl font-heading font-semibold text-white mb-3">{service.title}</h3>
-                <p className="text-zinc-500 font-sans text-sm leading-relaxed">{service.description}</p>
+                <p className="text-[var(--ice)]/75 font-sans text-sm leading-relaxed">{service.description}</p>
               </div>
               </GlowCard>
             </motion.div>

@@ -12,17 +12,19 @@ import {
 
 import { cn } from "@/lib/utils";
 
+import Image from "next/image";
+
 type LinkPreviewProps = {
   children: React.ReactNode;
   url: string;
   className?: string;
   width?: number;
   height?: number;
-  quality?: number;
-  layout?: string;
   isStatic?: boolean;
   imageSrc?: string;
 };
+
+const emptySubscribe = () => () => {};
 
 export const LinkPreview = ({
   children,
@@ -30,12 +32,10 @@ export const LinkPreview = ({
   className,
   width = 200,
   height = 125,
-  quality = 50,
-  layout = "fixed",
   isStatic = false,
   imageSrc = "",
 }: LinkPreviewProps) => {
-  let src;
+  let src: string;
   if (!isStatic) {
     const params = encode({
       url,
@@ -54,37 +54,37 @@ export const LinkPreview = ({
   }
 
   const [isOpen, setOpen] = React.useState(false);
-
-  const [isMounted, setIsMounted] = React.useState(false);
-
-  React.useEffect(() => {
-    setIsMounted(true);
-  }, []);
+  const isMounted = React.useSyncExternalStore(
+    emptySubscribe,
+    () => true,
+    () => false
+  );
 
   const springConfig = { stiffness: 100, damping: 15 };
   const x = useMotionValue(0);
 
   const translateX = useSpring(x, springConfig);
 
-  const handleMouseMove = (event: any) => {
-    const targetRect = event.target.getBoundingClientRect();
+  const handleMouseMove = (event: React.MouseEvent<HTMLElement>) => {
+    const targetRect = event.currentTarget.getBoundingClientRect();
     const eventOffsetX = event.clientX - targetRect.left;
-    const offsetFromCenter = (eventOffsetX - targetRect.width / 2) / 2; // Reduce the effect to make it subtle
+    const offsetFromCenter = (eventOffsetX - targetRect.width / 2) / 2;
     x.set(offsetFromCenter);
   };
 
   return (
     <>
-      {isMounted ? (
+      {isMounted && (
         <div className="hidden">
-          <img
+          <Image
             src={src}
             width={width}
             height={height}
-            alt="hidden image"
+            alt="Link preview preload"
+            unoptimized={!isStatic}
           />
         </div>
-      ) : null}
+      )}
 
       <HoverCardPrimitive.Root
         openDelay={50}
@@ -138,12 +138,13 @@ export const LinkPreview = ({
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <img
+                  <Image
                     src={isStatic ? imageSrc : src}
                     width={width}
                     height={height}
                     className="rounded-lg object-cover"
-                    alt="preview image"
+                    alt="Link preview"
+                    unoptimized={!isStatic}
                   />
                 </a>
               </motion.div>

@@ -1,11 +1,8 @@
 "use client";
 
-import type { Metadata } from "next";
 import { motion } from "framer-motion";
-import Link from "next/link";
 import { MagneticButton } from "@/components/lightswind/magnetic-button";
 import { LinkPreview } from "@/components/ui/link-preview";
-import { GlowCard } from "@/components/ui/spotlight-card";
 
 const contactLinks = [
   {
@@ -29,7 +26,6 @@ const contactLinks = [
     label: "WhatsApp",
     value: "+92 301 4044102",
     href: "https://wa.me/923014044102",
-    // disablePreview: true
   },
   {
     icon: (
@@ -71,7 +67,7 @@ const contactLinks = [
 
 export default function ContactPage() {
   return (
-    <main className="pt-32 pb-32 min-h-screen bg-[var(--background)]">
+    <div role="region" aria-label="Contact Muhammad Umer Farooq" className="pt-32 pb-32 min-h-screen bg-[var(--background)]">
       <div className="max-w-5xl mx-auto px-6">
         {/* Header */}
         <div className="text-center mb-16 md:mb-20">
@@ -96,14 +92,14 @@ export default function ContactPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-zinc-400 font-sans text-lg max-w-xl mx-auto"
+            className="text-[var(--ice)]/80 font-sans text-lg max-w-xl mx-auto"
           >
             Ready to automate your business operations? Reach out directly or fill in the form and I&apos;ll get back to you within 24 hours.
           </motion.p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Left — Contact Links */}
+          {/* Left: Contact Links */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -123,14 +119,14 @@ export default function ContactPage() {
                     href={link.href}
                     target={link.href.startsWith("mailto") ? "_self" : "_blank"}
                     rel="noopener noreferrer"
-                    className="flex items-center gap-4 p-4 rounded-2xl bg-[#111111] border border-white/5 hover:border-[var(--accent)]/30 hover:bg-[#171717] transition-all duration-200 group w-full text-left block"
+                    className="flex items-center gap-4 p-4 rounded-2xl bg-[var(--surface)] border border-[var(--border-subtle)] hover:border-[var(--accent)]/40 hover:bg-[var(--surface-elevated)] transition-all duration-200 group w-full text-left block"
                   >
                     <div className="w-10 h-10 rounded-xl bg-[var(--accent)]/10 border border-[var(--accent)]/20 flex items-center justify-center text-[var(--accent)] group-hover:bg-[var(--accent)]/20 transition-colors shrink-0">
                       {link.icon}
                     </div>
                     <div>
-                      <p className="text-xs font-sans text-zinc-500 uppercase tracking-widest">{link.label}</p>
-                      <p className="text-sm font-sans text-zinc-200 group-hover:text-white transition-colors break-all">{link.value}</p>
+                      <p className="text-xs font-sans text-[var(--ice)]/60 uppercase tracking-widest">{link.label}</p>
+                      <p className="text-sm font-sans text-white group-hover:text-[var(--accent)] transition-colors break-all">{link.value}</p>
                     </div>
                   </a>
                 ) : (
@@ -138,14 +134,14 @@ export default function ContactPage() {
                     url={link.href}
                     isStatic={!!link.previewImage}
                     imageSrc={link.previewImage || ""}
-                    className="flex items-center gap-4 p-4 rounded-2xl bg-[#111111] border border-white/5 hover:border-[var(--accent)]/30 hover:bg-[#171717] transition-all duration-200 group w-full text-left"
+                    className="flex items-center gap-4 p-4 rounded-2xl bg-[var(--surface)] border border-[var(--border-subtle)] hover:border-[var(--accent)]/40 hover:bg-[var(--surface-elevated)] transition-all duration-200 group w-full text-left"
                   >
                     <div className="w-10 h-10 rounded-xl bg-[var(--accent)]/10 border border-[var(--accent)]/20 flex items-center justify-center text-[var(--accent)] group-hover:bg-[var(--accent)]/20 transition-colors shrink-0">
                       {link.icon}
                     </div>
                     <div>
-                      <p className="text-xs font-sans text-zinc-500 uppercase tracking-widest">{link.label}</p>
-                      <p className="text-sm font-sans text-zinc-200 group-hover:text-white transition-colors break-all">{link.value}</p>
+                      <p className="text-xs font-sans text-[var(--ice)]/60 uppercase tracking-widest">{link.label}</p>
+                      <p className="text-sm font-sans text-white group-hover:text-[var(--accent)] transition-colors break-all">{link.value}</p>
                     </div>
                   </LinkPreview>
                 )}
@@ -153,57 +149,57 @@ export default function ContactPage() {
             ))}
           </motion.div>
 
-          {/* Right — Form */}
+          {/* Right: Form */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="bg-[#111111] border border-white/5 p-8 md:p-10 rounded-3xl"
+            className="bg-[var(--surface)] border border-[var(--border-subtle)] p-8 md:p-10 rounded-3xl"
           >
             <h2 className="text-xl font-heading font-semibold text-white mb-8">Send a Message</h2>
             <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <label htmlFor="name" className="text-sm font-sans text-zinc-400">Your Name</label>
+                  <label htmlFor="name" className="text-sm font-sans text-[var(--ice)]/80">Your Name</label>
                   <input
                     type="text"
                     id="name"
-                    className="w-full bg-transparent border-b border-white/10 py-3 text-white focus:outline-none focus:border-[var(--accent)] transition-colors font-sans text-sm"
+                    className="w-full bg-transparent border-b border-[var(--border-subtle)] py-3 text-white focus:outline-none focus:border-[var(--accent)] transition-colors font-sans text-sm"
                     placeholder="John Smith"
                   />
                 </div>
                 <div className="space-y-2">
-                  <label htmlFor="email" className="text-sm font-sans text-zinc-400">Email Address</label>
+                  <label htmlFor="email" className="text-sm font-sans text-[var(--ice)]/80">Email Address</label>
                   <input
                     type="email"
                     id="email"
-                    className="w-full bg-transparent border-b border-white/10 py-3 text-white focus:outline-none focus:border-[var(--accent)] transition-colors font-sans text-sm"
+                    className="w-full bg-transparent border-b border-[var(--border-subtle)] py-3 text-white focus:outline-none focus:border-[var(--accent)] transition-colors font-sans text-sm"
                     placeholder="john@company.com"
                   />
                 </div>
               </div>
               <div className="space-y-2">
-                <label htmlFor="service" className="text-sm font-sans text-zinc-400">Service Needed</label>
+                <label htmlFor="service" className="text-sm font-sans text-[var(--ice)]/80">Service Needed</label>
                 <select
                   id="service"
-                  className="w-full bg-[#111111] border-b border-white/10 py-3 text-zinc-300 focus:outline-none focus:border-[var(--accent)] transition-colors font-sans text-sm"
+                  className="w-full bg-[var(--surface)] border-b border-[var(--border-subtle)] py-3 text-[var(--ice)] focus:outline-none focus:border-[var(--accent)] transition-colors font-sans text-sm"
                 >
-                  <option value="">Select a service...</option>
-                  <option value="crm">CRM Setup (GoHighLevel)</option>
-                  <option value="automation">Workflow Automation</option>
-                  <option value="funnel">Funnel Building</option>
-                  <option value="chatbot">AI Chatbot</option>
-                  <option value="sms-email">SMS & Email Automation</option>
-                  <option value="white-label">White Label GHL / SaaS</option>
-                  <option value="other">Other</option>
+                  <option value="" className="bg-[var(--surface)] text-white">Select a service...</option>
+                  <option value="crm" className="bg-[var(--surface)] text-white">CRM Setup (GoHighLevel)</option>
+                  <option value="automation" className="bg-[var(--surface)] text-white">Workflow Automation</option>
+                  <option value="funnel" className="bg-[var(--surface)] text-white">Funnel Building</option>
+                  <option value="chatbot" className="bg-[var(--surface)] text-white">AI Chatbot</option>
+                  <option value="sms-email" className="bg-[var(--surface)] text-white">SMS & Email Automation</option>
+                  <option value="white-label" className="bg-[var(--surface)] text-white">White Label GHL / SaaS</option>
+                  <option value="other" className="bg-[var(--surface)] text-white">Other</option>
                 </select>
               </div>
               <div className="space-y-2">
-                <label htmlFor="message" className="text-sm font-sans text-zinc-400">Tell Me About Your Business</label>
+                <label htmlFor="message" className="text-sm font-sans text-[var(--ice)]/80">Tell Me About Your Business</label>
                 <textarea
                   id="message"
                   rows={4}
-                  className="w-full bg-transparent border-b border-white/10 py-3 text-white focus:outline-none focus:border-[var(--accent)] transition-colors font-sans resize-none text-sm"
+                  className="w-full bg-transparent border-b border-[var(--border-subtle)] py-3 text-white focus:outline-none focus:border-[var(--accent)] transition-colors font-sans resize-none text-sm"
                   placeholder="What repetitive tasks are costing you the most time?"
                 />
               </div>
@@ -216,6 +212,6 @@ export default function ContactPage() {
           </motion.div>
         </div>
       </div>
-    </main>
+    </div>
   );
 }

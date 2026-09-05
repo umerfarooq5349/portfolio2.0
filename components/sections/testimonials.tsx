@@ -83,20 +83,20 @@ export function Testimonials() {
 
 function TestimonialCard({ testimonial }: { testimonial: { quote: string; name: string; role: string } }) {
   return (
-    <GlowCard customSize={true} glowColor="orange" className="w-[380px] md:w-[460px] relative p-7 rounded-3xl bg-[#111111] border border-white/5 flex flex-col justify-between shrink-0 hover:border-[var(--accent)]/20 transition-colors duration-300">
-      <span className="text-5xl font-heading text-[var(--accent)]/25 absolute top-5 left-6 font-serif select-none z-10">
+    <GlowCard customSize={true} glowColor="orange" className="w-[380px] md:w-[460px] relative p-7 rounded-3xl bg-[var(--surface)] border border-[var(--border-subtle)] flex flex-col justify-between shrink-0 hover:border-[var(--accent)]/40 transition-colors duration-300 shadow-lg">
+      <span className="text-5xl font-heading text-[var(--accent)]/30 absolute top-5 left-6 font-serif select-none z-10">
         &ldquo;
       </span>
-      <p className="font-sans text-sm text-zinc-300 relative z-10 italic mb-6 mt-5 leading-relaxed line-clamp-3">
+      <p className="font-sans text-sm text-[var(--ice)]/90 relative z-10 italic mb-6 mt-5 leading-relaxed line-clamp-3">
         {testimonial.quote}
       </p>
-      <div className="flex items-center gap-3 border-t border-white/10 pt-4 relative z-10">
+      <div className="flex items-center gap-3 border-t border-[var(--border-subtle)] pt-4 relative z-10">
         <div className="w-9 h-9 rounded-full bg-gradient-to-br from-[var(--accent)]/30 to-[var(--accent)]/10 shrink-0 flex items-center justify-center text-xs font-bold text-[var(--accent)]">
           {testimonial.name.charAt(0)}
         </div>
         <div>
           <h4 className="font-heading font-semibold text-white text-sm">{testimonial.name}</h4>
-          <p className="font-sans text-xs text-zinc-500 mt-0.5">{testimonial.role}</p>
+          <p className="font-sans text-xs text-[var(--ice)]/65 mt-0.5">{testimonial.role}</p>
         </div>
       </div>
     </GlowCard>

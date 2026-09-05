@@ -25,36 +25,48 @@ export function SlantedGlassMarquee({
   pauseOnHover = true,
 }: SlantedGlassMarqueeProps) {
   const [isHovered, setIsHovered] = useState(false);
+  const trackRef = useRef<HTMLDivElement>(null);
   const offsetRef = useRef(0);
-  const [, setTick] = useState(0);
+  const duplicateCount = 6;
 
-  // 60fps smooth loop
+  // 60fps smooth loop updating DOM style directly without cascading React renders
   useEffect(() => {
     let animId: number;
     let lastTime = performance.now();
+    let singleSetWidth = items.length * 260;
+
+    const measure = () => {
+      if (trackRef.current && duplicateCount > 0) {
+        singleSetWidth = trackRef.current.scrollWidth / duplicateCount;
+      }
+    };
+
+    measure();
+    window.addEventListener("resize", measure);
 
     const updateFrame = (now: number) => {
       const delta = (now - lastTime) / 1000;
       lastTime = now;
 
       if (!isHovered) {
-        // Continuous movement ~80px per sec
-        offsetRef.current += delta * 70 * speed;
-        setTick((t) => t + 1);
+        const wrapWidth = singleSetWidth > 0 ? singleSetWidth : 1;
+        offsetRef.current = (offsetRef.current + delta * 65 * speed) % wrapWidth;
+        if (trackRef.current) {
+          trackRef.current.style.transform = `translate3d(${-offsetRef.current}px, 0, 0)`;
+        }
       }
       animId = requestAnimationFrame(updateFrame);
     };
 
     animId = requestAnimationFrame(updateFrame);
-    return () => cancelAnimationFrame(animId);
-  }, [isHovered, speed]);
+    return () => {
+      cancelAnimationFrame(animId);
+      window.removeEventListener("resize", measure);
+    };
+  }, [isHovered, speed, items.length]);
 
-  // Duplicate items 4 times to ensure seamless infinite looping
-  const displayItems = [...items, ...items, ...items, ...items];
-  const itemWidthApprox = 260; // Average pixel width per item slot
-  const totalTrackWidth = items.length * itemWidthApprox;
-
-  const currentOffset = -(offsetRef.current % Math.max(1, totalTrackWidth));
+  // Duplicate items 6 times to ensure seamless infinite looping across all resolutions
+  const displayItems = Array.from({ length: duplicateCount }, () => items).flat();
 
   return (
     <div
@@ -79,10 +91,8 @@ export function SlantedGlassMarquee({
       >
         {/* Horizontal Marquee Track */}
         <div
+          ref={trackRef}
           className="flex items-center whitespace-nowrap will-change-transform"
-          style={{
-            transform: `translateX(${currentOffset}px)`,
-          }}
         >
           {displayItems.map((item, i) => (
             <div

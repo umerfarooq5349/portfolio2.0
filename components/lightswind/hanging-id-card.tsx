@@ -3,7 +3,6 @@
 import React, { useRef, useEffect, useCallback, useState } from "react";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
-import Link from "next/link";
 
 // ─── Physics constants ────────────────────────────────────────────────────────
 const SPRING_K = 0;          // Real pendulum relies on gravity
@@ -218,6 +217,8 @@ export const HangingIdCard = ({
   const dragAngle0 = useRef(0);
 
   // ── Physics loop ────────────────────────────────────────────────────────────
+  const tickRef = useRef<((now: number) => void) | null>(null);
+
   const tick = useCallback((now: number) => {
     if (prevTimeRef.current === null) { prevTimeRef.current = now; }
     const dt = Math.min((now - prevTimeRef.current) / 1000, 0.05); // cap at 50ms
@@ -238,7 +239,9 @@ export const HangingIdCard = ({
       setAngle(s.angle);
 
       if (Math.abs(s.angle) > 0.001 || Math.abs(s.vel) > 0.001) {
-        rafRef.current = requestAnimationFrame(tick);
+        if (tickRef.current) {
+          rafRef.current = requestAnimationFrame(tickRef.current);
+        }
       } else {
         // settled perfectly at bottom
         s.angle = 0; s.vel = 0;
@@ -250,15 +253,23 @@ export const HangingIdCard = ({
         s.vel = (s.angle - prevAngleRef.current) / dt;
       }
       prevAngleRef.current = s.angle;
-      rafRef.current = requestAnimationFrame(tick);
+      if (tickRef.current) {
+        rafRef.current = requestAnimationFrame(tickRef.current);
+      }
     }
   }, [ropeLength]);
+
+  useEffect(() => {
+    tickRef.current = tick;
+  }, [tick]);
 
   const startPhysics = useCallback(() => {
     if (rafRef.current) cancelAnimationFrame(rafRef.current);
     prevTimeRef.current = null;
-    rafRef.current = requestAnimationFrame(tick);
-  }, [tick]);
+    if (tickRef.current) {
+      rafRef.current = requestAnimationFrame(tickRef.current);
+    }
+  }, []);
 
   // ── Pointer events ──────────────────────────────────────────────────────────
   const onPointerDown = useCallback((e: React.PointerEvent) => {

@@ -2,7 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
-import { LinkedinLogo, InstagramLogo, WhatsappLogo, Envelope, MapPin, Lightning, GithubLogo } from "@phosphor-icons/react";
+import { LinkedinLogo, InstagramLogo, WhatsappLogo, Envelope, MapPin, GithubLogo } from "@phosphor-icons/react";
 import { LinkPreview } from "@/components/ui/link-preview";
 import { TextHoverEffect, FooterBackgroundGradient } from "@/components/ui/hover-footer";
 
@@ -30,21 +30,17 @@ export function Footer() {
     { icon: <InstagramLogo size={28} weight="fill" />, label: "Instagram", href: "https://www.instagram.com/muhammad.umer.faro.oq", previewImage: "/instagram.png" },
     { icon: <GithubLogo size={28} weight="fill" />, label: "GitHub", href: "https://github.com/umerfarooq5349/" },
     { icon: <Envelope size={28} weight="fill" />, label: "Email", href: "mailto:mumerfarooq557@gmail.com", disablePreview: true },
-    { icon: <WhatsappLogo size={28} weight="fill" />, label: "WhatsApp", href: "https://wa.me/923014044102", disablePreview: true },
+    { icon: <WhatsappLogo size={28} weight="fill" />, label: "WhatsApp", href: "https://wa.me/923014044102" },
     { icon: <MapPin size={28} weight="fill" />, label: "Location", href: "https://maps.google.com/?q=Lahore,Pakistan", disablePreview: true }
   ];
 
   return (
-    <footer className="w-full bg-[#111111]/80 border-t border-white/5 relative overflow-hidden mt-20">
+    <footer className="w-full bg-[var(--background)]/95 border-t border-[var(--border-subtle)] relative overflow-hidden mt-20">
       <div className="max-w-7xl mx-auto px-6 py-10 md:p-14 z-50 relative">
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-12 md:gap-8 lg:gap-16 pb-12">
           {/* Brand section */}
           <div className="flex flex-col space-y-4 lg:col-span-2">
-            {/* <Link href="/" className="flex items-center space-x-2">
-              
-              <span className="text-white text-2xl font-heading font-bold tracking-tight">Muhammad Umer<span className="text-[var(--accent)]">.</span></span>
-            </Link> */}
-            <p className="text-sm font-sans text-zinc-400 leading-relaxed max-w-sm">
+            <p className="text-sm font-sans text-[var(--ice)]/70 leading-relaxed max-w-sm">
               Building smart automation systems with GoHighLevel, n8n, and Zapier that save time and increase revenue.
             </p>
           </div>
@@ -55,7 +51,7 @@ export function Footer() {
             <ul className="space-y-3">
               {navLinks.map((link) => (
                 <li key={link.label}>
-                  <Link href={link.href} className="text-sm font-sans text-zinc-400 hover:text-[var(--accent)] transition-colors">
+                  <Link href={link.href} className="text-sm font-sans text-[var(--ice)]/70 hover:text-[var(--accent)] transition-colors">
                     {link.label}
                   </Link>
                 </li>
@@ -69,7 +65,7 @@ export function Footer() {
             <ul className="space-y-3">
               {helpfulLinks.map((link) => (
                 <li key={link.label} className="relative w-fit flex items-center">
-                  <Link href={link.href} className="text-sm font-sans text-zinc-400 hover:text-[var(--accent)] transition-colors">
+                  <Link href={link.href} className="text-sm font-sans text-[var(--ice)]/70 hover:text-[var(--accent)] transition-colors">
                     {link.label}
                   </Link>
                   {link.pulse && (
@@ -81,13 +77,13 @@ export function Footer() {
           </div>
         </div>
 
-        <hr className="border-t border-white/5 my-8 relative z-50" />
+        <hr className="border-t border-[var(--border-subtle)] my-8 relative z-50" />
 
         {/* Footer bottom */}
         <div className="flex flex-col md:flex-row justify-between items-center text-sm font-sans space-y-6 md:space-y-0 relative z-50">
 
           {/* Icons row */}
-          <div className="flex flex-wrap justify-center gap-6 text-zinc-500">
+          <div className="flex flex-wrap justify-center gap-6 text-[var(--ice)]/60">
             {bottomIcons.map((item) => (
               item.disablePreview ? (
                 <a key={item.label} href={item.href} target="_blank" rel="noopener noreferrer" aria-label={item.label} className="hover:text-[var(--accent)] transition-colors">
@@ -108,7 +104,7 @@ export function Footer() {
           </div>
 
           {/* Copyright */}
-          <p className="text-center md:text-right text-zinc-500 w-full md:w-auto pt-6 md:pt-0 border-t border-white/5 md:border-none mt-6 md:mt-0">
+          <p className="text-center md:text-right text-[var(--ice)]/60 w-full md:w-auto pt-6 md:pt-0 border-t border-[var(--border-subtle)] md:border-none mt-6 md:mt-0">
             &copy; {currentYear} Umer Farooq. All rights reserved.
           </p>
         </div>

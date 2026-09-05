@@ -6,15 +6,12 @@ import RippleButton from "@/components/lightswind/ripple-button";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import { HangingIdCard } from "@/components/lightswind/hanging-id-card";
 import {
-  Sparkle,
   ArrowUpRight,
   Lightning,
   ShieldCheck,
   Cpu,
   CheckCircle,
   GearSix,
-  Code,
-  TrendUp,
   Quotes,
 } from "@phosphor-icons/react";
 
@@ -79,13 +76,13 @@ const pillars = [
   },
 ];
 
-export function AboutMinimalist() {
+export function AboutMinimalist({ isPageHeading = false }: { isPageHeading?: boolean }) {
   const [activePillar, setActivePillar] = useState(0);
 
   return (
     <section
       id="about-minimalist"
-      aria-label="About — Minimalist Editorial Edition"
+      aria-label="About: Minimalist Editorial Edition"
       className="relative z-10 py-16 sm:py-24 lg:py-28 bg-[var(--background)] text-white overflow-hidden"
     >
 
@@ -99,25 +96,30 @@ export function AboutMinimalist() {
           className="mb-16 sm:mb-20 text-center max-w-3xl mx-auto space-y-4"
         >
 
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#ECB365]/10 border border-[#ECB365]/25 text-xs font-sans font-semibold uppercase tracking-widest text-[#ECB365]">
-            {/* <Sparkle size={14} className="text-[#ECB365] animate-pulse" /> */}
-            <p className="text-[var(--accent)] font-sans uppercase tracking-[0.2em] text-sm font-semibold ">Who I Am</p>
-            {/* <span>Muhammad Umer Farooq &bull; About Me</span> */}
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[var(--accent)]/10 border border-[var(--accent)]/25 text-xs font-sans font-semibold uppercase tracking-widest text-[var(--accent)]">
+            <p className="text-[var(--accent)] font-sans uppercase tracking-[0.2em] text-sm font-semibold">Who I Am</p>
           </div>
 
-          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-heading font-semibold text-white tracking-tight leading-[1.12]">
-            Engineering Autonomous Systems <br className="hidden sm:inline" />
-            <span className="text-[#ECB365] italic">That Drive Revenue.</span>
-          </h2>
+          {isPageHeading ? (
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-heading font-semibold text-white tracking-tight leading-[1.12]">
+              Engineering Autonomous Systems <br className="hidden sm:inline" />
+              <span className="text-[var(--accent)] italic">That Drive Revenue.</span>
+            </h1>
+          ) : (
+            <h2 className="text-3xl sm:text-5xl lg:text-6xl font-heading font-semibold text-white tracking-tight leading-[1.12]">
+              Engineering Autonomous Systems <br className="hidden sm:inline" />
+              <span className="text-[var(--accent)] italic">That Drive Revenue.</span>
+            </h2>
+          )}
 
-          <p className="text-sm sm:text-base font-sans text-[#B8DBD9]/80 leading-relaxed font-light max-w-xl mx-auto">
+          <p className="text-sm sm:text-base font-sans text-[var(--ice)]/80 leading-relaxed font-light max-w-xl mx-auto">
             Hi, I&apos;m Muhammad Umer Farooq, a CRM &amp; Automation Expert with 1.5+ years of experience transforming client operations through GoHighLevel, n8n, and custom webhooks.
           </p>
         </motion.div>
 
         {/* 12-Column Grid with Equal Height Matching Columns */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-stretch">
-          {/* Left Column (5 Cols) — Direct Hanging ID Card (Outer Frame Removed, Equal Height) */}
+          {/* Left Column (5 Cols): Direct Hanging ID Card */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -140,7 +142,7 @@ export function AboutMinimalist() {
 
           </motion.div>
 
-          {/* Right Column (7 Cols) — Editorial Content & Interactive Pillars (Equal Height) */}
+          {/* Right Column (7 Cols): Editorial Content & Interactive Pillars */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -149,22 +151,22 @@ export function AboutMinimalist() {
             className="lg:col-span-7 flex flex-col justify-between space-y-6 h-full p-6 sm:p-8 rounded-3xl "
           >
             {/* Main Quote Statement */}
-            <div className="relative p-6 sm:p-7 rounded-2xl bg-[#112335]/50 border border-white/10 backdrop-blur-xl border-l-4 border-l-[#ECB365] overflow-hidden space-y-3 shadow-lg">
+            <div className="relative p-6 sm:p-7 rounded-2xl bg-[var(--surface)] border border-[var(--border-subtle)] backdrop-blur-xl border-l-4 border-l-[var(--accent)] overflow-hidden space-y-3 shadow-lg">
               {/* Background Decorative Quote Watermark */}
-              <Quotes size={80} className="absolute -top-3 -right-2 text-[#ECB365]/10 pointer-events-none" />
+              <Quotes size={80} className="absolute -top-3 -right-2 text-[var(--accent)]/10 pointer-events-none" />
 
               <p className="text-base sm:text-xl font-heading font-medium italic text-white leading-relaxed relative z-10">
                 &ldquo;I turn fragmented tools into seamless, automated engines that capture leads 24/7 and eliminate manual workload.&rdquo;
               </p>
 
-              <p className="text-xs sm:text-sm font-sans text-[#B8DBD9]/85 leading-relaxed font-light relative z-10 pt-1">
+              <p className="text-xs sm:text-sm font-sans text-[var(--ice)]/85 leading-relaxed font-light relative z-10 pt-1">
                 Specializing in GoHighLevel, n8n, Zapier, and custom API webhooks, I build scalable systems tailored for real estate, healthcare, and service businesses.
               </p>
             </div>
 
             {/* Interactive Pillar Selector Tabs */}
             <div className="space-y-3">
-              <span className="text-xs font-sans font-bold uppercase tracking-widest text-[#ECB365] block">
+              <span className="text-xs font-sans font-bold uppercase tracking-widest text-[var(--accent)] block">
                 Core Expertise Pillars
               </span>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
@@ -176,17 +178,17 @@ export function AboutMinimalist() {
                       key={pillar.id}
                       onClick={() => setActivePillar(idx)}
                       className={`p-5 rounded-xl text-left border transition-all duration-300 cursor-pointer flex flex-col justify-between h-36 gap-2 ${isActive
-                        ? "bg-[#ECB365]/15 border-[#ECB365] text-white shadow-lg"
-                        : "bg-white/[0.02] border-white/10 text-zinc-400 hover:border-white/20 hover:text-white"
+                        ? "bg-[var(--accent)]/15 border-[var(--accent)] text-white shadow-lg"
+                        : "bg-[var(--surface)] border-[var(--border-subtle)] text-[var(--ice)]/70 hover:border-[var(--accent)]/40 hover:text-white"
                         }`}
                     >
                       <div className="flex items-center justify-between">
-                        <Icon size={18} className={isActive ? "text-[#ECB365]" : "text-zinc-400"} />
-                        {isActive && <CheckCircle size={14} className="text-[#ECB365]" />}
+                        <Icon size={18} className={isActive ? "text-[var(--accent)]" : "text-[var(--ice)]/60"} />
+                        {isActive && <CheckCircle size={14} className="text-[var(--accent)]" />}
                       </div>
                       <div>
                         <h4 className="text-[16px] font-sans font-bold text-white leading-tight whitespace-normal line-clamp-2 tracking-wide">{pillar.title}</h4>
-                        <p className="text-[12px] font-sans text-zinc-400 mt-1 line-clamp-1 tracking-wide">{pillar.tag}</p>
+                        <p className="text-[12px] font-sans text-[var(--ice)]/60 mt-1 line-clamp-1 tracking-wide">{pillar.tag}</p>
                       </div>
                     </button>
                   );
@@ -202,24 +204,24 @@ export function AboutMinimalist() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -8 }}
                 transition={{ duration: 0.25 }}
-                className="p-5 rounded-2xl bg-[#193854]/70 border border-white/15 backdrop-blur-xl space-y-3"
+                className="p-5 rounded-2xl bg-[var(--surface-elevated)] border border-[var(--border-subtle)] backdrop-blur-xl space-y-3"
               >
                 <div className="flex items-center justify-between">
                   <h4 className="text-sm sm:text-base font-heading font-semibold text-white">
                     {pillars[activePillar].title}
                   </h4>
-                  <span className="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-white/10 text-[#B8DBD9]">
+                  <span className="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-white/10 text-[var(--ice)]">
                     {pillars[activePillar].tag}
                   </span>
                 </div>
-                <p className="text-xs font-sans text-[#B8DBD9]/90 leading-relaxed font-light">
+                <p className="text-xs font-sans text-[var(--ice)]/90 leading-relaxed font-light">
                   {pillars[activePillar].description}
                 </p>
-                <div className="flex flex-wrap gap-2 pt-1 border-t border-white/10">
+                <div className="flex flex-wrap gap-2 pt-1 border-t border-[var(--border-subtle)]">
                   {pillars[activePillar].metrics.map((m, i) => (
                     <span
                       key={i}
-                      className="inline-flex items-center gap-1.5 text-[10px] font-sans font-medium text-[#ECB365] bg-[#ECB365]/10 border border-[#ECB365]/20 px-2.5 py-0.5 rounded-full"
+                      className="inline-flex items-center gap-1.5 text-[10px] font-sans font-medium text-[var(--accent)] bg-[var(--accent)]/10 border border-[var(--accent)]/20 px-2.5 py-0.5 rounded-full"
                     >
                       <GearSix size={12} className="animate-spin" />
                       {m}
@@ -230,12 +232,12 @@ export function AboutMinimalist() {
             </AnimatePresence>
 
             {/* Minimalist Metrics Strip with Animated Numbers */}
-            <div className="grid grid-cols-3 gap-4 pt-4 border-t border-white/10 text-center">
+            <div className="grid grid-cols-3 gap-4 pt-4 border-t border-[var(--border-subtle)] text-center">
               <div>
                 <span className="text-2xl sm:text-3xl font-heading font-bold text-white">
                   <AnimatedNumber value={50} suffix="+" />
                 </span>
-                <p className="text-[11px] font-sans text-zinc-400 mt-0.5">Automations Built</p>
+                <p className="text-[11px] font-sans text-[var(--ice)]/70 mt-0.5">Automations Built</p>
               </div>
               <div className="border-x border-white/10 px-2">
                 <span className="text-2xl sm:text-3xl font-heading font-bold text-[#ECB365]">

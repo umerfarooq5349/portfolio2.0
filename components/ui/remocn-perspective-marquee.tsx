@@ -45,30 +45,13 @@ export function PerspectiveMarquee({
   pauseOnHover = true,
 }: PerspectiveMarqueeProps) {
   const [isHovered, setIsHovered] = useState(false);
-  const localFrameRef = useRef(0);
-  const [, setTick] = useState(0);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const offsetRef = useRef(0);
+  const isHoveredRef = useRef(false);
 
-  // 60fps frame accumulation loop with pause-on-hover support
   useEffect(() => {
-    let animId: number;
-    let lastTime = performance.now();
-
-    const updateFrame = (now: number) => {
-      const delta = (now - lastTime) / 1000;
-      lastTime = now;
-
-      if (!isHovered) {
-        localFrameRef.current += delta * 60 * speed;
-        setTick((t) => t + 1);
-      }
-      animId = requestAnimationFrame(updateFrame);
-    };
-
-    animId = requestAnimationFrame(updateFrame);
-    return () => cancelAnimationFrame(animId);
-  }, [isHovered, speed]);
-
-  const currentFrame = localFrameRef.current;
+    isHoveredRef.current = isHovered;
+  }, [isHovered]);
 
   const parsedItems: MarqueeItem[] = items.map((item) =>
     typeof item === "string" ? { name: item } : item
@@ -80,14 +63,45 @@ export function PerspectiveMarquee({
     0
   );
 
-  const offset = -((currentFrame * pixelsPerFrame) % Math.max(1, approxItemWidth));
+  // 60fps frame accumulation loop with pause-on-hover via direct DOM transform
+  useEffect(() => {
+    let animId: number;
+    let lastTime = performance.now();
+
+    const updateFrame = (now: number) => {
+      const delta = (now - lastTime) / 1000;
+      lastTime = now;
+
+      if (!isHoveredRef.current && trackRef.current) {
+        offsetRef.current -= delta * 60 * speed * pixelsPerFrame;
+        const mod = approxItemWidth > 0 ? approxItemWidth : 1;
+        const currentOffset = offsetRef.current % mod;
+        trackRef.current.style.transform = `translateX(${currentOffset}px)`;
+      }
+      animId = requestAnimationFrame(updateFrame);
+    };
+
+    animId = requestAnimationFrame(updateFrame);
+    return () => cancelAnimationFrame(animId);
+  }, [speed, pixelsPerFrame, approxItemWidth]);
+
   const rendered = [...parsedItems, ...parsedItems, ...parsedItems, ...parsedItems];
 
   return (
     <div
       className={className}
-      onMouseEnter={() => pauseOnHover && setIsHovered(true)}
-      onMouseLeave={() => pauseOnHover && setIsHovered(false)}
+      onMouseEnter={() => {
+        if (pauseOnHover) {
+          setIsHovered(true);
+          isHoveredRef.current = true;
+        }
+      }}
+      onMouseLeave={() => {
+        if (pauseOnHover) {
+          setIsHovered(false);
+          isHoveredRef.current = false;
+        }
+      }}
       style={{
         position: "relative",
         width: "100%",
@@ -131,54 +145,40 @@ export function PerspectiveMarquee({
         />
 
         <div
+          ref={trackRef}
           style={{
             position: "relative",
             zIndex: 1,
             display: "flex",
             alignItems: "center",
             whiteSpace: "nowrap",
-            transform: `translateX(${offset}px)`,
             willChange: "transform",
           }}
         >
-          {rendered.map((item, i) => {
-            const itemCenter =
-              i * (approxItemWidth / Math.max(1, parsedItems.length)) +
-              approxItemWidth / Math.max(1, parsedItems.length) / 2 +
-              offset;
-            const norm = (itemCenter - 800) / 800;
-            const distance = Math.min(1, Math.abs(norm));
-
-            // High middle-screen visibility + instant 0-blur on hover
-            const blurPx = isHovered ? 0 : distance * 1.5;
-            const opacity = isHovered ? 1 : Math.max(0.85, 1 - distance * 0.25);
-
-            return (
-              <div
-                key={i}
-                className="group relative inline-flex items-center gap-3.5 transition-all duration-300 hover:scale-110 shrink-0"
-                style={{
-                  fontFamily: FONT_FAMILY,
-                  fontSize,
-                  fontWeight,
-                  color: item.color || color,
-                  letterSpacing: "-0.02em",
-                  paddingRight: itemPadding,
-                  filter: blurPx > 0.2 ? `blur(${blurPx}px)` : "none",
-                  opacity,
-                  transition: "filter 0.3s ease, opacity 0.3s ease, transform 0.3s ease",
-                }}
-              >
-                {item.icon && (
-                  <span className="inline-flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-125">
-                    {item.icon}
-                  </span>
-                )}
-                <span className="drop-shadow-md font-bold">{item.name}</span>
-                <span className="ml-4 text-[var(--accent)] font-sans text-xl">✦</span>
-              </div>
-            );
-          })}
+          {rendered.map((item, i) => (
+            <div
+              key={i}
+              className="group relative inline-flex items-center gap-3.5 transition-all duration-300 hover:scale-110 shrink-0"
+              style={{
+                fontFamily: FONT_FAMILY,
+                fontSize,
+                fontWeight,
+                color: item.color || color,
+                letterSpacing: "-0.02em",
+                paddingRight: itemPadding,
+                opacity: 1,
+                transition: "opacity 0.3s ease, transform 0.3s ease",
+              }}
+            >
+              {item.icon && (
+                <span className="inline-flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-125">
+                  {item.icon}
+                </span>
+              )}
+              <span className="drop-shadow-md font-bold">{item.name}</span>
+              <span className="ml-4 text-[var(--accent)] font-sans text-xl">✦</span>
+            </div>
+          ))}
         </div>
       </div>
 

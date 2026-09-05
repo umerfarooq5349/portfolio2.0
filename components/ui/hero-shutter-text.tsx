@@ -62,7 +62,7 @@ export default function HeroShutterText({
                       {char}
                     </motion.span>
 
-                    {/* Top Slice Layer — Shutter Slice */}
+                    {/* Top Slice Layer: Shutter Slice */}
                     <motion.span
                       initial={{ x: "-105%", opacity: 0 }}
                       animate={{ x: "105%", opacity: [0, 1, 0] }}
@@ -84,7 +84,7 @@ export default function HeroShutterText({
                       {char}
                     </motion.span>
 
-                    {/* Middle Slice Layer — Shutter Slice */}
+                    {/* Middle Slice Layer: Shutter Slice */}
                     <motion.span
                       initial={{ x: "105%", opacity: 0 }}
                       animate={{ x: "-105%", opacity: [0, 1, 0] }}
@@ -94,7 +94,7 @@ export default function HeroShutterText({
                         ease: [0.4, 0, 0.2, 1],
                       }}
                       className={cn(
-                        "absolute inset-0 pointer-events-none tracking-tight leading-[1.25] overflow-hidden text-zinc-300 will-change-transform",
+                        "absolute inset-0 pointer-events-none tracking-tight leading-[1.25] overflow-hidden text-[var(--ice)] will-change-transform",
                         isAccent && "italic font-medium pr-[0.05em]",
                         textClassName
                       )}
@@ -106,7 +106,7 @@ export default function HeroShutterText({
                       {char}
                     </motion.span>
 
-                    {/* Bottom Slice Layer — Shutter Slice */}
+                    {/* Bottom Slice Layer: Shutter Slice */}
                     <motion.span
                       initial={{ x: "-105%", opacity: 0 }}
                       animate={{ x: "105%", opacity: [0, 1, 0] }}

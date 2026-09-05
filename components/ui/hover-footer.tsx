@@ -6,12 +6,10 @@ import { cn } from "@/lib/utils";
 export const TextHoverEffect = ({
   text,
   duration,
-  automatic,
   className,
 }: {
   text: string;
   duration?: number;
-  automatic?: boolean;
   className?: string;
 }) => {
   const svgRef = useRef<SVGSVGElement>(null);
