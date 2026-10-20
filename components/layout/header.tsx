@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
 import { useState, useEffect } from "react";
 import { List, X, CalendarCheck } from "@phosphor-icons/react";
 import { cn } from "@/lib/utils";
@@ -23,11 +23,13 @@ export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 30);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  const { scrollY } = useScroll();
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    const isScrolled = latest > 30;
+    if (isScrolled !== scrolled) {
+      setScrolled(isScrolled);
+    }
+  });
 
   // Lock body scroll when mobile menu is open
   useEffect(() => {
@@ -113,9 +115,9 @@ export function Header() {
         {/* Desktop CTA */}
         <div className="hidden lg:flex items-center">
           <Link href="/contact" id="book-call-cta">
-            <RippleButton>
-              <CalendarCheck size={16} />
-              Start a Project
+            <RippleButton className="h-9 px-4 sm:px-5 text-xs font-semibold">
+              <CalendarCheck size={15} weight="bold" />
+              <span>Strategy Call</span>
             </RippleButton>
           </Link>
         </div>
@@ -139,7 +141,7 @@ export function Header() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: -15 }}
             transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-            className="max-w-6xl mx-auto mt-3 rounded-3xl bg-[var(--surface)]/95 backdrop-blur-2xl border border-white/15 shadow-[0_4px_24px_rgba(0,0,0,0.25)] overflow-hidden lg:hidden pointer-events-auto p-6"
+            className="max-w-6xl mx-auto mt-3 rounded-3xl bg-[var(--surface)]/95 backdrop-blur-2xl border border-white/15 shadow-[0_4px_24px_rgba(0,0,0,0.25)] max-h-[calc(100dvh-5.5rem)] overflow-y-auto overscroll-contain lg:hidden pointer-events-auto p-5 sm:p-6"
           >
             <div className="flex flex-col space-y-1.5">
               {links.map((link, i) => {
@@ -179,9 +181,9 @@ export function Header() {
                   onClick={() => setMobileMenuOpen(false)}
                   className="block w-full"
                 >
-                  <RippleButton className="w-full">
-                    <CalendarCheck size={18} />
-                    Start a Project
+                  <RippleButton className="w-full h-11 text-sm font-semibold">
+                    <CalendarCheck size={18} weight="bold" />
+                    <span>Book a Strategy Call</span>
                   </RippleButton>
                 </Link>
               </motion.div>

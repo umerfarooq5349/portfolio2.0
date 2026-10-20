@@ -1,64 +1,70 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowUpRight, House, FirstAid, Envelope, Robot, Rocket, Gear } from "@phosphor-icons/react";
+import { ArrowUpRight, FirstAid, Robot, Funnel, RocketLaunch, EnvelopeSimple, GearSix } from "@phosphor-icons/react";
 import Link from "next/link";
 import { GlowCard } from "@/components/ui/spotlight-card";
 
 const projects = [
   {
     id: 1,
-    title: "Real Estate Lead Automation",
-    category: "CRM Automation",
-    icon: <House size={28} className="text-[var(--accent)]" />,
-    tags: ["GoHighLevel", "n8n", "SMS Automation"],
-    result: "85% faster follow-up",
-    description: "End-to-end automated lead capture & follow-up system for a real estate agency. Leads from Facebook Ads instantly entered the CRM, triggered personalized SMS/email sequences, and notified agents, all without manual work.",
+    slug: "arc-rehabilitation-pilates",
+    title: "ARC Rehabilitation & Pilates",
+    category: "Healthcare & Clinic Systems",
+    icon: <FirstAid size={28} weight="duotone" className="text-[var(--accent)]" />,
+    tags: ["GoHighLevel", "Facebook Lead Ads", "Automated Workflows"],
+    result: "285+ Leads Managed",
+    description: "Complete patient acquisition system for a premier Irish clinic. Centralized GHL CRM, direct Facebook Lead Ads integration into a 4-stage pipeline, 11 condition-specific workflows, and automated PDF pack delivery.",
   },
   {
     id: 2,
-    title: "Healthcare Appointment System",
-    category: "Booking Automation",
-    icon: <FirstAid size={28} className="text-[var(--accent)]" />,
-    tags: ["GoHighLevel", "Zapier", "Calendar"],
-    result: "60% fewer no-shows",
-    description: "Fully automated appointment booking and reminder system for a healthcare clinic. Patients receive instant confirmations, 24h reminders, and post-visit follow-ups through automated SMS and email workflows.",
+    slug: "abnehmen-im-liegen-hamburg",
+    title: "Abnehmen im Liegen Hamburg",
+    category: "AI & Multi-Channel CRM",
+    icon: <Robot size={28} weight="duotone" className="text-[var(--accent)]" />,
+    tags: ["GoHighLevel", "LinaBot AI", "WhatsApp API"],
+    result: "24/7 Instant AI Responses",
+    description: "24/7 intelligent patient system for a German wellness clinic. Built LinaBot custom AI assistant, unified WhatsApp Business & email into one inbox, and automated appointment reminders.",
   },
   {
     id: 3,
-    title: "Multi-Step Nurture Campaign",
-    category: "Email & SMS Automation",
-    icon: <Envelope size={28} className="text-[var(--accent)]" />,
-    tags: ["GoHighLevel", "Email", "SMS"],
-    result: "3x engagement rate",
-    description: "A sophisticated multi-step email + SMS nurturing workflow designed to convert cold leads into warm prospects. 14-day drip campaign with dynamic content personalization based on user behavior.",
+    slug: "the-posture-doctor",
+    title: "The Posture Doctor",
+    category: "Funnel CRO & Healthcare EHR",
+    icon: <Funnel size={28} weight="duotone" className="text-[var(--accent)]" />,
+    tags: ["GoHighLevel", "Practice Hub", "Funnel CRO"],
+    result: "Automated SMS Recall Engine",
+    description: "Audited and rebuilt a chiropractic clinic's patient funnel ahead of paid ads, fixing mobile UX and lead capture. Integrated Practice Hub EHR with a 3-step automated SMS recall sequence with kill-switch safeguards.",
   },
   {
     id: 4,
-    title: "AI Chatbot for Lead Qualification",
-    category: "AI Automation",
-    icon: <Robot size={28} className="text-[var(--accent)]" />,
-    tags: ["AI Chatbot", "GoHighLevel", "API"],
-    result: "40% more qualified leads",
-    description: "Custom AI-powered chatbot integrated into a service business's website. The bot qualifies leads, answers FAQs, and books discovery calls directly, all without human intervention.",
+    slug: "coaching-ecosystem-rebuild",
+    title: "Multi-Offer Coaching Ecosystem",
+    category: "High-Volume CRM Architecture",
+    icon: <RocketLaunch size={28} weight="duotone" className="text-[var(--accent)]" />,
+    tags: ["GoHighLevel", "n8n", "Fathom AI", "Slack API"],
+    result: "10,000+ Contacts Cleansed",
+    description: "Rebuilt and re-segmented a large-scale CRM database of tens of thousands of contacts. Automated course delivery, membership onboarding, and created a Fathom AI meeting notes to Slack pipeline.",
   },
   {
     id: 5,
-    title: "White Label GHL SaaS Setup",
-    category: "SaaS & White Label",
-    icon: <Rocket size={28} className="text-[var(--accent)]" />,
-    tags: ["GoHighLevel", "White Label", "SaaS"],
-    result: "Agency launched in 7 days",
-    description: "Complete white-label GoHighLevel SaaS platform setup for a digital marketing agency. Custom branding, sub-account management, automated onboarding flows, and reseller pricing configuration.",
+    slug: "elearning-agency-outbound",
+    title: "B2B Outbound Engine",
+    category: "B2B Lead Generation",
+    icon: <EnvelopeSimple size={28} weight="duotone" className="text-[var(--accent)]" />,
+    tags: ["GoHighLevel", "Instantly.ai", "Cold Email"],
+    result: "65%+ Cold Open Rate",
+    description: "Deployed white-labeled GoHighLevel and Instantly.ai outbound architecture for an eLearning agency. Configured DNS warming, multi-week cold sequences, and real-time CRM opportunity pipeline sync.",
   },
   {
     id: 6,
-    title: "Service Business Full Automation",
-    category: "End-to-End CRM",
-    icon: <Gear size={28} className="text-[var(--accent)]" />,
-    tags: ["n8n", "Zapier", "GoHighLevel"],
-    result: "70% less manual work",
-    description: "Complete operational automation for a service-based business: lead intake, CRM pipeline, invoice reminders, client follow-ups, and review requests, all connected and automated.",
+    slug: "agency-intake-automation",
+    title: "Agency Client Intake Automation",
+    category: "Workflow & Operations",
+    icon: <GearSix size={28} weight="duotone" className="text-[var(--accent)]" />,
+    tags: ["GoHighLevel", "Zapier", "Slack API"],
+    result: "80% Less Admin Follow-Up",
+    description: "Automated the entire client intake and asset collection journey for a digital agency. Triggered from contract signing, it collects creative assets, generates Drive folders, and assigns team tasks without human admin lag.",
   },
 ];
 
@@ -107,7 +113,7 @@ export function ProjectsShowcase({ showHeader = true }: { showHeader?: boolean }
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.7, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
             >
-              <Link href={`/projects/${project.id}`} className="block h-full">
+              <Link href={`/projects/${project.slug}`} className="block h-full">
                 <GlowCard customSize={true} glowColor="orange" className="group flex flex-col h-full w-full p-6 sm:p-8 rounded-3xl bg-[var(--surface)] border border-[var(--border-subtle)] hover:border-[var(--accent)]/40 hover:bg-[var(--surface-elevated)] transition-all duration-300 shadow-lg">
                 {/* Header */}
                 <div className="flex items-start justify-between mb-6 relative z-10">

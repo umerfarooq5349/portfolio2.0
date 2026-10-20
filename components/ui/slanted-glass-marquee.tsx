@@ -25,15 +25,17 @@ export function SlantedGlassMarquee({
   pauseOnHover = true,
 }: SlantedGlassMarqueeProps) {
   const [isHovered, setIsHovered] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
   const offsetRef = useRef(0);
   const duplicateCount = 6;
 
-  // 60fps smooth loop updating DOM style directly without cascading React renders
+  // 60fps smooth loop with IntersectionObserver to pause when offscreen
   useEffect(() => {
     let animId: number;
     let lastTime = performance.now();
     let singleSetWidth = items.length * 260;
+    let isVisible = true;
 
     const measure = () => {
       if (trackRef.current && duplicateCount > 0) {
@@ -42,13 +44,29 @@ export function SlantedGlassMarquee({
     };
 
     measure();
-    window.addEventListener("resize", measure);
+    window.addEventListener("resize", measure, { passive: true });
+
+    const container = containerRef.current;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const [entry] = entries;
+        isVisible = entry.isIntersecting;
+        if (isVisible) {
+          lastTime = performance.now();
+        }
+      },
+      { threshold: 0.05 }
+    );
+
+    if (container) {
+      observer.observe(container);
+    }
 
     const updateFrame = (now: number) => {
       const delta = (now - lastTime) / 1000;
       lastTime = now;
 
-      if (!isHovered) {
+      if (!isHovered && isVisible) {
         const wrapWidth = singleSetWidth > 0 ? singleSetWidth : 1;
         offsetRef.current = (offsetRef.current + delta * 65 * speed) % wrapWidth;
         if (trackRef.current) {
@@ -62,6 +80,7 @@ export function SlantedGlassMarquee({
     return () => {
       cancelAnimationFrame(animId);
       window.removeEventListener("resize", measure);
+      observer.disconnect();
     };
   }, [isHovered, speed, items.length]);
 
@@ -70,6 +89,7 @@ export function SlantedGlassMarquee({
 
   return (
     <div
+      ref={containerRef}
       className="w-full relative overflow-hidden flex items-center justify-center py-6 sm:py-8 md:py-10"
       onMouseEnter={() => pauseOnHover && setIsHovered(true)}
       onMouseLeave={() => pauseOnHover && setIsHovered(false)}
@@ -78,13 +98,13 @@ export function SlantedGlassMarquee({
       <div
         className="w-[118%] max-w-none relative flex items-center overflow-hidden transition-transform duration-300"
         style={{
-          transform: `rotate(${angle}deg)`,
+          transform: `rotate(${angle}deg) translateZ(0)`,
+          willChange: "transform",
           background: "linear-gradient(90deg, rgba(255,255,255,0.02) 0%, rgba(255,255,255,0.06) 20%, rgba(255,255,255,0.06) 80%, rgba(255,255,255,0.02) 100%)",
-          backdropFilter: "blur(16px)",
-          WebkitBackdropFilter: "blur(16px)",
+          backdropFilter: "blur(8px)",
+          WebkitBackdropFilter: "blur(8px)",
           borderTop: "1px solid rgba(255, 255, 255, 0.12)",
           borderBottom: "1px solid rgba(255, 255, 255, 0.12)",
-          boxShadow: "0 15px 40px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.15)",
           padding: "14px 0",
           cursor: pauseOnHover ? "pointer" : "default",
         }}
@@ -97,10 +117,10 @@ export function SlantedGlassMarquee({
           {displayItems.map((item, i) => (
             <div
               key={i}
-              className="inline-flex items-center gap-2.5 sm:gap-3.5 px-5 sm:px-8 transition-all duration-300 hover:scale-105 shrink-0"
+              className="inline-flex items-center gap-2 sm:gap-3.5 px-4 sm:px-8 transition-all duration-300 hover:scale-105 shrink-0"
               style={{
                 fontFamily: FONT_FAMILY,
-                fontSize: "1.15rem",
+                fontSize: "clamp(0.95rem, 2.5vw, 1.15rem)",
                 fontWeight: 700,
                 color: item.color || "#FFFFFF",
                 letterSpacing: "-0.02em",
@@ -114,7 +134,7 @@ export function SlantedGlassMarquee({
                   {item.icon}
                 </span>
               )}
-              <span className="drop-shadow-md text-white font-bold">{item.name}</span>
+              <span className="text-white font-bold">{item.name}</span>
               <span className="ml-6 text-[var(--accent)] font-sans text-lg opacity-80">✦</span>
             </div>
           ))}

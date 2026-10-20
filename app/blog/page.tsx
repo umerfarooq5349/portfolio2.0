@@ -2,11 +2,13 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { ArrowUpRight, Calendar, Clock } from "lucide-react";
+import { ArrowUpRight, Calendar, Clock, CalendarCheck } from "lucide-react";
+import RippleButton from "@/components/lightswind/ripple-button";
 
 const posts = [
   {
-    id: 1,
+    id: "1",
+    slug: "gohighlevel-workflow-automation",
     title: "How to Save 10+ Hours/Week with GHL Workflow Automation",
     category: "CRM Setup",
     date: "May 12, 2024",
@@ -14,7 +16,8 @@ const posts = [
     excerpt: "Learn the core workflow setups inside GoHighLevel that automate lead qualification, routing, and database reactivation so your team can focus purely on closing.",
   },
   {
-    id: 2,
+    id: "2",
+    slug: "n8n-vs-zapier",
     title: "n8n vs Zapier: Choosing the Right Integration Tool for Scale",
     category: "Integrations",
     date: "April 28, 2024",
@@ -22,7 +25,8 @@ const posts = [
     excerpt: "A deep dive comparing n8n and Zapier. We cover cost differences, complexity, hosting options, and when you should upgrade to advanced API webhooks.",
   },
   {
-    id: 3,
+    id: "3",
+    slug: "ai-chatbot-real-estate-leads",
     title: "Implementing AI Chatbots to Qualify Real Estate Leads Instantly",
     category: "AI Automation",
     date: "March 15, 2024",
@@ -33,25 +37,25 @@ const posts = [
 
 export default function BlogPage() {
   return (
-    <div className="pt-32 pb-32 min-h-screen bg-[var(--background)]">
-      <div className="max-w-5xl mx-auto px-6">
+    <div className="pt-24 sm:pt-32 pb-20 sm:pb-32 min-h-[100dvh] bg-[var(--background)]">
+      <div className="max-w-5xl mx-auto px-5 sm:px-6">
         
         {/* Header */}
-        <div className="text-center mb-16 md:mb-24">
+        <div className="text-center mb-12 md:mb-20">
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-[var(--accent)] font-sans uppercase tracking-[0.2em] text-sm font-semibold mb-4"
+            className="text-[var(--accent)] font-sans uppercase tracking-[0.2em] text-xs sm:text-sm font-semibold mb-3"
           >
-            Insights &amp; Guides
+            Insights &amp; Technical Guides
           </motion.p>
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-5xl md:text-7xl font-heading font-semibold text-white tracking-tight"
+            className="text-4xl sm:text-6xl md:text-7xl font-heading font-semibold text-white tracking-tight"
           >
-            My <span className="text-[var(--accent)] italic">Insights</span>
+            Engineering <span className="text-[var(--accent)] italic">Insights</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -59,7 +63,7 @@ export default function BlogPage() {
             transition={{ delay: 0.2 }}
             className="mt-6 text-[var(--ice)]/80 font-sans text-lg max-w-xl mx-auto"
           >
-            Tips, tutorials, and strategies on scaling your operations with modern CRM tools and custom automated workflows.
+            First-hand implementation guides, architectural breakdowns, and practical tutorials for GoHighLevel, n8n, and AI workflows.
           </motion.p>
         </div>
 
@@ -67,13 +71,13 @@ export default function BlogPage() {
         <div className="grid grid-cols-1 gap-10 max-w-3xl mx-auto">
           {posts.map((post, index) => (
             <motion.div
-              key={post.id}
+              key={post.slug}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1, duration: 0.8 }}
               className="group relative border-b border-[var(--border-subtle)] pb-10 last:border-0 last:pb-0"
             >
-              <Link href={`/blog/${post.id}`} className="block">
+              <Link href={`/blog/${post.slug}`} className="block">
                 <div className="flex flex-col md:flex-row md:items-start justify-between gap-6">
                   <div className="space-y-4">
                     {/* Metadata row */}
@@ -112,16 +116,20 @@ export default function BlogPage() {
           ))}
         </div>
 
-        {/* CTA to consultation */}
-        <div className="mt-20 max-w-3xl mx-auto p-8 sm:p-10 rounded-3xl bg-gradient-to-br from-[var(--surface-elevated)] to-[var(--surface)] border border-[var(--border-subtle)] text-center shadow-xl">
-          <h3 className="text-xl sm:text-2xl font-heading font-semibold text-white mb-2">Want to streamline your operations?</h3>
-          <p className="text-[var(--ice)]/70 font-sans text-sm sm:text-base mb-6 max-w-lg mx-auto">Let&apos;s build an automation framework specifically for your workflow.</p>
-          <Link
-            href="/contact"
-            className="inline-flex items-center gap-2 bg-[var(--accent)] text-black px-8 py-3.5 rounded-full font-sans font-semibold text-sm hover:bg-[var(--accent-hover)] transition-all shadow-md"
-          >
-            Schedule a Free Consultation
-          </Link>
+        {/* CTA to Strategy Consultation */}
+        <div className="mt-20 max-w-3xl mx-auto p-8 sm:p-10 rounded-3xl bg-gradient-to-br from-[var(--surface-elevated)] to-[var(--surface)] border border-[var(--accent)]/30 text-center shadow-xl space-y-4">
+          <h3 className="text-xl sm:text-2xl font-heading font-semibold text-white">Want to automate these workflows in your business?</h3>
+          <p className="text-[var(--ice)]/75 font-sans text-sm sm:text-base max-w-lg mx-auto">
+            Let&apos;s build a custom GoHighLevel and n8n framework tailored specifically to your operations.
+          </p>
+          <div className="pt-2">
+            <Link href="/contact">
+              <RippleButton className="h-12 px-8 font-semibold">
+                <CalendarCheck size={18} />
+                <span>Book a Strategy Call</span>
+              </RippleButton>
+            </Link>
+          </div>
         </div>
 
       </div>

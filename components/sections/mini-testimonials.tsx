@@ -6,24 +6,24 @@ import { GlowCard } from "@/components/ui/spotlight-card";
 
 const featured = [
   {
-    quote: "Umer completely transformed our lead management system. Everything is now automated and we never miss follow-ups anymore. Our response time went from hours to under 2 minutes.",
-    name: "James Carter",
-    role: "Real Estate Agency Owner",
-    initial: "JC",
+    quote: "Muhammad and his team did an excellent job building and structuring our systems. Communication was clear, timelines were respected, and the results matched exactly what was promised.",
+    name: "Cilem Knauf",
+    role: "Owner, Abnehmen im Liegen Hamburg",
+    initial: "CK",
     stars: 5,
   },
   {
-    quote: "The automation system he built saved us hours of manual work every single day. Our appointment no-show rate dropped by 60% in the first month. Absolutely worth every penny.",
-    name: "Sarah Mitchell",
-    role: "Healthcare Clinic Director",
-    initial: "SM",
+    quote: "By building a complete patient growth system inside GoHighLevel, our clinic now captures, nurtures, and tracks every lead seamlessly. The automated condition-specific follow-ups saved countless hours.",
+    name: "Stephen Clarke",
+    role: "Founder, ARC Rehabilitation & Pilates",
+    initial: "SC",
     stars: 5,
   },
   {
-    quote: "He built an AI chatbot that now handles 70% of our initial lead qualification. Our team focuses on closing, not chasing. The ROI has been extraordinary.",
-    name: "Priya Sharma",
-    role: "SaaS Startup Founder",
-    initial: "PS",
+    quote: "The audit was an eye-opener. Fixing our mobile funnel and integrating Practice Hub with automated SMS recalls plugged our lead leaks and eliminated manual recall phone calls.",
+    name: "Dr. Posture Doctor",
+    role: "Clinical Director, Busselton Chiropractic",
+    initial: "PD",
     stars: 5,
   },
 ];
@@ -45,14 +45,6 @@ export function MiniTestimonials({
       <div className="max-w-5xl mx-auto px-6">
         {/* Section header */}
         <div className="text-center mb-12">
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-[var(--accent)] font-sans uppercase tracking-[0.2em] text-sm font-semibold mb-3"
-          >
-            Testimonials
-          </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}

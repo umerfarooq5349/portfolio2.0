@@ -11,7 +11,8 @@ export const TOOLS_DATA: MarqueeItem[] = [
         alt="Clay logo"
         width={32}
         height={32}
-        className="w-8 h-8 object-contain shrink-0 drop-shadow-md"
+        loading="lazy"
+        className="w-8 h-8 object-contain shrink-0"
       />
     ),
   },
@@ -23,7 +24,8 @@ export const TOOLS_DATA: MarqueeItem[] = [
         alt="Instantly logo"
         width={32}
         height={32}
-        className="w-8 h-8 object-contain shrink-0 drop-shadow-md"
+        loading="lazy"
+        className="w-8 h-8 object-contain shrink-0"
       />
     ),
   },
@@ -35,7 +37,8 @@ export const TOOLS_DATA: MarqueeItem[] = [
         alt="Apify logo"
         width={32}
         height={32}
-        className="w-8 h-8 object-contain shrink-0 drop-shadow-md"
+        loading="lazy"
+        className="w-8 h-8 object-contain shrink-0"
       />
     ),
   },
@@ -47,7 +50,8 @@ export const TOOLS_DATA: MarqueeItem[] = [
         alt="Hunter.io logo"
         width={32}
         height={32}
-        className="w-8 h-8 object-contain shrink-0 drop-shadow-md"
+        loading="lazy"
+        className="w-8 h-8 object-contain shrink-0"
       />
     ),
   },
@@ -59,7 +63,8 @@ export const TOOLS_DATA: MarqueeItem[] = [
         alt="Lovable logo"
         width={32}
         height={32}
-        className="w-8 h-8 object-contain shrink-0 drop-shadow-md"
+        loading="lazy"
+        className="w-8 h-8 object-contain shrink-0"
       />
     ),
   },

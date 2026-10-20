@@ -15,7 +15,7 @@ export function HeroScroll() {
   const containerRef = useRef<HTMLElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isMuted, setIsMuted] = useState(true);
-  const isInView = useInView(containerRef, { amount: 0.3 });
+  const isInView = useInView(containerRef, { amount: 0.05 });
 
   // Standard polite video initialization: autoplay muted
   useEffect(() => {
@@ -64,14 +64,14 @@ export function HeroScroll() {
       ref={containerRef}
       id="hero"
       aria-label="Hero: Muhammad Umer Farooq CRM Automation Expert"
-      className="relative min-h-screen lg:min-h-screen bg-[var(--background)] text-white overflow-visible flex flex-col justify-between"
+      className="relative min-h-[100dvh] bg-[var(--background)] text-white overflow-visible flex flex-col justify-between"
     >
       {/* Interactive DotGrid background */}
       <div className="absolute inset-0 z-0 pointer-events-auto">
         <DotGrid
           dotSize={6}
           gap={24}
-          baseColor="rgba(184, 219, 217, 0.03)"
+          baseColor="rgba(184, 219, 217, 0.08)"
           activeColor="#ECB365"
           proximity={140}
           shockRadius={260}
@@ -83,7 +83,7 @@ export function HeroScroll() {
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_90%_75%_at_50%_0%,rgba(236,179,101,0.1),transparent_80%),radial-gradient(ellipse_70%_50%_at_20%_40%,rgba(32,71,108,0.4),transparent_90%)] pointer-events-none z-0" />
 
       {/* Main hero content */}
-      <div className="relative z-10 flex-1 flex items-center mt-4 sm:mt-8 pt-28 sm:pt-32 lg:pt-24 pb-8">
+      <div className="relative z-10 flex-1 flex items-center mt-2 sm:mt-8 pt-24 sm:pt-28 lg:pt-24 pb-6 sm:pb-8">
         <div className="max-w-6xl mx-auto px-6 w-full">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 xl:gap-12 items-center ">
 
@@ -102,28 +102,38 @@ export function HeroScroll() {
                 </span>
               </motion.div>
 
-              {/* H1 Headline: GPU-Accelerated Shutter Text */}
+              {/* H1 Headline: Explicit Specialist Positioning */}
               <motion.h1
                 initial={{ opacity: 0, y: 18 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.1, ease: [0.21, 0.47, 0.32, 0.98] }}
+                className="text-xs sm:text-sm font-sans font-bold uppercase tracking-[0.25em] text-[var(--accent)] mb-2"
+              >
+                GoHighLevel &amp; n8n Automation Expert
+              </motion.h1>
+
+              {/* Primary Value Proposition: GPU-Accelerated Shutter Text */}
+              <motion.div
+                initial={{ opacity: 0, y: 18 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.15, ease: [0.21, 0.47, 0.32, 0.98] }}
                 className="text-2xl sm:text-3xl lg:text-4xl xl:text-[2.65rem] font-heading font-semibold text-white tracking-tight leading-[1.18] mb-3"
               >
                 <HeroShutterText
-                  text="I Build Intelligent CRM Systems That Save Time & Grow Revenue."
-                  accentWords={["Intelligent", "CRM", "Systems"]}
+                  text="I Build CRM & AI Automation Systems That Turn Leads Into Customers."
+                  accentWords={["CRM", "AI", "Automation", "Customers."]}
                   textClassName="text-2xl sm:text-3xl lg:text-4xl xl:text-[2.65rem] font-heading font-semibold"
                 />
-              </motion.h1>
+              </motion.div>
 
-              {/* Sub-headline */}
+              {/* Sub-headline / Supporting paragraph */}
               <motion.p
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.25 }}
                 className="text-xs sm:text-sm lg:text-base font-sans text-[var(--ice)]/80 leading-relaxed mb-5 max-w-xl"
               >
-                Specializing in GoHighLevel, n8n, Zapier &amp; AI workflows to automate lead capture, client follow-ups, and business operations, 24/7.
+                I design and implement GoHighLevel, n8n and AI-powered workflows that automate lead capture, qualification, follow-up, appointment booking and CRM operations for service businesses.
               </motion.p>
 
               {/* Vertical Trust Checklist */}
@@ -149,14 +159,14 @@ export function HeroScroll() {
                 className="flex flex-wrap items-center gap-3.5 pt-1"
               >
                 <Link href="/contact">
-                  <RippleButton>
-                    <CalendarCheck size={18} />
-                    <span>Book a Call</span>
+                  <RippleButton className="h-11 sm:h-12 px-6 sm:px-7 font-semibold">
+                    <CalendarCheck size={18} weight="bold" />
+                    <span>Book a Strategy Call</span>
                   </RippleButton>
                 </Link>
 
                 <Link href="/projects">
-                  <MagneticButton variant="outline" size="sm">
+                  <MagneticButton variant="outline" size="sm" className="h-11 sm:h-12 px-6 sm:px-7 text-xs sm:text-sm font-medium">
                     <span>View Case Studies</span>
                     <ArrowRight size={14} />
                   </MagneticButton>
@@ -181,28 +191,28 @@ export function HeroScroll() {
                   <video
                     ref={videoRef}
                     src="/intro.mp4"
-                    poster="/hero-portrait.png"
+                    poster="/hero-portrait.webp"
                     autoPlay
                     playsInline
-                    preload="auto"
+                    preload="metadata"
                     className="w-full h-full object-cover object-center [transform:translateZ(0)]"
                   />
 
                   {/* Sound Toggle Floating Button */}
                   <button
                     onClick={toggleSound}
-                    className="absolute top-3 right-3 z-20 flex items-center gap-2 bg-[var(--background)]/90 backdrop-blur-md px-3 py-1.5 rounded-full border border-[var(--accent)]/40 hover:border-[var(--accent)] text-white text-xs font-sans font-medium transition-all shadow-xl cursor-pointer"
+                    className="absolute top-3 right-3 z-20 flex items-center gap-1.5 sm:gap-2 bg-[var(--background)]/90 backdrop-blur-md px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full border border-[var(--accent)]/40 hover:border-[var(--accent)] text-white text-xs font-sans font-medium transition-all shadow-xl cursor-pointer"
                     aria-label={isMuted ? "Unmute video audio" : "Mute video audio"}
                   >
                     {isMuted ? (
                       <>
                         <SpeakerSimpleSlash size={16} className="text-[var(--accent)] animate-pulse" />
-                        <span className="text-[11px] text-[var(--accent)] font-sans font-semibold">Tap to Play Audio 🔊</span>
+                        <span className="text-[11px] text-[var(--accent)] font-sans font-semibold">Tap to Play Audio</span>
                       </>
                     ) : (
                       <>
                         <SpeakerHigh size={16} className="text-[var(--emerald)]" />
-                        <span className="text-[11px] text-[var(--emerald)] font-sans font-semibold">Playing Audio 🔊</span>
+                        <span className="text-[11px] text-[var(--emerald)] font-sans font-semibold">Playing Audio</span>
                       </>
                     )}
                   </button>
@@ -251,7 +261,7 @@ export function HeroScroll() {
                 className="absolute -bottom-3 -right-3 bg-[var(--accent)] rounded-xl p-2.5 shadow-xl hidden sm:block text-black font-bold"
               >
                 <p className="text-[11px] font-sans font-bold leading-tight">Automation</p>
-                <p className="text-[11px] font-sans font-bold leading-tight">Expert 🚀</p>
+                <p className="text-[11px] font-sans font-bold leading-tight">Expert</p>
               </motion.div>
             </motion.div>
           </div>

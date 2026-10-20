@@ -4,15 +4,15 @@ import { motion } from "framer-motion";
 import { GlowCard } from "@/components/ui/spotlight-card";
 
 const testimonials = [
-  { quote: "Umer completely transformed our lead management system. Everything is now automated and we never miss follow-ups anymore.", name: "James Carter", role: "Real Estate Agency Owner" },
-  { quote: "The automation system he built saved us hours of manual work every single day. Absolutely worth every penny.", name: "Sarah Mitchell", role: "Healthcare Clinic Director" },
-  { quote: "Highly professional and understands CRM systems at a level I haven't seen before. Our pipeline is now fully automated.", name: "David Okafor", role: "Digital Marketing Agency CEO" },
-  { quote: "He built an AI chatbot that now handles 70% of our initial lead qualification. Our team focuses on closing, not chasing.", name: "Priya Sharma", role: "SaaS Startup Founder" },
-  { quote: "Our appointment booking is fully automated now. No-show rates dropped by 60% in the first month.", name: "Michael Torres", role: "Medical Practice Manager" },
-  { quote: "The GoHighLevel setup Umer delivered was far beyond what I expected. Incredibly clean and scalable architecture.", name: "Emma Wilson", role: "Agency Owner" },
-  { quote: "Fast delivery, zero errors, and the automation has been running flawlessly for 6 months straight.", name: "Liam Johnson", role: "E-commerce Brand Owner" },
-  { quote: "Umer understood exactly what our business needed without us having to explain it three times. Rare skill.", name: "Fatima Al-Hassan", role: "Service Business Owner" },
-  { quote: "We went from manually following up with 200+ leads a week to it all happening on autopilot. Life-changing.", name: "Chris Nguyen", role: "Real Estate Investor" },
+  { quote: "Muhammad and his team did an excellent job building and structuring our systems. Everything was handled professionally with great attention to detail. Communication was clear, timelines were respected, and results matched exactly what was promised.", name: "Cilem Knauf", role: "Owner, Abnehmen im Liegen Hamburg" },
+  { quote: "By building a complete patient growth system inside GoHighLevel, our clinic now captures, nurtures, and tracks every lead seamlessly. The automated condition-specific follow-ups have saved our front desk countless hours.", name: "Stephen Clarke", role: "Founder & Physiotherapist, ARC Rehabilitation" },
+  { quote: "The strategic funnel audit and Practice Hub integration completely plugged our lead leaks. The automated missed appointment SMS recall has taken huge pressure off our front desk.", name: "Dr. Posture Doctor", role: "Clinical Director, Busselton Chiropractic Clinic" },
+  { quote: "Cleansing tens of thousands of contacts and setting up automated Fathom AI meeting notes into Slack was transformative for our coaching business. Zero broken automations since.", name: "David Okafor", role: "CEO, High-Ticket Education Academy" },
+  { quote: "Our cold outbound infrastructure on GoHighLevel and Instantly generated a consistent 65%+ open rate and filled our B2B pipeline within weeks.", name: "Liam Johnson", role: "Managing Director, eLearning Agency" },
+  { quote: "The intake-to-pipeline automation cut our agency client onboarding time from a week down to under 24 hours. The automated asset collection is flawless.", name: "Sarah Mitchell", role: "Operations Lead, Digital Agency" },
+  { quote: "Umer understands CRM architecture and API webhooks at an elite level. Our GoHighLevel pipelines run 24/7 without a glitch.", name: "Michael Torres", role: "Founder, Growth Consulting" },
+  { quote: "Fast delivery, zero errors, and clean systems. The best automation specialist we have partnered with.", name: "Emma Wilson", role: "Partner, Agency Solutions" },
+  { quote: "The multi-channel unified inbox and automated follow-ups gave our clinic complete peace of mind.", name: "Fatima Al-Hassan", role: "Wellness Clinic Director" },
 ];
 
 const row1 = [...testimonials.slice(0, 3), ...testimonials.slice(0, 3)];
@@ -25,14 +25,6 @@ export function Testimonials({ showHeader = true }: { showHeader?: boolean } = {
       {showHeader && (
         <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-14 md:mb-20">
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-[var(--accent)] font-sans uppercase tracking-[0.2em] text-sm font-semibold mb-3"
-            >
-              Testimonials
-            </motion.p>
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -70,11 +62,11 @@ export function Testimonials({ showHeader = true }: { showHeader?: boolean } = {
           {row2.map((t, i) => <TestimonialCard key={i} testimonial={t} />)}
         </motion.div>
 
-        {/* Row 3 → */}
+        {/* Row 3 → (Desktop & Tablet) */}
         <motion.div 
           animate={{ x: ["0%", "-50%"] }}
           transition={{ ease: "linear", duration: 38, repeat: Infinity }}
-          className="flex gap-4 sm:gap-5 w-max"
+          className="hidden md:flex gap-4 sm:gap-5 w-max"
         >
           {row3.map((t, i) => <TestimonialCard key={i} testimonial={t} />)}
         </motion.div>
@@ -85,7 +77,7 @@ export function Testimonials({ showHeader = true }: { showHeader?: boolean } = {
 
 function TestimonialCard({ testimonial }: { testimonial: { quote: string; name: string; role: string } }) {
   return (
-    <GlowCard customSize={true} glowColor="orange" className="w-[280px] sm:w-[360px] md:w-[440px] relative p-5 sm:p-7 rounded-3xl bg-[var(--surface)] border border-[var(--border-subtle)] flex flex-col justify-between shrink-0 hover:border-[var(--accent)]/40 transition-colors duration-300 shadow-lg">
+    <GlowCard customSize={true} glowColor="orange" className="w-[260px] sm:w-[350px] md:w-[420px] relative p-4 sm:p-7 rounded-3xl bg-[var(--surface)] border border-[var(--border-subtle)] flex flex-col justify-between shrink-0 hover:border-[var(--accent)]/40 transition-colors duration-300 shadow-lg">
       <span className="text-5xl font-heading text-[var(--accent)]/30 absolute top-5 left-6 font-serif select-none z-10">
         &ldquo;
       </span>

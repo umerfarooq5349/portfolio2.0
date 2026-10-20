@@ -8,60 +8,60 @@ import Link from "next/link";
 
 const experience = [
   {
-    role: "CRM & Automation Specialist",
-    company: "Independent Consultant / Freelancer",
-    period: "2023 - Present",
-    desc: "Architecting workflow automation engines using GoHighLevel, n8n, and Zapier for real estate, healthcare, and service industries. Integrating AI assistants to automate customer qualification and booking, reducing business response times from hours to under 2 minutes.",
+    role: "GoHighLevel Team Lead",
+    company: "Ignitto",
+    period: "January 2025 - Present",
+    desc: "Leading a GoHighLevel automation engineering team, training builders into production-ready funnel, workflow, and integration architects. Spearheading complex client ecosystems including Practice Hub EHR integrations, large-scale database cleanups (tens of thousands of contacts), Instantly.ai cold email outbound systems, and AI-powered patient chatbots.",
   },
   {
-    role: "GoHighLevel Specialist & SaaS Integrator",
-    company: "Agency Solutions",
-    period: "2022 - 2023",
-    desc: "Built custom sales funnels, lead tracking dashboards, and white-label CRM sub-account setups for agency owners. Designed automated onboarding pipelines including Stripe billing, sub-account instantiation, and SMS marketing activations.",
+    role: "CRM & Workflow Automation Specialist",
+    company: "Independent Client Engagements",
+    period: "2023 - 2024",
+    desc: "Designed and deployed full-scale GoHighLevel patient acquisition systems, multi-channel unified inboxes (WhatsApp Business + Email), and condition-specific automated nurture workflows for healthcare and wellness clinics across Ireland, Germany, and Australia.",
   },
   {
-    role: "Workflow Automation Consultant",
-    company: "Service Operations Optimization",
-    period: "2022 - Present",
-    desc: "Mapping operations for small to mid-sized businesses and replacing repetitive data entry. Integrating CRMs with accounting (QuickBooks), communications (Twilio, Slack, Gmail), and scheduling software.",
+    role: "BS in Information Technology",
+    company: "Bahria University",
+    period: "Class of 2024",
+    desc: "Graduated with a strong foundation in database management, software architecture, RESTful API integrations, and systems engineering.",
   },
 ];
 
 const skills = [
-  { category: "CRM Platforms", items: ["GoHighLevel (GHL)", "ActiveCampaign", "HubSpot"] },
-  { category: "Integration & Workflows", items: ["n8n", "Zapier", "API & Webhooks", "Make (Integromat)"] },
-  { category: "Marketing & Comms", items: ["SMS Automation (Twilio)", "Email Automation (Mailgun)", "Sales Funnels"] },
-  { category: "AI & Innovation", items: ["OpenAI API", "AI Chatbots", "Prompt Engineering"] },
+  { category: "CRM & Funnel Platforms", items: ["GoHighLevel (GHL)", "Practice Hub EHR", "HubSpot", "Funnel CRO", "Membership Portals"] },
+  { category: "Workflow Automation & APIs", items: ["n8n", "Zapier", "Pabbly Connect", "REST Webhooks", "Make (Integromat)"] },
+  { category: "Outbound & Messaging", items: ["Instantly.ai", "WhatsApp Business API", "Twilio SMS", "Mailgun", "B2B Outbound"] },
+  { category: "AI & Modern Tools", items: ["OpenAI API", "Custom AI Chatbots (LinaBot)", "Fathom AI", "Slack API", "Stripe API"] },
 ];
 
 export default function ResumePage() {
   return (
-    <div role="region" aria-label="Qualifications and Resume" className="pt-32 pb-32 min-h-screen bg-[var(--background)]">
-      <div className="max-w-5xl mx-auto px-6">
+    <div role="region" aria-label="Qualifications and Resume" className="pt-24 sm:pt-32 pb-20 sm:pb-28 min-h-[100dvh] bg-[var(--background)]">
+      <div className="max-w-5xl mx-auto px-5 sm:px-6">
         
         {/* Header */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-16 gap-6">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-12 sm:mb-16 gap-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <p className="text-[var(--accent)] font-sans uppercase tracking-[0.2em] text-sm font-semibold mb-2">Qualifications</p>
-            <h1 className="text-5xl md:text-7xl font-heading font-semibold text-white tracking-tight mb-4">
+            <p className="text-[var(--accent)] font-sans uppercase tracking-[0.2em] text-xs sm:text-sm font-semibold mb-2">Qualifications</p>
+            <h1 className="text-4xl sm:text-6xl md:text-7xl font-heading font-semibold text-white tracking-tight mb-3">
               My <span className="text-[var(--accent)] italic">Resume</span>
             </h1>
-            <p className="text-[var(--ice)]/80 font-sans text-lg">Muhammad Umer Farooq | CRM &amp; Automation Specialist</p>
+            <p className="text-[var(--ice)]/80 font-sans text-base sm:text-lg">Muhammad Umer Farooq | CRM &amp; Automation Specialist</p>
           </motion.div>
           
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="flex items-center gap-4"
+            className="flex flex-wrap items-center gap-3.5"
           >
             <Link href="/contact">
-              <RippleButton>
-                <Calendar size={18} />
+              <RippleButton className="h-10 sm:h-11 px-5 sm:px-6 font-semibold">
+                <Calendar size={17} />
                 <span>Book a Call</span>
               </RippleButton>
             </Link>
@@ -79,7 +79,7 @@ export default function ResumePage() {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="bg-[var(--surface)] border border-[var(--border-subtle)] rounded-3xl p-8 md:p-16 space-y-16"
+          className="bg-[var(--surface)] border border-[var(--border-subtle)] rounded-3xl p-6 sm:p-10 md:p-16 space-y-12 sm:space-y-16"
         >
           {/* Summary */}
           <section>
@@ -88,7 +88,7 @@ export default function ResumePage() {
               Professional Summary
             </h3>
             <p className="text-[var(--ice)] font-sans text-base md:text-lg leading-relaxed max-w-3xl">
-              Highly motivated CRM &amp; Automation Expert with 1.5+ years of experience constructing automated processes that increase operational speed and eliminate manual data entry. Experienced in configuring GoHighLevel, n8n, and Zapier to bridge leads, invoicing, tracking pipelines, and communication channels.
+              GoHighLevel Team Lead &amp; CRM Automation Architect with extensive production experience directing automation teams and engineering high-impact client systems. Proven track record auditing healthcare funnels, integrating Practice Hub EHR with automated SMS recall engines, rebuilding large-scale databases (tens of thousands of contacts), and deploying 24/7 AI-powered conversational bots and B2B outbound engines.
             </p>
           </section>
 

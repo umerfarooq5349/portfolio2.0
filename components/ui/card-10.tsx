@@ -5,52 +5,66 @@ import { motion, useMotionValue, useTransform, animate, useInView } from "framer
 import { cn } from "@/lib/utils";
 import { GlowCard } from "@/components/ui/spotlight-card";
 
-// Define the props for the component
 export interface StatCardProps extends React.HTMLAttributes<HTMLDivElement> {
   title: string;
-  value: number;
-  change: number;
-  changeDescription: string;
-  icon: React.ReactNode;
+  value: number | string;
+  change?: number | string;
+  changeDescription?: string;
+  icon?: React.ReactNode;
   suffix?: string;
-  glowColor?: 'blue' | 'purple' | 'green' | 'red' | 'orange';
+  prefix?: string;
+  glowColor?: "blue" | "purple" | "green" | "red" | "orange";
+  useCounterAnimation?: boolean;
 }
 
 const StatCard = React.forwardRef<HTMLDivElement, StatCardProps>(
-  ({ title, value, change, changeDescription, icon, className, suffix = "%", glowColor = "orange", ...props }, ref) => {
+  (
+    {
+      title,
+      value,
+      change,
+      changeDescription,
+      icon,
+      className,
+      suffix = "",
+      prefix = "",
+      glowColor = "orange",
+      useCounterAnimation = false,
+      ...props
+    },
+    ref
+  ) => {
     const internalRef = React.useRef<HTMLDivElement>(null);
     const combinedRef = (ref as React.RefObject<HTMLDivElement>) || internalRef;
-    const isInView = useInView(combinedRef, { once: true, amount: 0.3 });
+    const isInView = useInView(combinedRef, { once: true, amount: 0.1 });
 
-    // Determine trend for styling
-    const isPositive = change >= 0;
-
-    // Framer Motion hook for animating the number
-    const motionValue = useMotionValue(0);
-
-    // Transform the motion value to a rounded integer for display
+    const isNumeric = typeof value === "number";
+    const motionValue = useMotionValue(isNumeric ? (value as number) : 0);
     const displayValue = useTransform(motionValue, (latest) =>
       Math.round(latest).toLocaleString()
     );
 
     React.useEffect(() => {
-      if (isInView) {
-        const controls = animate(motionValue, value, {
-          duration: 2.2,
+      if (useCounterAnimation && isNumeric && isInView) {
+        const controls = animate(motionValue, value as number, {
+          duration: 1.5,
           ease: "easeOut",
         });
         return controls.stop;
       }
-    }, [isInView, value, motionValue]);
+    }, [isInView, value, motionValue, useCounterAnimation, isNumeric]);
 
-    // Construct a meaningful ARIA label for accessibility
-    const ariaLabel = `${title}: ${value}${suffix}. Change is ${change > 0 ? '+' : ''}${change}% ${changeDescription}.`;
+    const isPositive = typeof change === "number" ? change >= 0 : true;
+    const ariaLabel = `${title}: ${prefix}${value}${suffix}. ${change ? `${change} ${changeDescription || ""}` : ""}`;
 
     return (
       <GlowCard
         customSize={true}
         glowColor={glowColor}
-        className={cn("w-full h-full min-h-[160px] flex flex-col justify-between p-6 rounded-3xl bg-[var(--surface)] border border-[var(--border-subtle)]", className)}
+        className={cn(
+          "w-full h-full min-h-[160px] flex flex-col justify-between p-4.5 sm:p-6 rounded-3xl bg-[var(--surface)] border border-[var(--border-subtle)]",
+          className
+        )}
       >
         <div
           ref={combinedRef}
@@ -59,40 +73,45 @@ const StatCard = React.forwardRef<HTMLDivElement, StatCardProps>(
           role="region"
           {...props}
         >
-          {/* Main animated value */}
+          {/* Main verified value */}
           <div className="flex items-baseline gap-1">
-            <motion.h3 className="text-4xl sm:text-5xl font-bold tracking-tighter font-heading text-white">
-              {displayValue}
+            {prefix && <span className="text-xl sm:text-2xl font-semibold text-[var(--accent)]">{prefix}</span>}
+            <motion.h3 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tighter font-heading text-white">
+              {useCounterAnimation && isNumeric ? (
+                <motion.span>{displayValue}</motion.span>
+              ) : (
+                <span>{value}</span>
+              )}
             </motion.h3>
-            <span className="text-2xl font-semibold text-[var(--accent)]">{suffix}</span>
+            {suffix && <span className="text-xl sm:text-2xl font-semibold text-[var(--accent)]">{suffix}</span>}
           </div>
 
           {/* Title */}
-          <p className="text-sm sm:text-base font-medium text-[var(--ice)]/80 font-sans">{title}</p>
+          <p className="text-xs sm:text-sm font-medium text-[var(--ice)]/80 font-sans">{title}</p>
 
-          {/* Change indicator */}
-          <div className="mt-3 flex items-center gap-2">
-            <span
-              className={cn(
-                "flex items-center justify-center rounded-full p-1.5",
-                isPositive ? "bg-emerald-500/20" : "bg-red-500/20"
+          {/* Verification / Change indicator */}
+          {(change !== undefined || changeDescription) && (
+            <div className="mt-2.5 flex items-center gap-2">
+              {icon && (
+                <span
+                  className={cn(
+                    "flex items-center justify-center rounded-full p-1.5 shrink-0",
+                    isPositive ? "bg-emerald-500/20 text-emerald-400" : "bg-red-500/20 text-red-400"
+                  )}
+                >
+                  {icon}
+                </span>
               )}
-            >
-              {icon}
-            </span>
-            <p className="text-xs sm:text-sm text-[var(--ice)]/80 font-sans">
-              <span
-                className={cn(
-                  "font-semibold",
-                  isPositive ? "text-emerald-400" : "text-red-400"
+              <p className="text-xs text-[var(--ice)]/80 font-sans">
+                {change !== undefined && (
+                  <span className={cn("font-semibold mr-1", isPositive ? "text-emerald-400" : "text-red-400")}>
+                    {typeof change === "number" && change > 0 ? `+${change}%` : `${change}`}
+                  </span>
                 )}
-              >
-                {isPositive ? "+" : ""}
-                {change}%
-              </span>
-              <span className="text-[var(--ice)]/60"> {changeDescription}</span>
-            </p>
-          </div>
+                {changeDescription && <span className="text-[var(--ice)]/60">{changeDescription}</span>}
+              </p>
+            </div>
+          )}
         </div>
       </GlowCard>
     );

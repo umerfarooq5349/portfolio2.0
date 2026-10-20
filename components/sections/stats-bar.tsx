@@ -2,12 +2,12 @@
 
 import { motion } from "framer-motion";
 import { StatCard } from "@/components/ui/card-10";
-import { ArrowUpRight, ArrowDownRight, ShieldCheck, Zap } from "lucide-react";
+import { ArrowUpRight, ShieldCheck, Zap, CheckCircle2 } from "lucide-react";
 
 export function StatsBar() {
   return (
     <section
-      aria-label="Key Statistics & Performance Metrics"
+      aria-label="Verified Performance Benchmarks & Metrics"
       className="relative z-20 py-12 lg:py-16 border-y border-[var(--border-subtle)] bg-[var(--background)]"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
@@ -21,18 +21,18 @@ export function StatsBar() {
         >
           <div>
             <span className="text-xs font-sans font-bold uppercase tracking-widest text-[var(--accent)]">
-              Performance Snapshot
+              Verified Operational Track Record
             </span>
             <h2 className="text-2xl sm:text-3xl font-heading font-bold text-white tracking-tight mt-1">
-              Impact &amp; System Analytics
+              Real-World Automation Metrics
             </h2>
           </div>
-          <p className="text-xs sm:text-sm text-[var(--ice)]/70 max-w-xs font-sans">
-            Real-time automation metrics &amp; operational efficiency benchmarks delivered for client workflows.
+          <p className="text-xs sm:text-sm text-[var(--ice)]/70 max-w-sm font-sans">
+            Verified implementation benchmarks achieved across live GoHighLevel, n8n, and custom API pipelines.
           </p>
         </motion.div>
 
-        {/* StatCard (card-10) Interactive Animated Metrics: Single Line Row of 4 */}
+        {/* Verified Static Metrics */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -41,35 +41,32 @@ export function StatsBar() {
         >
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
             <StatCard
-              title="Automated Lead Response"
-              value={95}
-              change={32}
-              changeDescription="this month"
-              icon={<ArrowUpRight className="h-4 w-4 text-emerald-400" />}
+              title="Automation Workflows Built"
+              value="50+"
+              changeDescription="production deployments"
+              icon={<CheckCircle2 className="h-4 w-4 text-emerald-400" />}
               className="bg-[var(--surface)] border-[var(--border-subtle)] text-white shadow-xl hover:border-[var(--accent)]/40 transition-colors"
             />
             <StatCard
-              title="Manual Workload Cut"
-              value={70}
-              change={-70}
-              changeDescription="hours saved"
-              icon={<ArrowDownRight className="h-4 w-4 text-emerald-400" />}
+              title="Faster Lead Response"
+              prefix="Up to "
+              value="85%"
+              changeDescription="sub-2 min auto reply"
+              icon={<Zap className="h-4 w-4 text-emerald-400" />}
               className="bg-[var(--surface)] border-[var(--border-subtle)] text-white shadow-xl hover:border-[var(--accent)]/40 transition-colors"
             />
             <StatCard
               title="System Uptime Reliability"
-              value={99}
-              change={0.9}
-              changeDescription="last 30 days"
+              value="99.9%"
+              changeDescription="active API & webhook monitoring"
               icon={<ShieldCheck className="h-4 w-4 text-[var(--accent)]" />}
               className="bg-[var(--surface)] border-[var(--border-subtle)] text-white shadow-xl hover:border-[var(--accent)]/40 transition-colors"
             />
             <StatCard
-              title="Conversion Rate Gain"
-              value={45}
-              change={18}
-              changeDescription="vs benchmark"
-              icon={<Zap className="h-4 w-4 text-[var(--accent)]" />}
+              title="Custom CRM Architecture"
+              value="100%"
+              changeDescription="tailored business workflows"
+              icon={<ArrowUpRight className="h-4 w-4 text-emerald-400" />}
               className="bg-[var(--surface)] border-[var(--border-subtle)] text-white shadow-xl hover:border-[var(--accent)]/40 transition-colors"
             />
           </div>

@@ -8,33 +8,25 @@ import { CalendarCheck, ArrowRight } from "@phosphor-icons/react";
 
 export function ContactCTA() {
   return (
-    <section aria-label="Call to Action" className="py-32 px-6 bg-[var(--background)]">
+    <section aria-label="Call to Action" className="py-20 sm:py-28 lg:py-32 px-5 sm:px-6 bg-[var(--background)]">
       <div className="max-w-5xl mx-auto">
         <motion.div 
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[var(--surface-elevated)] to-[var(--surface)] border border-[var(--border-subtle)] p-8 sm:p-12 md:p-20 text-center"
+          className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[var(--surface-elevated)] to-[var(--surface)] border border-[var(--border-subtle)] p-6 sm:p-12 md:p-20 text-center"
         >
           {/* Background glow */}
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--accent)/10_0%,_transparent_70%)] pointer-events-none" />
           
           <div className="relative z-10 max-w-3xl mx-auto">
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-[var(--accent)] font-sans uppercase tracking-[0.2em] text-sm font-semibold mb-6"
-            >
-              Ready to Automate?
-            </motion.p>
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="text-4xl md:text-6xl font-heading font-semibold text-white leading-[1.1] mb-6"
+              className="text-3xl sm:text-5xl md:text-6xl font-heading font-semibold text-white leading-[1.15] mb-5 sm:mb-6"
             >
               Let&apos;s Eliminate Manual Work &amp;{" "}
               <span className="text-[var(--accent)] italic">Scale Your Business.</span>
@@ -51,9 +43,9 @@ export function ContactCTA() {
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link href="/contact">
-                <RippleButton>
-                  <CalendarCheck size={18} />
-                  Start a Project
+                <RippleButton className="h-11 sm:h-12 px-6 sm:px-7 font-semibold">
+                  <CalendarCheck size={18} weight="bold" />
+                  <span>Book a Call</span>
                 </RippleButton>
               </Link>
               <Link href="/services">

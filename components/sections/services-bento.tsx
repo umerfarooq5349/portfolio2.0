@@ -9,81 +9,73 @@ const services = [
     icon: <Gear size={28} />,
     title: "CRM Setup (GoHighLevel)",
     description: "Complete setup of your CRM system tailored to your exact business workflow. From pipelines to automations, I build it end-to-end.",
-    colSpan: "md:col-span-2 md:row-span-2",
+    colSpan: "sm:col-span-2 md:col-span-2 md:row-span-2",
     featured: true,
   },
   {
     icon: <Lightning size={24} />,
     title: "Workflow Automation",
     description: "Automating repetitive business tasks using GoHighLevel, n8n, and Zapier to save hours every day.",
-    colSpan: "md:col-span-1",
+    colSpan: "sm:col-span-1 md:col-span-1",
     featured: false,
   },
   {
     icon: <Funnel size={24} />,
     title: "Funnel Building",
     description: "High-converting sales funnels designed to generate and nurture leads on autopilot.",
-    colSpan: "md:col-span-1",
+    colSpan: "sm:col-span-1 md:col-span-1",
     featured: false,
   },
   {
     icon: <Users size={24} />,
     title: "Lead Management Systems",
     description: "Organized lead tracking to improve conversions and follow-up rates significantly.",
-    colSpan: "md:col-span-1",
+    colSpan: "sm:col-span-1 md:col-span-1",
     featured: false,
   },
   {
     icon: <Envelope size={24} />,
     title: "SMS & Email Automation",
     description: "Automated communication systems for client engagement, nurturing, and retention.",
-    colSpan: "md:col-span-1",
+    colSpan: "sm:col-span-1 md:col-span-1",
     featured: false,
   },
   {
     icon: <Robot size={28} />,
     title: "AI Chatbots",
     description: "Smart AI-powered chat systems for lead qualification and 24/7 customer support, integrated directly into your CRM.",
-    colSpan: "md:col-span-2",
+    colSpan: "sm:col-span-2 md:col-span-2",
     featured: true,
   },
   {
     icon: <CalendarCheck size={24} />,
     title: "Appointment Booking Systems",
     description: "Automated booking flows to reduce no-shows and fill your calendar without manual work.",
-    colSpan: "md:col-span-1",
+    colSpan: "sm:col-span-1 md:col-span-1",
     featured: false,
   },
   {
     icon: <SquaresFour size={24} />,
     title: "Pipeline Setup",
     description: "Custom sales pipelines that match your business process for full deal visibility.",
-    colSpan: "md:col-span-1",
+    colSpan: "sm:col-span-1 md:col-span-1",
     featured: false,
   },
   {
     icon: <Globe size={24} />,
     title: "White Label GHL & SaaS Setup",
     description: "Fully branded white-label GoHighLevel SaaS platforms for agencies and businesses ready to scale.",
-    colSpan: "md:col-span-2",
+    colSpan: "sm:col-span-2 md:col-span-2",
     featured: false,
   },
 ];
 
 export function ServicesBento({ showHeader = true }: { showHeader?: boolean } = {}) {
   return (
-    <section aria-label="Services" className={showHeader ? "py-24 sm:py-32 bg-[var(--background)]" : "pb-24 pt-4 bg-[var(--background)]"}>
-      <div className="max-w-5xl mx-auto px-6">
+    <section aria-label="Services" className={showHeader ? "py-20 sm:py-28 lg:py-32 bg-[var(--background)]" : "pb-20 pt-4 bg-[var(--background)]"}>
+      <div className="max-w-5xl mx-auto px-5 sm:px-6">
         {showHeader && (
-          <div className="mb-14 md:mb-20 text-center">
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-[var(--accent)] font-sans uppercase tracking-[0.2em] text-sm font-semibold mb-3"
-            >
-              What I Do
-            </motion.p>
+          <div className="mb-12 md:mb-16 text-center">
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -106,7 +98,7 @@ export function ServicesBento({ showHeader = true }: { showHeader?: boolean } = 
           </div>
         )}
 
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 auto-rows-[minmax(180px,auto)]">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 auto-rows-[minmax(170px,auto)]">
           {services.map((service, index) => (
             <motion.div
               key={index}
@@ -119,7 +111,7 @@ export function ServicesBento({ showHeader = true }: { showHeader?: boolean } = 
               <GlowCard 
                 customSize={true} 
                 glowColor="orange"
-                className={`w-full h-full relative group p-6 sm:p-8 rounded-3xl border flex flex-col justify-between cursor-default transition-all duration-300 ${service.featured
+                className={`w-full h-full relative group p-5 sm:p-7 rounded-3xl border flex flex-col justify-between cursor-default transition-all duration-300 ${service.featured
                   ? "bg-[var(--surface-elevated)] border-[var(--accent)]/30 hover:border-[var(--accent)]/60 shadow-xl"
                   : "bg-[var(--surface)] border-[var(--border-subtle)] hover:border-[var(--accent)]/40 shadow-lg"
                 }`}

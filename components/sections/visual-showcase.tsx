@@ -32,30 +32,20 @@ export function VisualShowcase() {
   return (
     <section
       aria-label="Visual Systems Showcase"
-      className="py-28 relative bg-[var(--background)] overflow-hidden border-t border-[var(--border-subtle)]"
+      className="py-20 sm:py-28 relative bg-[var(--background)] overflow-hidden border-t border-[var(--border-subtle)]"
     >
       {/* Background glow & mesh */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[500px] bg-[var(--accent)]/5 rounded-full blur-[140px] pointer-events-none" />
 
-      <div className="max-w-6xl mx-auto px-6 relative z-10">
+      <div className="max-w-6xl mx-auto px-5 sm:px-6 relative z-10">
         {/* Section Header */}
-        <div className="text-center mb-16 max-w-3xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="inline-flex items-center gap-2 rounded-full bg-[var(--accent)]/10 px-4 py-1.5 text-xs font-sans text-[var(--accent)] border border-[var(--accent)]/20 mb-4 font-semibold uppercase tracking-[0.18em]"
-          >
-            <Sparkle size={14} className="text-[var(--accent)]" />
-            Interactive Systems Gallery
-          </motion.div>
-
+        <div className="text-center mb-12 sm:mb-16 max-w-3xl mx-auto">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-4xl md:text-6xl font-heading font-semibold text-white tracking-tight leading-[1.1]"
+            className="text-3xl sm:text-4xl md:text-6xl font-heading font-semibold text-white tracking-tight leading-[1.1]"
           >
             Visual Architecture &amp;{" "}
             <span className="text-[var(--accent)] italic font-medium">System Blueprints.</span>
@@ -66,7 +56,7 @@ export function VisualShowcase() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="mt-6 text-zinc-400 font-sans text-base sm:text-lg leading-relaxed"
+            className="mt-4 sm:mt-6 text-zinc-400 font-sans text-sm sm:text-lg leading-relaxed"
           >
             Explore interactive 3D coverflow previews of custom CRM setups, multi-channel automation workflows, and automated client onboarding systems built for high-growth businesses.
           </motion.p>
@@ -78,7 +68,7 @@ export function VisualShowcase() {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="relative rounded-3xl bg-[var(--surface)] border border-[var(--border-subtle)] p-6 md:p-12 shadow-2xl overflow-hidden"
+          className="relative rounded-3xl bg-[var(--surface)] border border-[var(--border-subtle)] p-4 sm:p-8 md:p-12 shadow-2xl overflow-hidden"
         >
           {/* Professional System Architecture Status Bar */}
           <div className="flex items-center justify-between border-b border-[var(--border-subtle)] pb-6 mb-8">

@@ -1,4 +1,5 @@
 @import url('https://api.fontshare.com/v2/css?f[]=chubbo@700,800,900&f[]=supreme@400,500,700&display=swap');
+@import "lenis/dist/lenis.css";
 @import "tailwindcss";
 
 :root {
@@ -52,80 +53,94 @@
   --font-sans: var(--font-supreme);
   --font-serif: var(--font-chubbo);
   --font-heading: var(--font-chubbo);
+  --font-subheading: var(--font-supreme);
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: 'Supreme', var(--font-supreme), system-ui, sans-serif;
-  overflow-x: hidden;
+  overflow-x: clip;
+  max-width: 100vw;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Primary Display Headings (h1, h2): Chubbo */
 h1,
 h2,
-h3,
-h4,
-h5,
-h6,
-.font-heading {
+.font-display {
   font-family: 'Chubbo', var(--font-chubbo), system-ui, sans-serif;
   font-weight: 700;
 }
 
-/* Global Ripple Button Performance Styles */
-.ripple-btn {
-  font-family: inherit;
+/* Smaller Headings (h3, h4, h5, h6, subheadings, and card titles): Supreme */
+h3,
+h4,
+h5,
+h6,
+h3.font-heading,
+h4.font-heading,
+h5.font-heading,
+h6.font-heading,
+.font-subheading,
+.heading-sm,
+.heading-xs {
+  font-family: 'Supreme', var(--font-supreme), system-ui, sans-serif !important;
   font-weight: 700;
-  padding: 0.85em 1.8em;
-  border: none;
-  border-radius: 9999px;
+}
+
+/* Swiper Coverflow Gallery Styling (Hoisted from JSX) */
+.Carousal_003 {
+  width: 100%;
+  height: 310px;
+  padding-bottom: 45px !important;
+}
+
+@media (min-width: 640px) {
+  .Carousal_003 {
+    height: 350px;
+    padding-bottom: 50px !important;
+  }
+}
+
+.Carousal_003 .swiper-slide {
+  background-position: center;
+  background-size: cover;
+  width: min(280px, 76vw);
+  height: 250px;
   position: relative;
-  cursor: pointer;
+  border-radius: 1rem;
   overflow: hidden;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
-  color: #000000;
-  box-shadow: 0 8px 20px -4px rgba(236, 179, 101, 0.3);
-  touch-action: manipulation;
 }
 
-.ripple-btn:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 12px 24px -4px rgba(236, 179, 101, 0.45);
+@media (min-width: 640px) {
+  .Carousal_003 .swiper-slide {
+    width: 300px;
+    height: 280px;
+  }
 }
 
-.ripple-btn .ripple-circle {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  height: 30px;
-  width: 30px;
-  border-radius: 50%;
-  transition: transform 0.8s ease, opacity 0.8s ease;
-  pointer-events: none;
-  opacity: 0.6;
+.swiper-pagination-bullet {
+  background-color: rgba(184, 219, 217, 0.4) !important;
 }
 
-.ripple-btn .ripple-text {
-  position: relative;
-  z-index: 2;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
+.swiper-pagination-bullet-active {
+  background-color: var(--accent) !important;
 }
 
-.ripple-btn .circle1 { transform: translate(-3.3em, -4em); }
-.ripple-btn .circle2 { transform: translate(-6em, 1.3em); }
-.ripple-btn .circle3 { transform: translate(-0.2em, 1.8em); }
-.ripple-btn .circle4 { transform: translate(3.5em, 1.4em); }
-.ripple-btn .circle5 { transform: translate(3.5em, -3.8em); }
-
-.ripple-btn:hover .ripple-circle {
-  transform: translate(-50%, -50%) scale(5.5);
-  opacity: 1;
+/* Accessibility: Reduced Motion Override */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

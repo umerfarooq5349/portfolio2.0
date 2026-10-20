@@ -13,15 +13,25 @@ export function Footer() {
   const navLinks = [
     { label: "About", href: "/about" },
     { label: "Services", href: "/services" },
-    { label: "Projects", href: "/projects" },
+    { label: "Case Studies", href: "/projects" },
     { label: "Testimonials", href: "/testimonials" },
+    { label: "Insights", href: "/blog" },
+  ];
+
+  // Core Services
+  const serviceLinks = [
+    { label: "GoHighLevel CRM Setup", href: "/services/gohighlevel-crm-setup" },
+    { label: "n8n Workflow Automation", href: "/services/n8n-automation" },
+    { label: "AI Chatbot Development", href: "/services/ai-chatbot-development" },
+    { label: "Lead Follow-Up Systems", href: "/services/lead-follow-up-automation" },
   ];
 
   // Helpful links
   const helpfulLinks = [
-    { label: "Blog", href: "/blog" },
-    { label: "Contact Us", href: "/contact" },
-    { label: "Book a Call", href: "/contact", pulse: true },
+    { label: "Real Estate Automation", href: "/industries/real-estate" },
+    { label: "Agency Systems", href: "/industries/agencies" },
+    { label: "Contact & Audit", href: "/contact" },
+    { label: "Book a Strategy Call", href: "/contact", pulse: true },
   ];
 
   // All bottom icons (social + contact)
@@ -37,21 +47,29 @@ export function Footer() {
   return (
     <footer className="w-full bg-[var(--background)]/95 border-t border-[var(--border-subtle)] relative overflow-hidden mt-20">
       <div className="max-w-7xl mx-auto px-6 py-10 md:p-14 z-50 relative">
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-12 md:gap-8 lg:gap-16 pb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10 md:gap-8 pb-12">
           {/* Brand section */}
-          <div className="flex flex-col space-y-4 lg:col-span-2">
-            <p className="text-sm font-sans text-[var(--ice)]/70 leading-relaxed max-w-sm">
-              Building smart automation systems with GoHighLevel, n8n, and Zapier that save time and increase revenue.
+          <div className="flex flex-col space-y-4 sm:col-span-2">
+            <Link href="/" className="flex flex-col leading-none">
+              <span className="text-xl font-bold font-heading text-white">
+                Muhammad Umer<span className="text-[var(--accent)]">.</span>
+              </span>
+              <span className="text-xs font-sans text-[var(--accent)] font-medium tracking-wider uppercase mt-1">
+                GoHighLevel &amp; n8n Automation Expert
+              </span>
+            </Link>
+            <p className="text-xs sm:text-sm font-sans text-[var(--ice)]/70 leading-relaxed max-w-sm">
+              Architecting production CRM systems, n8n API orchestration pipelines, and AI conversational workflows that turn inbound leads into booked clients.
             </p>
           </div>
 
           {/* Navigation section */}
           <div>
-            <h4 className="text-white text-lg font-heading font-semibold mb-6">Navigation</h4>
-            <ul className="space-y-3">
+            <h4 className="text-white text-base font-heading font-semibold mb-4">Navigation</h4>
+            <ul className="space-y-2.5">
               {navLinks.map((link) => (
                 <li key={link.label}>
-                  <Link href={link.href} className="text-sm font-sans text-[var(--ice)]/70 hover:text-[var(--accent)] transition-colors">
+                  <Link href={link.href} className="text-xs sm:text-sm font-sans text-[var(--ice)]/70 hover:text-[var(--accent)] transition-colors">
                     {link.label}
                   </Link>
                 </li>
@@ -59,13 +77,27 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Helpful Links section */}
+          {/* Core Services section */}
           <div>
-            <h4 className="text-white text-lg font-heading font-semibold mb-6">Helpful Links</h4>
-            <ul className="space-y-3">
+            <h4 className="text-white text-base font-heading font-semibold mb-4">Core Services</h4>
+            <ul className="space-y-2.5">
+              {serviceLinks.map((link) => (
+                <li key={link.label}>
+                  <Link href={link.href} className="text-xs sm:text-sm font-sans text-[var(--ice)]/70 hover:text-[var(--accent)] transition-colors">
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Helpful Links & Industries */}
+          <div>
+            <h4 className="text-white text-base font-heading font-semibold mb-4">Consultation</h4>
+            <ul className="space-y-2.5">
               {helpfulLinks.map((link) => (
                 <li key={link.label} className="relative w-fit flex items-center">
-                  <Link href={link.href} className="text-sm font-sans text-[var(--ice)]/70 hover:text-[var(--accent)] transition-colors">
+                  <Link href={link.href} className="text-xs sm:text-sm font-sans text-[var(--ice)]/70 hover:text-[var(--accent)] transition-colors">
                     {link.label}
                   </Link>
                   {link.pulse && (

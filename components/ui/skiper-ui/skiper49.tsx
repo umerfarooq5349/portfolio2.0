@@ -93,30 +93,6 @@ const Carousel_003 = ({
   autoplay?: boolean;
   spaceBetween?: number;
 }) => {
-  const css = `
-  .Carousal_003 {
-    width: 100%;
-    height: 350px;
-    padding-bottom: 50px !important;
-  }
-  
-  .Carousal_003 .swiper-slide {
-    background-position: center;
-    background-size: cover;
-    width: 300px;
-    position: relative;
-    border-radius: 1rem;
-    overflow: hidden;
-  }
-
-  .swiper-pagination-bullet {
-    background-color: rgba(184, 219, 217, 0.4) !important;
-  }
-
-  .swiper-pagination-bullet-active {
-    background-color: var(--accent) !important;
-  }
-`;
   return (
     <motion.div
       initial={{ opacity: 0, translateY: 20 }}
@@ -127,7 +103,6 @@ const Carousel_003 = ({
       }}
       className={cn("relative w-full max-w-4xl px-5", className)}
     >
-      <style>{css}</style>
 
       <motion.div
         initial={{ opacity: 0 }}
@@ -151,9 +126,9 @@ const Carousel_003 = ({
           centeredSlides={true}
           loop={loop}
           coverflowEffect={{
-            rotate: 35,
+            rotate: 24,
             stretch: 0,
-            depth: 100,
+            depth: 70,
             modifier: 1,
             slideShadows: true,
           }}
@@ -188,10 +163,10 @@ const Carousel_003 = ({
           ))}
           {showNavigation && (
             <div>
-              <div className="swiper-button-next after:hidden">
+              <div className="swiper-button-next after:hidden hidden sm:flex">
                 <CaretRight className="h-6 w-6 text-white" />
               </div>
-              <div className="swiper-button-prev after:hidden">
+              <div className="swiper-button-prev after:hidden hidden sm:flex">
                 <CaretLeft className="h-6 w-6 text-white" />
               </div>
             </div>

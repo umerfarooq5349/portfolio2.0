@@ -89,7 +89,6 @@ export function MagneticButton({
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       className={cn(fullWidth ? "w-full flex" : "inline-flex", wrapperClassName)}
-      style={{ padding: fullWidth ? 0 : radius * 0.25 }}
     >
       <motion.button
         type={type}

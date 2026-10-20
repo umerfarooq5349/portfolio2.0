@@ -83,16 +83,16 @@ export default function FAQPage() {
     <div
       role="region"
       aria-label="Frequently Asked Questions"
-      className="pt-32 pb-32 min-h-screen bg-[var(--background)]"
+      className="pt-24 sm:pt-32 pb-20 sm:pb-32 min-h-[100dvh] bg-[var(--background)]"
     >
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <div className="max-w-4xl mx-auto px-6">
+      <div className="max-w-4xl mx-auto px-5 sm:px-6">
         {/* Header */}
-        <div className="text-center mb-16 md:mb-20">
+        <div className="text-center mb-12 md:mb-16">
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
@@ -106,7 +106,7 @@ export default function FAQPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-4xl sm:text-5xl md:text-6xl font-heading font-semibold text-white tracking-tight mb-6"
+            className="text-3xl sm:text-5xl md:text-6xl font-heading font-semibold text-white tracking-tight mb-4 sm:mb-6"
           >
             Answers to Common{" "}
             <span className="text-[var(--accent)] italic">Automation Inquiries.</span>
@@ -138,7 +138,7 @@ export default function FAQPage() {
                   aria-expanded={isOpen}
                   aria-controls={`${faq.id}-content`}
                   id={`${faq.id}-button`}
-                  className="w-full text-left p-6 flex items-center justify-between gap-4 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]"
+                  className="w-full text-left p-5 sm:p-6 flex items-center justify-between gap-3 sm:gap-4 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]"
                 >
                   <div>
                     <span className="text-xs font-sans font-semibold uppercase tracking-wider text-[var(--accent)] block mb-1">
@@ -198,9 +198,9 @@ export default function FAQPage() {
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link href="/contact">
-                <RippleButton>
+                <RippleButton className="h-11 sm:h-12 px-6 sm:px-7 font-semibold">
                   <Calendar size={18} />
-                  <span>Book Discovery Call</span>
+                  <span>Book a Call</span>
                 </RippleButton>
               </Link>
               <Link href="/services">

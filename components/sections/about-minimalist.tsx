@@ -83,7 +83,7 @@ export function AboutMinimalist({ isPageHeading = false }: { isPageHeading?: boo
     <section
       id="about-minimalist"
       aria-label="About: Minimalist Editorial Edition"
-      className="relative z-10 py-16 sm:py-24 lg:py-28 bg-[var(--background)] text-white overflow-hidden"
+      className={`relative z-10 ${isPageHeading ? "pt-2 sm:pt-6 pb-16 sm:pb-24 lg:pb-28" : "py-16 sm:py-24 lg:py-28"} bg-[var(--background)] text-white overflow-hidden`}
     >
 
       <div className="max-w-6xl mx-auto px-6 lg:px-8 relative z-10">
@@ -95,10 +95,6 @@ export function AboutMinimalist({ isPageHeading = false }: { isPageHeading?: boo
           transition={{ duration: 0.6 }}
           className="mb-16 sm:mb-20 text-center max-w-3xl mx-auto space-y-4"
         >
-
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[var(--accent)]/10 border border-[var(--accent)]/25 text-xs font-sans font-semibold uppercase tracking-widest text-[var(--accent)]">
-            <p className="text-[var(--accent)] font-sans uppercase tracking-[0.2em] text-sm font-semibold">Who I Am</p>
-          </div>
 
           {isPageHeading ? (
             <h1 className="text-3xl sm:text-5xl lg:text-6xl font-heading font-semibold text-white tracking-tight leading-[1.12]">
@@ -135,7 +131,7 @@ export function AboutMinimalist({ isPageHeading = false }: { isPageHeading?: boo
                 badgeId="MUF-89240-CRM"
                 accentColor="#ECB365"
                 ropeLength={110}
-                avatarUrl="/hero-portrait.png"
+                avatarUrl="/hero-portrait.webp"
               />
             </div>
 
@@ -177,7 +173,7 @@ export function AboutMinimalist({ isPageHeading = false }: { isPageHeading?: boo
                     <button
                       key={pillar.id}
                       onClick={() => setActivePillar(idx)}
-                      className={`p-5 rounded-xl text-left border transition-all duration-300 cursor-pointer flex flex-col justify-between h-36 gap-2 ${isActive
+                      className={`p-4 sm:p-5 rounded-xl text-left border transition-all duration-300 cursor-pointer flex flex-col justify-between min-h-[140px] h-auto gap-2 ${isActive
                         ? "bg-[var(--accent)]/15 border-[var(--accent)] text-white shadow-lg"
                         : "bg-[var(--surface)] border-[var(--border-subtle)] text-[var(--ice)]/70 hover:border-[var(--accent)]/40 hover:text-white"
                         }`}
@@ -256,9 +252,9 @@ export function AboutMinimalist({ isPageHeading = false }: { isPageHeading?: boo
             {/* CTA Button */}
             <div className="pt-2 w-full">
               <Link href="/contact" className="block w-full">
-                <RippleButton className="w-full">
-                  <span>Book a CRM Automation Audit</span>
-                  <ArrowUpRight size={18} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                <RippleButton className="w-full h-12 rounded-full font-semibold">
+                  <span>Book a Call</span>
+                  <ArrowUpRight size={18} weight="bold" className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                 </RippleButton>
               </Link>
             </div>

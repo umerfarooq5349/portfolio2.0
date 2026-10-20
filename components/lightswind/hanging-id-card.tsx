@@ -203,18 +203,24 @@ export const HangingIdCard = ({
   role = "CRM & Automation Expert",
   badgeId = "MUF-89240-CRM",
   accentColor = "#ECB365",
-  avatarUrl = "/hero-portrait.png",
+  avatarUrl = "/hero-portrait.webp",
 }: HangingIdCardProps) => {
   const physRef = useRef<CardPhysicsState>({ angle: 0, vel: 0 });
   const rafRef = useRef<number | null>(null);
   const prevTimeRef = useRef<number | null>(null);
   const prevAngleRef = useRef<number>(0);
   const isDraggingRef = useRef(false);
+  const pendulumRef = useRef<HTMLDivElement>(null);
 
-  const [angle, setAngle] = useState(0);
-  const [, setIsDragState] = useState(false);
   const dragStartX = useRef(0);
   const dragAngle0 = useRef(0);
+
+  const applyAngle = useCallback((ang: number) => {
+    if (pendulumRef.current) {
+      const deg = ang * (180 / Math.PI);
+      pendulumRef.current.style.transform = `rotate(${deg}deg)`;
+    }
+  }, []);
 
   // ── Physics loop ────────────────────────────────────────────────────────────
   const tickRef = useRef<((now: number) => void) | null>(null);
@@ -236,7 +242,7 @@ export const HangingIdCard = ({
       s.vel += torque * dt;
       s.angle += s.vel * dt;
 
-      setAngle(s.angle);
+      applyAngle(s.angle);
 
       if (Math.abs(s.angle) > 0.001 || Math.abs(s.vel) > 0.001) {
         if (tickRef.current) {
@@ -245,7 +251,7 @@ export const HangingIdCard = ({
       } else {
         // settled perfectly at bottom
         s.angle = 0; s.vel = 0;
-        setAngle(0);
+        applyAngle(0);
       }
     } else {
       // Track velocity while dragging so we can "flick" it
@@ -257,7 +263,7 @@ export const HangingIdCard = ({
         rafRef.current = requestAnimationFrame(tickRef.current);
       }
     }
-  }, [ropeLength]);
+  }, [ropeLength, applyAngle]);
 
   useEffect(() => {
     tickRef.current = tick;
@@ -275,7 +281,6 @@ export const HangingIdCard = ({
   const onPointerDown = useCallback((e: React.PointerEvent) => {
     e.currentTarget.setPointerCapture(e.pointerId);
     isDraggingRef.current = true;
-    setIsDragState(true);
     dragStartX.current = e.clientX;
     dragAngle0.current = physRef.current.angle;
     prevAngleRef.current = physRef.current.angle;
@@ -289,33 +294,30 @@ export const HangingIdCard = ({
     const dx = e.clientX - dragStartX.current;
     const L = ropeLength + 100;
     const newAngle = dragAngle0.current - dx / L;
-    const clamped = Math.max(-1.4, Math.min(1.4, newAngle));
+    const clamped = Math.max(-0.85, Math.min(0.85, newAngle));
     physRef.current.angle = clamped;
-    setAngle(clamped);
-  }, [ropeLength]);
+    applyAngle(clamped);
+  }, [ropeLength, applyAngle]);
 
   const onPointerUp = useCallback((e: React.PointerEvent) => {
     e.currentTarget.releasePointerCapture(e.pointerId);
     isDraggingRef.current = false;
-    setIsDragState(false);
   }, []);
 
   // ── Click impulse (tap) ─────────────────────────────────────────────────────
   const onCardClick = useCallback(() => {
     if (Math.abs(physRef.current.vel) < 0.1 && Math.abs(physRef.current.angle) < 0.05) {
-      physRef.current.vel = 4.0; // Give it a satisfying push
+      physRef.current.vel = 3.5; // Give it a satisfying push
       startPhysics();
     }
   }, [startPhysics]);
 
   useEffect(() => () => { if (rafRef.current) cancelAnimationFrame(rafRef.current); }, []);
 
-  const cardRotateDeg = angle * (180 / Math.PI);
-
   return (
     <div
       className={cn("inline-flex flex-col items-center select-none h-fit shrink-0 self-center", className)}
-      style={{ touchAction: "none" }}
+      style={{ touchAction: "pan-y" }}
     >
       {/* Ceiling anchor pin */}
       <div
@@ -324,13 +326,14 @@ export const HangingIdCard = ({
 
       {/* The Pendulum Assembly (Rope + Lock Clip + Card) */}
       <div
+        ref={pendulumRef}
         className="flex flex-col items-center cursor-grab active:cursor-grabbing h-fit shrink-0"
         onPointerDown={onPointerDown}
         onPointerMove={onPointerMove}
         onPointerUp={onPointerUp}
         onClick={onCardClick}
         style={{
-          transform: `rotate(${cardRotateDeg}deg)`,
+          transform: "rotate(0deg)",
           transformOrigin: "top center",
           willChange: "transform",
           marginTop: "-6px"
@@ -342,7 +345,7 @@ export const HangingIdCard = ({
         </div>
 
         {/* ID Card */}
-        <div className="relative w-[260px] sm:w-[295px] h-fit shrink-0 rounded-2xl overflow-hidden shadow-2xl border border-white/20 bg-[#162738] text-white pointer-events-none mt-[-16px]">
+        <div className="relative w-[240px] sm:w-[295px] h-fit shrink-0 rounded-2xl overflow-hidden shadow-2xl border border-white/20 bg-[#162738] text-white pointer-events-none mt-[-16px]">
           {/* Punched Slot Hole for Lanyard Clip */}
           <div className="flex justify-center pt-3 pb-1 bg-zinc-900/90 border-b border-white/10 relative z-20">
             <div className="w-9 h-3 rounded-full bg-black border border-zinc-700 shadow-inner flex items-center justify-center">
@@ -361,6 +364,8 @@ export const HangingIdCard = ({
                       src={avatarUrl}
                       alt=""
                       fill
+                      sizes="(max-width: 640px) 240px, 320px"
+                      priority
                       className="object-cover object-center scale-120 blur-sm "
                     />
                     <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-[#162738]" />
@@ -408,7 +413,7 @@ export const HangingIdCard = ({
 
                 {/* Prominently Centered 100% Scannable QR Code */}
                 <div className="flex flex-col items-center justify-center my-1">
-                  <ScannableQRCode size={96} color="#000000" bgColor="#ffffff" />
+                  <ScannableQRCode size={88} color="#000000" bgColor="#ffffff" />
                 </div>
 
                 {/* Badge Serial ID */}
