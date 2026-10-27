@@ -16,6 +16,7 @@ import {
   ArrowLeft,
   Quotes,
 } from "@phosphor-icons/react/dist/ssr";
+import { MagneticButton } from "@/components/lightswind/magnetic-button";
 
 interface MetricItem {
   label: string;
@@ -761,12 +762,13 @@ export default async function ProjectDetail({ params }: { params: Promise<{ id: 
           <p className="text-[var(--ice)]/75 font-sans text-sm sm:text-base mb-6 max-w-lg mx-auto">
             Let&apos;s map out a custom CRM architecture, funnel, and automated workflow strategy tailored to your operations.
           </p>
-          <Link
-            href="/contact"
-            className="inline-flex items-center gap-2 bg-[var(--accent)] text-black px-8 py-3.5 rounded-full font-sans font-semibold text-sm hover:bg-[var(--accent-hover)] transition-all shadow-md cursor-pointer"
-          >
-            <span>Book a Strategy Call</span>
-          </Link>
+          <div className="pt-2">
+            <Link href="/contact">
+              <MagneticButton variant="primary" size="md" className="h-12 px-8 font-bold">
+                <span>Book a Strategy Call</span>
+              </MagneticButton>
+            </Link>
+          </div>
         </div>
 
       </article>

@@ -89,19 +89,6 @@ export function HeroScroll() {
 
             {/* Left: Text Content (7 cols) */}
             <div className="lg:col-span-7">
-              {/* Availability badge */}
-              <motion.div
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4 }}
-                className="mb-3"
-              >
-                <span className="inline-flex items-center gap-2 rounded-full bg-[var(--accent)]/10 px-3.5 py-1 text-xs sm:text-sm font-sans text-[var(--accent)] border border-[var(--accent)]/25 font-medium">
-                  <span className="inline-block h-2 w-2 rounded-full bg-[var(--emerald)] animate-pulse" />
-                  Open to New Projects
-                </span>
-              </motion.div>
-
               {/* H1 Headline: Explicit Specialist Positioning */}
               <motion.h1
                 initial={{ opacity: 0, y: 18 }}
@@ -159,17 +146,17 @@ export function HeroScroll() {
                 className="flex flex-wrap items-center gap-3.5 pt-1"
               >
                 <Link href="/contact">
-                  <RippleButton className="h-11 sm:h-12 px-6 sm:px-7 font-semibold">
+                  <MagneticButton variant="primary" size="md" className="h-11 sm:h-12 px-6 sm:px-7 font-bold">
                     <CalendarCheck size={18} weight="bold" />
                     <span>Book a Strategy Call</span>
-                  </RippleButton>
+                  </MagneticButton>
                 </Link>
 
                 <Link href="/projects">
-                  <MagneticButton variant="outline" size="sm" className="h-11 sm:h-12 px-6 sm:px-7 text-xs sm:text-sm font-medium">
+                  <RippleButton variant="outline" className="h-11 sm:h-12 px-6 sm:px-7 text-xs sm:text-sm font-medium">
                     <span>View Case Studies</span>
                     <ArrowRight size={14} />
-                  </MagneticButton>
+                  </RippleButton>
                 </Link>
               </motion.div>
             </div>
@@ -249,8 +236,9 @@ export function HeroScroll() {
                   {[...Array(5)].map((_, i) => (
                     <Star key={i} size={11} className="fill-[var(--coral)] text-[var(--coral)]" />
                   ))}
+                  <span className="text-[11px] font-sans font-bold text-white ml-1">5.0</span>
                 </div>
-                <p className="text-[11px] font-sans text-[var(--ice)] mt-0.5">9 Happy Clients</p>
+                <p className="text-[11px] font-sans text-[var(--ice)]/80 mt-0.5">50+ Automations Delivered</p>
               </motion.div>
 
               {/* Floating workflow badge */}

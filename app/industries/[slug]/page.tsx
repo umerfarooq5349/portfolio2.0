@@ -97,17 +97,17 @@ export default async function IndustryDetailPage({
 
           <div className="flex flex-wrap items-center gap-4 mt-8">
             <Link href="/contact">
-              <RippleButton className="h-12 px-7 font-semibold">
+              <MagneticButton variant="primary" size="md" className="h-12 px-7 font-bold">
                 <CalendarCheck size={18} />
                 <span>Book a Strategy Call</span>
-              </RippleButton>
+              </MagneticButton>
             </Link>
 
             <Link href={`/projects/${industry.relevantCaseStudySlug}`}>
-              <MagneticButton variant="outline" size="sm" className="h-12 px-7 text-xs sm:text-sm font-medium">
+              <RippleButton variant="outline" className="h-12 px-7 text-xs sm:text-sm font-medium">
                 <span>View {industry.name} Case Study</span>
                 <ArrowRight size={14} />
-              </MagneticButton>
+              </RippleButton>
             </Link>
           </div>
         </header>
@@ -271,10 +271,10 @@ export default async function IndustryDetailPage({
           </p>
           <div className="pt-2">
             <Link href="/contact">
-              <RippleButton className="h-12 px-8 font-semibold">
+              <MagneticButton variant="primary" size="md" className="h-12 px-8 font-bold">
                 <CalendarCheck size={18} />
                 <span>Book a Strategy Call</span>
-              </RippleButton>
+              </MagneticButton>
             </Link>
           </div>
         </div>

@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 import { List, X, CalendarCheck } from "@phosphor-icons/react";
 import { cn } from "@/lib/utils";
 import RippleButton from "@/components/lightswind/ripple-button";
+import { MagneticButton } from "@/components/lightswind/magnetic-button";
 
 const links = [
   { name: "Home", href: "/" },
@@ -115,10 +116,10 @@ export function Header() {
         {/* Desktop CTA */}
         <div className="hidden lg:flex items-center">
           <Link href="/contact" id="book-call-cta">
-            <RippleButton className="h-9 px-4 sm:px-5 text-xs font-semibold">
+            <MagneticButton variant="primary" size="sm" className="h-9 px-4 sm:px-5 text-xs font-bold">
               <CalendarCheck size={15} weight="bold" />
               <span>Strategy Call</span>
-            </RippleButton>
+            </MagneticButton>
           </Link>
         </div>
 

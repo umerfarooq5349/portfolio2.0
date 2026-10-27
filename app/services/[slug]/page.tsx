@@ -130,18 +130,18 @@ export default async function ServiceDetailPage({
 
           <div className="flex flex-wrap items-center gap-4 mt-8">
             <Link href="/contact">
-              <RippleButton className="h-12 px-7 font-semibold">
+              <MagneticButton variant="primary" size="md" className="h-12 px-7 font-bold">
                 <CalendarCheck size={18} />
                 <span>Book a Strategy Call</span>
-              </RippleButton>
+              </MagneticButton>
             </Link>
 
             {service.relatedCaseStudySlug && (
               <Link href={`/projects/${service.relatedCaseStudySlug}`}>
-                <MagneticButton variant="outline" size="sm" className="h-12 px-7 text-xs sm:text-sm font-medium">
+                <RippleButton variant="outline" className="h-12 px-7 text-xs sm:text-sm font-medium">
                   <span>View Related Case Study</span>
                   <ArrowRight size={14} />
-                </MagneticButton>
+                </RippleButton>
               </Link>
             )}
           </div>
@@ -309,10 +309,10 @@ export default async function ServiceDetailPage({
           </p>
           <div className="pt-2">
             <Link href="/contact">
-              <RippleButton className="h-12 px-8 font-semibold">
+              <MagneticButton variant="primary" size="md" className="h-12 px-8 font-bold">
                 <CalendarCheck size={18} />
                 <span>Book a Strategy Call</span>
-              </RippleButton>
+              </MagneticButton>
             </Link>
           </div>
         </div>

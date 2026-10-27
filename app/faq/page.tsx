@@ -198,16 +198,16 @@ export default function FAQPage() {
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link href="/contact">
-                <RippleButton className="h-11 sm:h-12 px-6 sm:px-7 font-semibold">
+                <MagneticButton variant="primary" size="md" className="h-11 sm:h-12 px-6 sm:px-7 font-bold">
                   <Calendar size={18} />
                   <span>Book a Call</span>
-                </RippleButton>
+                </MagneticButton>
               </Link>
               <Link href="/services">
-                <MagneticButton variant="outline" size="md">
+                <RippleButton variant="outline" className="h-11 sm:h-12 px-6 sm:px-7 text-xs sm:text-sm font-medium">
                   <MessageSquare size={16} />
                   <span>Explore Services</span>
-                </MagneticButton>
+                </RippleButton>
               </Link>
             </div>
           </div>

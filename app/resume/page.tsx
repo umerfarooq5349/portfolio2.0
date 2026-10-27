@@ -60,16 +60,16 @@ export default function ResumePage() {
             className="flex flex-wrap items-center gap-3.5"
           >
             <Link href="/contact">
-              <RippleButton className="h-10 sm:h-11 px-5 sm:px-6 font-semibold">
+              <MagneticButton variant="primary" size="sm" className="h-10 sm:h-11 px-5 sm:px-6 font-bold">
                 <Calendar size={17} />
                 <span>Book a Call</span>
-              </RippleButton>
+              </MagneticButton>
             </Link>
             <a href="/muhammad-umer-farooq-gohighlevel-expert.pdf" download="Muhammad_Umer_Farooq_Resume.pdf" className="inline-block">
-              <MagneticButton variant="outline" size="sm">
+              <RippleButton variant="outline" className="h-10 sm:h-11 px-5 sm:px-6 text-xs sm:text-sm font-medium">
                 <Download size={16} />
                 <span>Download PDF</span>
-              </MagneticButton>
+              </RippleButton>
             </a>
           </motion.div>
         </div>

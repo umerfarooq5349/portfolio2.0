@@ -20,6 +20,7 @@ import {
   InstagramLogo,
 } from "@phosphor-icons/react/dist/ssr";
 import RippleButton from "@/components/lightswind/ripple-button";
+import { MagneticButton } from "@/components/lightswind/magnetic-button";
 
 export const metadata: Metadata = {
   title: "About Muhammad Umer Farooq | GoHighLevel & n8n Automation Expert",
@@ -311,10 +312,10 @@ export default function AboutPage() {
           </p>
           <div className="pt-2">
             <Link href="/contact">
-              <RippleButton className="h-12 px-8 font-semibold">
+              <MagneticButton variant="primary" size="md" className="h-12 px-8 font-bold">
                 <CalendarCheck size={18} />
                 <span>Book a Strategy Call</span>
-              </RippleButton>
+              </MagneticButton>
             </Link>
           </div>
         </div>

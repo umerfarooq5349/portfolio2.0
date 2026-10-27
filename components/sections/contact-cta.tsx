@@ -43,16 +43,16 @@ export function ContactCTA() {
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link href="/contact">
-                <RippleButton className="h-11 sm:h-12 px-6 sm:px-7 font-semibold">
+                <MagneticButton variant="primary" size="md" className="h-11 sm:h-12 px-6 sm:px-7 font-bold">
                   <CalendarCheck size={18} weight="bold" />
                   <span>Book a Call</span>
-                </RippleButton>
+                </MagneticButton>
               </Link>
               <Link href="/services">
-                <MagneticButton variant="outline" size="md">
+                <RippleButton variant="outline" className="h-11 sm:h-12 px-6 sm:px-7 text-xs sm:text-sm font-medium">
                   <span>View My Services</span>
                   <ArrowRight size={14} />
-                </MagneticButton>
+                </RippleButton>
               </Link>
             </div>
           </div>

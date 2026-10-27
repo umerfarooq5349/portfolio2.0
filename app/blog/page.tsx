@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { ArrowUpRight, Calendar, Clock, CalendarCheck } from "lucide-react";
 import RippleButton from "@/components/lightswind/ripple-button";
+import { MagneticButton } from "@/components/lightswind/magnetic-button";
 
 const posts = [
   {
@@ -124,10 +125,10 @@ export default function BlogPage() {
           </p>
           <div className="pt-2">
             <Link href="/contact">
-              <RippleButton className="h-12 px-8 font-semibold">
+              <MagneticButton variant="primary" size="md" className="h-12 px-8 font-bold">
                 <CalendarCheck size={18} />
                 <span>Book a Strategy Call</span>
-              </RippleButton>
+              </MagneticButton>
             </Link>
           </div>
         </div>

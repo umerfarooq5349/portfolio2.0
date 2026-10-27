@@ -28,6 +28,7 @@ export function Footer() {
 
   // Helpful links
   const helpfulLinks = [
+    { label: "Industries Served", href: "/industries" },
     { label: "Real Estate Automation", href: "/industries/real-estate" },
     { label: "Agency Systems", href: "/industries/agencies" },
     { label: "Contact & Audit", href: "/contact" },
