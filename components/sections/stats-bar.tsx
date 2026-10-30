@@ -2,12 +2,12 @@
 
 import { motion } from "framer-motion";
 import { StatCard } from "@/components/ui/card-10";
-import { ArrowUpRight, ShieldCheck, Zap, CheckCircle2 } from "lucide-react";
+import { Layers, ShieldCheck, Cpu, CheckCircle2 } from "lucide-react";
 
 export function StatsBar() {
   return (
     <section
-      aria-label="Verified Performance Benchmarks & Metrics"
+      aria-label="Built Around Real Business Workflows"
       className="relative z-20 py-12 lg:py-16 border-y border-[var(--border-subtle)] bg-[var(--background)]"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
@@ -21,18 +21,18 @@ export function StatsBar() {
         >
           <div>
             <span className="text-xs font-sans font-bold uppercase tracking-widest text-[var(--accent)]">
-              Verified Operational Track Record
+              Quick Proof
             </span>
             <h2 className="text-2xl sm:text-3xl font-heading font-bold text-white tracking-tight mt-1">
-              Real-World Automation Metrics
+              Built Around Real Business Workflows
             </h2>
           </div>
-          <p className="text-xs sm:text-sm text-[var(--ice)]/70 max-w-sm font-sans">
-            Verified implementation benchmarks achieved across live GoHighLevel, n8n, and custom API pipelines.
+          <p className="text-xs sm:text-sm text-[var(--ice)]/80 max-w-md font-sans">
+            From lead capture and multi-channel follow-up to appointment reminders and CRM cleanup, I build systems around how your business actually works.
           </p>
         </motion.div>
 
-        {/* Verified Static Metrics */}
+        {/* Verified Proof Cards */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -41,32 +41,31 @@ export function StatsBar() {
         >
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
             <StatCard
-              title="Automation Workflows Built"
+              title="Workflows Built"
               value="50+"
-              changeDescription="production deployments"
+              changeDescription="production automations delivered"
               icon={<CheckCircle2 className="h-4 w-4 text-emerald-400" />}
               className="bg-[var(--surface)] border-[var(--border-subtle)] text-white shadow-xl hover:border-[var(--accent)]/40 transition-colors"
             />
             <StatCard
-              title="Faster Lead Response"
-              prefix="Up to "
-              value="85%"
-              changeDescription="sub-2 min auto reply"
-              icon={<Zap className="h-4 w-4 text-emerald-400" />}
+              title="Core Stack Implementation"
+              value="GHL & n8n"
+              changeDescription="native CRM & webhook orchestration"
+              icon={<Cpu className="h-4 w-4 text-[var(--accent)]" />}
               className="bg-[var(--surface)] border-[var(--border-subtle)] text-white shadow-xl hover:border-[var(--accent)]/40 transition-colors"
             />
             <StatCard
-              title="System Uptime Reliability"
-              value="99.9%"
-              changeDescription="active API & webhook monitoring"
-              icon={<ShieldCheck className="h-4 w-4 text-[var(--accent)]" />}
+              title="Conditional Follow-Up"
+              value="Multi-Step"
+              changeDescription="timed sequences with human handoff"
+              icon={<Layers className="h-4 w-4 text-emerald-400" />}
               className="bg-[var(--surface)] border-[var(--border-subtle)] text-white shadow-xl hover:border-[var(--accent)]/40 transition-colors"
             />
             <StatCard
-              title="Custom CRM Architecture"
-              value="100%"
-              changeDescription="tailored business workflows"
-              icon={<ArrowUpRight className="h-4 w-4 text-emerald-400" />}
+              title="End-to-End Integration"
+              value="Synced"
+              changeDescription="forms, calendars, CRM & messaging"
+              icon={<ShieldCheck className="h-4 w-4 text-emerald-400" />}
               className="bg-[var(--surface)] border-[var(--border-subtle)] text-white shadow-xl hover:border-[var(--accent)]/40 transition-colors"
             />
           </div>

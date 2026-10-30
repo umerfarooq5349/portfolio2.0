@@ -69,14 +69,14 @@ export default function IndustriesIndexPage() {
         {/* Header Section */}
         <header className="max-w-3xl mx-auto text-center mb-16 sm:mb-20">
           <span className="text-xs sm:text-sm font-sans font-bold uppercase tracking-[0.25em] text-[var(--accent)] block mb-3">
-            Tailored Industry Architectures
+            Industries
           </span>
           <h1 className="text-3xl sm:text-5xl md:text-6xl font-heading font-semibold text-white tracking-tight leading-[1.12]">
-            Automations Engineered for Your{" "}
-            <span className="text-[var(--accent)] italic">Specific Sector</span>
+            Automation shaped around{" "}
+            <span className="text-[var(--accent)] italic">how your team works</span>
           </h1>
           <p className="mt-5 text-sm sm:text-lg font-sans text-[var(--ice)]/80 leading-relaxed">
-            Generic CRM setups leave money on the table. Every system I build is custom-modeled around your industry&apos;s exact intake friction, lead velocity, and operational compliance.
+            Different businesses lose leads and time in different places. I map the actual process, then build follow-up and operations workflows around your tools, team, and customer journey.
           </p>
         </header>
 
@@ -140,45 +140,40 @@ export default function IndustriesIndexPage() {
           ))}
         </div>
 
-        {/* Cross-Industry Benchmark Metrics Strip */}
-        <section aria-label="Cross-industry impact metrics" className="p-8 sm:p-10 rounded-3xl bg-gradient-to-br from-[var(--surface-elevated)] to-[var(--surface)] border border-[var(--border-subtle)] shadow-2xl mb-16">
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
-            <div className="space-y-1">
-              <span className="text-3xl sm:text-4xl font-heading font-bold text-[var(--accent)]">&lt; 90s</span>
-              <p className="text-xs sm:text-sm font-sans text-[var(--ice)]/80">Average Speed-to-Lead Response</p>
-            </div>
-            <div className="space-y-1 border-y sm:border-y-0 sm:border-x border-white/10 py-4 sm:py-0">
-              <span className="text-3xl sm:text-4xl font-heading font-bold text-white">70%+</span>
-              <p className="text-xs sm:text-sm font-sans text-[var(--ice)]/80">Repetitive Admin Overhead Cut</p>
-            </div>
-            <div className="space-y-1">
-              <span className="text-3xl sm:text-4xl font-heading font-bold text-emerald-400">99.9%</span>
-              <p className="text-xs sm:text-sm font-sans text-[var(--ice)]/80">Webhook &amp; Sync Reliability</p>
-            </div>
+        {/* Shared approach strip */}
+        <section className="p-8 sm:p-10 rounded-3xl bg-gradient-to-br from-[var(--surface-elevated)] to-[var(--surface)] border border-[var(--border-subtle)] shadow-2xl mb-16">
+          <div className="text-center max-w-2xl mx-auto space-y-3">
+            <span className="text-xs font-sans font-bold uppercase tracking-widest text-[var(--accent)]">No Generic Snapshots</span>
+            <h2 className="text-xl sm:text-2xl font-heading font-semibold text-white">
+              No generic snapshot dropped into your business
+            </h2>
+            <p className="text-sm font-sans text-[var(--ice)]/80 leading-relaxed">
+              We start with your intake process, communication rules, CRM structure, and handoff needs. The result should match your workflow—not force your team into someone else&apos;s template.
+            </p>
           </div>
         </section>
 
         {/* Bottom CTA Box */}
         <div className="text-center p-8 sm:p-14 rounded-3xl bg-gradient-to-br from-[var(--surface-elevated)] to-[var(--surface)] border border-[var(--accent)]/30 shadow-2xl space-y-5">
           <span className="text-xs font-sans font-bold uppercase tracking-widest text-[var(--accent)]">
-            Consultation &amp; Roadmap
+            Ready to Talk
           </span>
           <h2 className="text-2xl sm:text-4xl font-heading font-semibold text-white max-w-xl mx-auto leading-tight">
-            Need an automation blueprint for your sector?
+            Tell me where leads or tasks get stuck
           </h2>
           <p className="text-xs sm:text-base font-sans text-[var(--ice)]/80 max-w-lg mx-auto leading-relaxed">
-            Let&apos;s map out your exact customer acquisition stages, pipeline handoffs, and tool integrations during a 1-on-1 strategy call.
+            We start with your current intake process and work from there. No commitment until we&apos;ve mapped the problem together.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
             <Link href="/contact">
               <MagneticButton variant="primary" size="md" className="h-12 px-8 font-bold">
                 <CalendarCheck size={18} />
-                <span>Book an Industry Strategy Call</span>
+                <span>Book Your Complimentary Strategy Call</span>
               </MagneticButton>
             </Link>
             <Link href="/services">
               <RippleButton variant="outline" className="h-12 px-7 text-xs sm:text-sm font-medium">
-                <span>View All Services</span>
+                <span>Discuss Your Project</span>
                 <ArrowRight size={14} />
               </RippleButton>
             </Link>

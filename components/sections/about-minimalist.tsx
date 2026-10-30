@@ -98,20 +98,32 @@ export function AboutMinimalist({ isPageHeading = false }: { isPageHeading?: boo
         >
 
           {isPageHeading ? (
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-heading font-semibold text-white tracking-tight leading-[1.12]">
-              Engineering Autonomous Systems <br className="hidden sm:inline" />
-              <span className="text-[var(--accent)] italic">That Drive Revenue.</span>
-            </h1>
+            <>
+              <span className="text-xs font-sans font-bold uppercase tracking-[0.25em] text-[var(--accent)] block mb-2">
+                About Muhammad Umer Farooq
+              </span>
+              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-heading font-semibold text-white tracking-tight leading-[1.12]">
+                I Build Automation Systems <br className="hidden sm:inline" />
+                <span className="text-[var(--accent)] italic">That Make Follow-Up Easier.</span>
+              </h1>
+              <p className="text-sm sm:text-base font-sans text-[var(--ice)]/80 leading-relaxed font-light max-w-xl mx-auto mt-4">
+                I work with GoHighLevel, n8n, APIs, and AI tools to help businesses connect their lead capture, follow-up, booking, and CRM processes.
+              </p>
+            </>
           ) : (
-            <h2 className="text-3xl sm:text-5xl lg:text-6xl font-heading font-semibold text-white tracking-tight leading-[1.12]">
-              Engineering Autonomous Systems <br className="hidden sm:inline" />
-              <span className="text-[var(--accent)] italic">That Drive Revenue.</span>
-            </h2>
+            <>
+              <span className="text-xs font-sans font-bold uppercase tracking-[0.25em] text-[var(--accent)] block mb-2">
+                The Follow-Up Gap
+              </span>
+              <h2 className="text-3xl sm:text-5xl lg:text-6xl font-heading font-semibold text-white tracking-tight leading-[1.12]">
+                Leads Should Not Depend on Someone <br className="hidden sm:inline" />
+                <span className="text-[var(--accent)] italic">Remembering to Follow Up.</span>
+              </h2>
+              <p className="text-sm sm:text-base font-sans text-[var(--ice)]/80 leading-relaxed font-light max-w-xl mx-auto mt-4">
+                A lead comes in. Someone is busy. The message gets missed. The CRM is out of date. Nobody knows who replied or whether an appointment was booked. I help close these gaps with clear workflows, reliable handoffs, and one place to track what happens next.
+              </p>
+            </>
           )}
-
-          <p className="text-sm sm:text-base font-sans text-[var(--ice)]/80 leading-relaxed font-light max-w-xl mx-auto">
-            Hi, I&apos;m Muhammad Umer Farooq, a CRM &amp; Automation Expert with 1.5+ years of experience transforming client operations through GoHighLevel, n8n, and custom webhooks.
-          </p>
         </motion.div>
 
         {/* 12-Column Grid with Equal Height Matching Columns */}
@@ -238,15 +250,15 @@ export function AboutMinimalist({ isPageHeading = false }: { isPageHeading?: boo
               </div>
               <div className="border-x border-white/10 px-2">
                 <span className="text-2xl sm:text-3xl font-heading font-bold text-[var(--accent)]">
-                  <AnimatedNumber value={70} suffix="%" />
+                  GHL &amp; n8n
                 </span>
-                <p className="text-[11px] font-sans text-[var(--ice)]/80 mt-0.5 font-medium">Workload Cut</p>
+                <p className="text-[11px] font-sans text-[var(--ice)]/80 mt-0.5 font-medium">Core Platforms</p>
               </div>
               <div>
                 <span className="text-2xl sm:text-3xl font-heading font-bold text-white">
-                  <AnimatedNumber value={99.9} suffix="%" isDecimal />
+                  Multi-Step
                 </span>
-                <p className="text-[11px] font-sans text-[var(--ice)]/70 mt-0.5">System Uptime</p>
+                <p className="text-[11px] font-sans text-[var(--ice)]/70 mt-0.5">With Human Handoff</p>
               </div>
             </div>
 
@@ -254,7 +266,7 @@ export function AboutMinimalist({ isPageHeading = false }: { isPageHeading?: boo
             <div className="pt-2 w-full">
               <Link href="/contact" className="block w-full">
                 <MagneticButton variant="primary" fullWidth size="md" className="w-full h-12 rounded-full font-bold">
-                  <span>Book a Call</span>
+                  <span>Book Your Complimentary Strategy Call</span>
                   <ArrowUpRight size={18} weight="bold" className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                 </MagneticButton>
               </Link>

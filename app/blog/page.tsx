@@ -10,29 +10,29 @@ const posts = [
   {
     id: "1",
     slug: "gohighlevel-workflow-automation",
-    title: "How to Save 10+ Hours/Week with GHL Workflow Automation",
-    category: "CRM Setup",
+    title: "How to Build a Reliable Lead Follow-Up Workflow in GoHighLevel",
+    category: "GoHighLevel",
     date: "May 12, 2024",
     readTime: "5 min read",
-    excerpt: "Learn the core workflow setups inside GoHighLevel that automate lead qualification, routing, and database reactivation so your team can focus purely on closing.",
+    excerpt: "A good follow-up workflow does more than send a message. It captures the inquiry, creates a clean record, assigns ownership, responds appropriately, and knows when to stop.",
   },
   {
     id: "2",
     slug: "n8n-vs-zapier",
-    title: "n8n vs Zapier: Choosing the Right Integration Tool for Scale",
+    title: "n8n vs Zapier: Which Automation Tool Fits Your Workflow?",
     category: "Integrations",
     date: "April 28, 2024",
     readTime: "7 min read",
-    excerpt: "A deep dive comparing n8n and Zapier. We cover cost differences, complexity, hosting options, and when you should upgrade to advanced API webhooks.",
+    excerpt: "The right choice depends on complexity, maintenance, task volume, integrations, and who will support the system after launch. A practical comparison.",
   },
   {
     id: "3",
     slug: "ai-chatbot-real-estate-leads",
-    title: "Implementing AI Chatbots to Qualify Real Estate Leads Instantly",
-    category: "AI Automation",
+    title: "How to Design an AI Assistant for Real Estate Lead Qualification",
+    category: "AI Assistants",
     date: "March 15, 2024",
     readTime: "6 min read",
-    excerpt: "Discover how to hook up OpenAI assistants to your GHL CRM via n8n. Qualify buyers, answer listing questions, and schedule tours on autopilot 24/7.",
+    excerpt: "A useful property assistant answers approved questions, gathers basic requirements, and helps route a lead to an agent—without inventing listing details or making unsupported claims.",
   },
 ];
 
@@ -48,7 +48,7 @@ export default function BlogPage() {
             animate={{ opacity: 1, y: 0 }}
             className="text-[var(--accent)] font-sans uppercase tracking-[0.2em] text-xs sm:text-sm font-semibold mb-3"
           >
-            Insights &amp; Technical Guides
+            Insights
           </motion.p>
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -56,7 +56,8 @@ export default function BlogPage() {
             transition={{ delay: 0.1 }}
             className="text-4xl sm:text-6xl md:text-7xl font-heading font-semibold text-white tracking-tight"
           >
-            Engineering <span className="text-[var(--accent)] italic">Insights</span>
+            Practical notes from building{" "}
+            <span className="text-[var(--accent)] italic">CRM and automation systems</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -64,7 +65,7 @@ export default function BlogPage() {
             transition={{ delay: 0.2 }}
             className="mt-6 text-[var(--ice)]/80 font-sans text-lg max-w-xl mx-auto"
           >
-            First-hand implementation guides, architectural breakdowns, and practical tutorials for GoHighLevel, n8n, and AI workflows.
+            Clear explanations, workflow examples, and lessons from connecting lead capture, CRM tools, APIs, and AI assistants.
           </motion.p>
         </div>
 
@@ -119,15 +120,15 @@ export default function BlogPage() {
 
         {/* CTA to Strategy Consultation */}
         <div className="mt-20 max-w-3xl mx-auto p-8 sm:p-10 rounded-3xl bg-gradient-to-br from-[var(--surface-elevated)] to-[var(--surface)] border border-[var(--accent)]/30 text-center shadow-xl space-y-4">
-          <h3 className="text-xl sm:text-2xl font-heading font-semibold text-white">Want to automate these workflows in your business?</h3>
+          <h3 className="text-xl sm:text-2xl font-heading font-semibold text-white">Have a workflow you&apos;d like to simplify?</h3>
           <p className="text-[var(--ice)]/75 font-sans text-sm sm:text-base max-w-lg mx-auto">
-            Let&apos;s build a custom GoHighLevel and n8n framework tailored specifically to your operations.
+            Tell me what happens today and where the process breaks. We&apos;ll identify a practical next step.
           </p>
           <div className="pt-2">
             <Link href="/contact">
               <MagneticButton variant="primary" size="md" className="h-12 px-8 font-bold">
                 <CalendarCheck size={18} />
-                <span>Book a Strategy Call</span>
+                <span>Book Your Complimentary Strategy Call</span>
               </MagneticButton>
             </Link>
           </div>

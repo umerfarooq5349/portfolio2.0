@@ -113,7 +113,7 @@ export default function ContactPage() {
             transition={{ duration: 0.6 }}
             className="text-[var(--accent)] font-sans uppercase tracking-[0.2em] text-xs sm:text-sm font-semibold mb-3"
           >
-            Direct Consultation
+            Get In Touch
           </motion.p>
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -121,7 +121,8 @@ export default function ContactPage() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-3xl sm:text-5xl md:text-6xl font-heading font-semibold text-white tracking-tight mb-4 sm:mb-6"
           >
-            Book a <span className="text-[var(--accent)] italic">Strategy Call</span>
+            Tell me what needs to{" "}
+            <span className="text-[var(--accent)] italic">work better</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -129,7 +130,8 @@ export default function ContactPage() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-[var(--ice)]/80 font-sans text-sm sm:text-lg max-w-2xl mx-auto"
           >
-            Map out your GoHighLevel CRM architecture, n8n workflow pipelines, and AI lead qualification systems. Receive a response within 24 hours.
+            Share the process you&apos;re trying to improve, the tools you use today, and what keeps requiring manual work. I&apos;ll review the details and let you know whether I can help. Prefer to talk first?{" "}
+            <span className="text-[var(--accent)] font-medium">Book Your Complimentary Strategy Call.</span>
           </motion.p>
         </div>
 
@@ -145,21 +147,21 @@ export default function ContactPage() {
             <div className="p-6 rounded-3xl bg-[var(--surface)] border border-[var(--border-subtle)] space-y-5">
               <h3 className="text-lg font-heading font-semibold text-white flex items-center gap-2">
                 <Clock size={20} className="text-[var(--accent)]" />
-                <span>What Happens After Submission</span>
+                <span>What Happens Next</span>
               </h3>
 
               <div className="space-y-3.5 text-xs sm:text-sm font-sans text-[var(--ice)]/85">
                 <div className="flex items-start gap-3">
                   <span className="h-6 w-6 rounded-full bg-[var(--accent)]/15 text-[var(--accent)] font-mono text-xs flex items-center justify-center shrink-0 font-bold">1</span>
-                  <p><strong className="text-white">Technical Review (Within 24h):</strong> I personally review your current software stack and automation requirements.</p>
+                  <p><strong className="text-white">I review your project brief.</strong> I read through the process you&apos;ve described and the tools you currently use.</p>
                 </div>
                 <div className="flex items-start gap-3">
                   <span className="h-6 w-6 rounded-full bg-[var(--accent)]/15 text-[var(--accent)] font-mono text-xs flex items-center justify-center shrink-0 font-bold">2</span>
-                  <p><strong className="text-white">15-Minute Strategy Call:</strong> We inspect your bottlenecks and confirm implementation feasibility.</p>
+                  <p><strong className="text-white">If the scope looks like a fit,</strong> we arrange a short conversation to clarify the workflow and constraints.</p>
                 </div>
                 <div className="flex items-start gap-3">
                   <span className="h-6 w-6 rounded-full bg-[var(--accent)]/15 text-[var(--accent)] font-mono text-xs flex items-center justify-center shrink-0 font-bold">3</span>
-                  <p><strong className="text-white">Architecture Blueprint:</strong> You receive a clear, milestone-driven workflow diagram and delivery timeline.</p>
+                  <p><strong className="text-white">We agree on next steps</strong> and what a practical implementation would look like for your situation.</p>
                 </div>
               </div>
 
@@ -228,8 +230,8 @@ export default function ContactPage() {
           >
             <div className="flex items-center justify-between mb-6 pb-4 border-b border-[var(--border-subtle)]">
               <div>
-                <h3 className="text-xl font-heading font-semibold text-white">Project Scope &amp; Architecture Request</h3>
-                <p className="text-xs text-[var(--ice)]/70 font-sans mt-0.5">Please share your current workflow bottlenecks</p>
+                <h3 className="text-xl font-heading font-semibold text-white">Discuss Your Project</h3>
+                <p className="text-xs text-[var(--ice)]/70 font-sans mt-0.5">A few details will help me understand the problem. You don&apos;t need to know the exact technical solution yet.</p>
               </div>
               <div className="hidden sm:flex items-center gap-1.5 text-xs text-emerald-400 bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20 font-sans">
                 <ShieldCheck size={16} />
@@ -392,10 +394,10 @@ export default function ContactPage() {
                       {isSubmitting ? (
                         <span className="flex items-center gap-2">
                           <SpinnerGap size={18} className="animate-spin" />
-                          <span>ANALYZING &amp; DISPATCHING...</span>
+                          <span>SENDING...</span>
                         </span>
                       ) : (
-                        <span>BOOK STRATEGY CALL →</span>
+                        <span>SEND PROJECT BRIEF →</span>
                       )}
                     </MagneticButton>
                   </div>

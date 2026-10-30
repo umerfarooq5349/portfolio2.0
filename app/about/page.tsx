@@ -83,17 +83,17 @@ export default function AboutPage() {
               <span>Core Specialization</span>
             </span>
             <h3 className="text-xl sm:text-2xl font-heading font-semibold text-white">
-              Systems Over Tools
+              My Core Areas
             </h3>
             <p className="text-xs sm:text-sm font-sans text-[var(--ice)]/80 leading-relaxed">
-              I specialize in architecting reliable business systems using <strong>GoHighLevel</strong>, <strong>n8n</strong>, <strong>Zapier</strong>, and <strong>OpenAI</strong>. Rather than bolting together fragile point-to-point zaps, I build coherent operational pipelines that handle lead capture, qualification, appointment booking, and database reactivation.
+              I work with GoHighLevel, n8n, APIs, and AI tools to help businesses connect their lead capture, follow-up, booking, and CRM processes.
             </p>
             <ul className="space-y-2 text-xs font-sans text-[var(--ice)]/90 pt-2">
               {[
-                "GoHighLevel CRM Sub-Accounts & Visual Pipelines",
-                "Self-Hosted n8n Multi-Branch API Orchestration",
-                "Sub-2-Minute Speed-to-Lead SMS & Call Loops",
-                "AI Conversational Triage & Calendar Booking Agents",
+                "GoHighLevel CRM setup and workflow automation",
+                "Lead follow-up and appointment journeys",
+                "n8n integrations, webhooks, and data processing",
+                "AI assistants with clear boundaries and human handoff",
               ].map((item, idx) => (
                 <li key={idx} className="flex items-center gap-2">
                   <CheckCircle2 size={15} className="text-emerald-400 shrink-0" />
@@ -113,20 +113,20 @@ export default function AboutPage() {
               What I Actually Build
             </h3>
             <p className="text-xs sm:text-sm font-sans text-[var(--ice)]/80 leading-relaxed">
-              I engineer end-to-end automation pipelines that replace manual admin work and stop valuable leads from going cold:
+              I like solving the messy operational problems behind the scenes: duplicate contacts, missed follow-ups, disconnected tools, and workflows that stop making sense when a lead replies.
             </p>
             <div className="space-y-2.5 text-xs font-sans text-[var(--ice)]/85 pt-1">
               <div className="p-2.5 rounded-xl bg-[var(--surface-elevated)] border border-[var(--border-subtle)]">
-                <strong className="text-white block mb-0.5">Speed-to-Lead Engines:</strong>
-                Connecting Facebook Ads, Google Ads, and forms to sub-2-minute SMS verification and agent bridge calls.
+                <strong className="text-white block mb-0.5">Lead follow-up systems:</strong>
+                Connect lead sources to CRM, send timely first responses, follow up based on behavior, stop when the person replies or books.
               </div>
               <div className="p-2.5 rounded-xl bg-[var(--surface-elevated)] border border-[var(--border-subtle)]">
-                <strong className="text-white block mb-0.5">Client Onboarding Pipelines:</strong>
-                Automating intake forms, Google Drive provisioning, and team task assignment within 24 hours of payment.
+                <strong className="text-white block mb-0.5">Appointment workflows:</strong>
+                Confirmations, reminders, rescheduling, no-show follow-up, and review requests—organized around how your calendar actually works.
               </div>
               <div className="p-2.5 rounded-xl bg-[var(--surface-elevated)] border border-[var(--border-subtle)]">
-                <strong className="text-white block mb-0.5">Database Reactivation:</strong>
-                Re-engaging stalled CRM contacts with low-friction text conversations that book fresh revenue.
+                <strong className="text-white block mb-0.5">CRM and integration work:</strong>
+                Cleanup, routing, data sync between platforms, and AI assistants with defined scope and human handoff rules.
               </div>
             </div>
           </div>
@@ -145,23 +145,23 @@ export default function AboutPage() {
             {[
               {
                 step: "01",
-                title: "Process Audit",
-                desc: "We analyze your exact bottlenecks, manual touches, and software stack before touching code.",
+                title: "Understand the Process",
+                desc: "Map what happens today, where information gets lost, and what the team needs to see.",
               },
               {
                 step: "02",
-                title: "Data Taxonomy",
-                desc: "Clean custom fields, standardized tags, and pipeline stages that prevent messy data corruption.",
+                title: "Agree on Scope",
+                desc: "Define fields, stage definitions, edge cases, and what success looks like before building anything.",
               },
               {
                 step: "03",
-                title: "Logic Engineering",
-                desc: "Building conditional triggers, pause loops on reply, and error-handling webhook traps.",
+                title: "Build and Test",
+                desc: "Build the workflow, test normal paths and failure paths, and validate with realistic data.",
               },
               {
                 step: "04",
-                title: "Go-Live & Handoff",
-                desc: "End-to-end testing, team video walkthroughs, and guaranteed 30-day post-launch support.",
+                title: "Launch and Hand Over",
+                desc: "Launch with documentation so your team can understand, operate, and maintain what was built.",
               },
             ].map((p) => (
               <div
@@ -296,25 +296,25 @@ export default function AboutPage() {
       <StatsBar />
 
       {/* Mini testimonials for trust */}
-      <MiniTestimonials heading="Client Outcomes That Speak For Themselves" />
+      <MiniTestimonials heading="Feedback on the Work" />
 
       {/* Final Strategy CTA */}
       <section className="max-w-4xl mx-auto px-5 sm:px-6 pt-12 text-center">
         <div className="p-8 sm:p-12 rounded-3xl bg-gradient-to-br from-[var(--surface-elevated)] to-[var(--surface)] border border-[var(--accent)]/30 shadow-2xl space-y-4">
           <span className="text-xs font-sans font-bold uppercase tracking-widest text-[var(--accent)]">
-            Let&apos;s Build Together
+            Have a Process That Keeps Breaking?
           </span>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-heading font-semibold text-white">
-            Ready to replace manual tasks with intelligent automation?
+            Tell me what happens today and what you want to happen instead.
           </h2>
           <p className="text-xs sm:text-sm font-sans text-[var(--ice)]/80 max-w-lg mx-auto leading-relaxed">
-            Let&apos;s schedule a 15-minute strategy call to inspect your operational bottlenecks and map out a custom architecture.
+            We&apos;ll map the process, identify where things break down, and agree on a practical next step.
           </p>
           <div className="pt-2">
             <Link href="/contact">
               <MagneticButton variant="primary" size="md" className="h-12 px-8 font-bold">
                 <CalendarCheck size={18} />
-                <span>Book a Strategy Call</span>
+                <span>Book Your Complimentary Strategy Call</span>
               </MagneticButton>
             </Link>
           </div>

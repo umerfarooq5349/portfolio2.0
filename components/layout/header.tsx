@@ -11,11 +11,11 @@ import { MagneticButton } from "@/components/lightswind/magnetic-button";
 
 const links = [
   { name: "Home", href: "/" },
-  { name: "About", href: "/about" },
   { name: "Services", href: "/services" },
-  { name: "Projects", href: "/projects" },
-  { name: "Testimonials", href: "/#testimonials" },
-  { name: "Blog", href: "/blog" },
+  { name: "Case Studies", href: "/projects" },
+  { name: "Industries", href: "/industries" },
+  { name: "About", href: "/about" },
+  { name: "Insights", href: "/blog" },
 ];
 
 export function Header() {
@@ -182,9 +182,9 @@ export function Header() {
                   onClick={() => setMobileMenuOpen(false)}
                   className="block w-full"
                 >
-                  <RippleButton className="w-full h-11 text-sm font-semibold">
+                  <RippleButton className="w-full h-11 text-xs sm:text-sm font-semibold">
                     <CalendarCheck size={18} weight="bold" />
-                    <span>Book a Strategy Call</span>
+                    <span>Book Your Complimentary Strategy Call</span>
                   </RippleButton>
                 </Link>
               </motion.div>

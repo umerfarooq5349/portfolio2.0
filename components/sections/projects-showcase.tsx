@@ -13,8 +13,8 @@ const projects = [
     category: "Healthcare & Clinic Systems",
     icon: <FirstAid size={28} weight="duotone" className="text-[var(--accent)]" />,
     tags: ["GoHighLevel", "Facebook Lead Ads", "Automated Workflows"],
-    result: "285+ Leads Managed",
-    description: "Complete patient acquisition system for a premier Irish clinic. Centralized GHL CRM, direct Facebook Lead Ads integration into a 4-stage pipeline, 11 condition-specific workflows, and automated PDF pack delivery.",
+    result: "285+ Leads Processed",
+    description: "GoHighLevel system for a rehabilitation clinic. Brought Facebook Lead Ads into a central pipeline, built condition-specific workflow branches, and automated information-pack delivery for each inquiry type.",
   },
   {
     id: 2,
@@ -23,8 +23,8 @@ const projects = [
     category: "AI & Multi-Channel CRM",
     icon: <Robot size={28} weight="duotone" className="text-[var(--accent)]" />,
     tags: ["GoHighLevel", "LinaBot AI", "WhatsApp API"],
-    result: "24/7 Instant AI Responses",
-    description: "24/7 intelligent patient system for a German wellness clinic. Built LinaBot custom AI assistant, unified WhatsApp Business & email into one inbox, and automated appointment reminders.",
+    result: "AI-Assisted Inbox",
+    description: "GoHighLevel system for a German wellness clinic. Built LinaBot bilingual AI assistant, unified WhatsApp and email into one inbox, automated appointment reminders, and set up human handoff rules for out-of-scope questions.",
   },
   {
     id: 3,
@@ -33,8 +33,8 @@ const projects = [
     category: "Funnel CRO & Healthcare EHR",
     icon: <Funnel size={28} weight="duotone" className="text-[var(--accent)]" />,
     tags: ["GoHighLevel", "Practice Hub", "Funnel CRO"],
-    result: "Automated SMS Recall Engine",
-    description: "Audited and rebuilt a chiropractic clinic's patient funnel ahead of paid ads, fixing mobile UX and lead capture. Integrated Practice Hub EHR with a 3-step automated SMS recall sequence with kill-switch safeguards.",
+    result: "Automated Recall Workflow",
+    description: "Reviewed the inquiry journey, improved funnel structure, mapped Practice Hub data into GoHighLevel, and built a staged SMS recall sequence with stop rules for when a patient rebooks or staff intervene.",
   },
   {
     id: 4,
@@ -43,8 +43,8 @@ const projects = [
     category: "High-Volume CRM Architecture",
     icon: <RocketLaunch size={28} weight="duotone" className="text-[var(--accent)]" />,
     tags: ["GoHighLevel", "n8n", "Fathom AI", "Slack API"],
-    result: "10,000+ Contacts Cleansed",
-    description: "Rebuilt and re-segmented a large-scale CRM database of tens of thousands of contacts. Automated course delivery, membership onboarding, and created a Fathom AI meeting notes to Slack pipeline.",
+    result: "Multi-System CRM Cleanup",
+    description: "Worked on contact segmentation, meeting-note routing via Fathom AI to Slack, course and membership onboarding, and payment event coordination across a multi-offer coaching operation.",
   },
   {
     id: 5,
@@ -53,8 +53,8 @@ const projects = [
     category: "B2B Lead Generation",
     icon: <EnvelopeSimple size={28} weight="duotone" className="text-[var(--accent)]" />,
     tags: ["GoHighLevel", "Instantly.ai", "Cold Email"],
-    result: "65%+ Cold Open Rate",
-    description: "Deployed white-labeled GoHighLevel and Instantly.ai outbound architecture for an eLearning agency. Configured DNS warming, multi-week cold sequences, and real-time CRM opportunity pipeline sync.",
+    result: "Outbound Reply Routing",
+    description: "Configured email-sending infrastructure, multi-week outreach sequences, and a GoHighLevel pipeline to help the team track interested prospects and route replies to the right sales owner.",
   },
   {
     id: 6,
@@ -63,8 +63,8 @@ const projects = [
     category: "Workflow & Operations",
     icon: <GearSix size={28} weight="duotone" className="text-[var(--accent)]" />,
     tags: ["GoHighLevel", "Zapier", "Slack API"],
-    result: "80% Less Admin Follow-Up",
-    description: "Automated the entire client intake and asset collection journey for a digital agency. Triggered from contract signing, it collects creative assets, generates Drive folders, and assigns team tasks without human admin lag.",
+    result: "Structured Onboarding Flow",
+    description: "Built a workflow to collect service-specific information after signing, follow up on missing assets, create shared workspaces, and assign tasks to the right team member.",
   },
 ];
 

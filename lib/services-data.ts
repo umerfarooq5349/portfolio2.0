@@ -46,11 +46,11 @@ export const SERVICES_DATA: Record<string, ServiceDetail> = {
     whyChoose:
       "Most GHL setups fail because they copy generic snapshot templates that don't match how the business actually sells. I architect custom, clean sub-accounts with validated custom values, standardized tag structures, and zero bloated clutter.",
     workflowSteps: [
-      "Sub-Account & Domain Provisioning (DNS, LC Phone, LC Email, Mailgun/Twilio)",
-      "Custom Field & Tag Taxonomy Architecture (Eliminates messy duplicate data)",
-      "Multi-Stage Sales Pipelines with Strict Deal Value Tracking",
-      "Unified Lead Capture: Smart Forms, Surveys, and High-Converting Landing Pages",
-      "Round-Robin Calendar Setup with Automated Buffer Times & Conflict Detection",
+      "Account and location structure; custom fields and tags",
+      "Pipeline stages and opportunity rules",
+      "Forms and surveys with validation",
+      "Calendars and booking rules",
+      "Email and SMS templates; user permissions",
     ],
     keyCapabilities: [
       {
@@ -72,14 +72,14 @@ export const SERVICES_DATA: Record<string, ServiceDetail> = {
     ],
     useCases: [
       {
-        industry: "High-Ticket Service Businesses",
-        scenario: "Scattered spreadsheets and unassigned leads resulting in slow responses and lost sales opportunities.",
-        outcome: "Centralized single-pane CRM with automated lead ownership and 100% deal stage visibility.",
+        industry: "Service Businesses",
+        scenario: "Scattered spreadsheets and unassigned leads resulting in slow responses and missed follow-up.",
+        outcome: "Centralized CRM with organized lead ownership and clear deal stage visibility.",
       },
       {
         industry: "Marketing & Growth Agencies",
-        scenario: "Agencies needing rapid client onboarding snapshots with standardized sub-account architecture.",
-        outcome: "Deploy fully configured client CRM sub-accounts in minutes rather than days.",
+        scenario: "Agencies needing rapid client onboarding with a standardized account structure.",
+        outcome: "Configured client CRM sub-accounts with consistent structure and agreed handoff rules.",
       },
     ],
     faqs: [
@@ -113,11 +113,11 @@ export const SERVICES_DATA: Record<string, ServiceDetail> = {
     whyChoose:
       "Instead of linear auto-responders that annoy prospects, I engineer smart conditional workflows that pause when a lead responds, detect booking confirmations, and route inquiries intelligently.",
     workflowSteps: [
-      "Inbound Trigger Detection (Form fill, Facebook Lead Ad, Webhook, Call)",
-      "Conditional Logic Branching (Filter by service interest, time of day, lead score)",
-      "Immediate Speed-to-Lead Dispatch (SMS, Email, and Forced Call Loops)",
-      "Response-Aware Pause Mechanisms (Stop automated drips instantly when prospect replies)",
-      "Automated Deal Stage Updates & Internal Slack/Email Alerts",
+      "Inbound trigger detection (form fill, Facebook Lead Ad, webhook, call)",
+      "Conditional logic branching based on service interest, time of day, and lead data",
+      "First response dispatch via approved channels",
+      "Response-aware pause mechanisms — stop automated sequences when prospect replies",
+      "Deal stage updates and internal alerts when a lead needs human action",
     ],
     keyCapabilities: [
       {
@@ -140,13 +140,13 @@ export const SERVICES_DATA: Record<string, ServiceDetail> = {
     useCases: [
       {
         industry: "Home Services & Local Contractors",
-        scenario: "Losing up to 60% of inbound calls because technicians are on job sites and unable to answer.",
-        outcome: "Automated instant SMS responses recapture 40%+ of missed callers into booked appointments.",
+        scenario: "Losing inbound calls because technicians are on job sites and unable to answer.",
+        outcome: "Automated acknowledgement messages and next-step links recapture callers who can be reached by message.",
       },
       {
         industry: "B2B Consulting & Coaching",
-        scenario: "Manual follow-ups taking hours every day with cold leads falling through the cracks.",
-        outcome: "Automated multi-week condition-specific nurture sequences delivering continuous calendar bookings.",
+        scenario: "Manual follow-ups taking significant time each day with cold leads falling through the cracks.",
+        outcome: "Automated condition-specific nurture sequences that continue until the lead replies, books, or opts out.",
       },
     ],
     faqs: [
@@ -172,9 +172,9 @@ export const SERVICES_DATA: Record<string, ServiceDetail> = {
       "Scale operations with custom n8n workflows. Self-hosted and cloud n8n engineering for complex API integrations, database synchronization, and AI agent logic.",
     targetKeywords: ["n8n automation", "n8n workflow development", "n8n automation expert", "self-hosted n8n consultant"],
     quickAnswer:
-      "n8n automation is an open, fair-code workflow orchestration system that connects APIs, databases, CRM webhooks, and AI models to run complex business processes without per-task SaaS subscription penalties.",
+      "n8n automation is a workflow orchestration system that connects APIs, databases, CRM webhooks, and AI models to run multi-step business processes. It can be self-hosted or used via cloud.",
     whyChoose:
-      "When Zapier or Make becomes too expensive ($500+/mo) or hits rigid execution limits, n8n provides unlimited executions, full JSON data control, self-hosted privacy compliance, and native code node execution (JavaScript/Python).",
+      "When Zapier or Make becomes costly or hits execution limits, n8n offers more control over data, custom logic, and deployment. Self-hosting gives you ownership of the infrastructure.",
     workflowSteps: [
       "Custom Webhook Listener with HMAC Authentication & Payload Validation",
       "Multi-Branch Data Transformation (Code nodes, JSON normalization)",
@@ -184,42 +184,42 @@ export const SERVICES_DATA: Record<string, ServiceDetail> = {
     ],
     keyCapabilities: [
       {
-        title: "Complex Multi-System Orchestration",
-        description: "Sync GoHighLevel with PostgreSQL, Stripe, Airtable, ERPs, and custom internal software in real time.",
+        title: "Flexible Multi-System Orchestration",
+        description: "Sync GoHighLevel with PostgreSQL, Stripe, Airtable, and other systems based on agreed integration scope.",
       },
       {
-        title: "Zero Execution Fee Scalability",
-        description: "Run millions of workflow events on self-hosted Docker/VPS instances without paying per-task subscription fees.",
+        title: "Self-Hosted or Cloud Deployment",
+        description: "Choose the deployment model that fits your access, security, maintenance, and budget requirements.",
       },
       {
-        title: "Autonomous AI Agent Workflows",
-        description: "Integrate LLM reasoning nodes with custom toolkits to classify inquiries, extract invoice data, and trigger CRM updates.",
+        title: "AI-Assisted Workflow Nodes",
+        description: "Integrate LLM reasoning nodes to classify inquiries, extract data, and trigger CRM updates within defined boundaries.",
       },
       {
-        title: "Bulletproof Error Interceptors",
-        description: "Sub-workflows dedicated to catching API rate limits, auto-retrying failed calls, and alerting admins immediately.",
+        title: "Error Handling and Alerts",
+        description: "Sub-workflows dedicated to catching API errors, retrying failed calls, and notifying admins when intervention is needed.",
       },
     ],
     useCases: [
       {
-        industry: "SaaS & High-Volume E-Commerce",
-        scenario: "Zapier monthly bills exceeding $800 with frequent payload timeouts during peak traffic.",
-        outcome: "Migrated to self-hosted n8n on Hetzner VPS: 10x faster execution speed, 95% software cost reduction.",
+        industry: "High-Volume Operations",
+        scenario: "Zapier monthly bills growing with frequent payload timeouts during peak traffic.",
+        outcome: "Migrated to self-hosted n8n: reduced per-execution costs and gained more control over workflow logic and data.",
       },
       {
         industry: "Real Estate & Lead Generation",
-        scenario: "Leads arriving from multiple ad portals needing enrichment, skip tracing, and CRM injection in real time.",
-        outcome: "Unified n8n pipeline enriching lead data via third-party APIs before injecting into GoHighLevel.",
+        scenario: "Leads arriving from multiple ad portals needing enrichment and CRM injection.",
+        outcome: "Unified n8n pipeline processing lead data via third-party APIs before injecting into GoHighLevel.",
       },
     ],
     faqs: [
       {
-        question: "Why should we choose n8n over Zapier or Make?",
-        answer: "n8n offers self-hosting for complete data privacy (GDPR/HIPAA compliance), allows raw code execution (JavaScript/Python), supports complex looping, and eliminates per-task pricing tiers.",
+        question: "Why consider n8n over Zapier or Make?",
+        answer: "n8n allows self-hosting for data control, supports custom code execution (JavaScript/Python), handles complex branching, and removes per-task pricing. The right choice depends on your complexity, maintenance capability, and budget.",
       },
       {
         question: "Can n8n run on our own servers?",
-        answer: "Yes. I deploy and harden n8n on Docker, AWS, DigitalOcean, or Hetzner with SSL, automated backups, and Redis queue scaling.",
+        answer: "Yes. I deploy n8n on Docker, AWS, DigitalOcean, or similar environments. Hosting, backups, monitoring, and API usage are separate considerations to plan for.",
       },
     ],
     techStack: ["n8n", "Docker", "PostgreSQL", "Node.js", "REST APIs", "Webhooks"],
@@ -343,39 +343,39 @@ export const SERVICES_DATA: Record<string, ServiceDetail> = {
       "Turn cold leads into closed customers. Speed-to-lead automation delivering personalized multi-channel responses within 120 seconds of inquiry.",
     targetKeywords: ["lead follow-up automation", "automated lead nurturing", "lead response automation", "speed to lead workflows"],
     quickAnswer:
-      "Lead follow-up automation is an operational system that guarantees every inbound lead receives personalized, multi-channel outreach (SMS, email, voice call) within seconds, followed by timed conversational follow-up until they respond.",
+      "Lead follow-up automation is a system that ensures every inbound lead receives a timely, relevant response, followed by further follow-up until they reply, book, or opt out.",
     whyChoose:
-      "Research shows contacting a lead within 5 minutes increases conversion by 391%. My speed-to-lead systems connect your ad campaigns directly to automated SMS and phone loops within 60 to 90 seconds.",
+      "The challenge isn't usually lead volume—it's what happens after the inquiry arrives. I build systems that respond promptly, keep conversations organized, and alert a human when personal attention is needed.",
     workflowSteps: [
-      "Instant Lead Webhook Capture from Meta, Google Ads, TikTok, or Website",
-      "Immediate Phone Verification & Contact Record Creation",
-      "First Touchpoint (Personalized SMS referencing the exact ad / service)",
-      "Forced Call Loop Dispatch (Ring sales rep first, then auto-dial prospect)",
-      "Persistent Multi-Day Drip Sequence with Smart Response Stop-Triggers",
+      "Lead capture from your website, ads, or forms",
+      "Create or update the CRM contact and assign an owner",
+      "Send an appropriate first response through the agreed channel",
+      "Follow up based on timing, behavior, and your business rules",
+      "Stop, route, or update when the lead replies, books, or opts out",
     ],
     keyCapabilities: [
       {
-        title: "Forced Call Loops",
-        description: "Connect sales agents to hot prospects instantly via automated bridge calls the second a form is submitted.",
+        title: "Timely First Response",
+        description: "Send an appropriate confirmation or next step through the approved channel when a lead comes in.",
       },
       {
-        title: "Condition-Specific SMS Follow-Up",
-        description: "Tailored text messages referencing the specific pain point or product the prospect clicked on.",
+        title: "Condition-Specific Follow-Up",
+        description: "Continue at sensible intervals based on the lead's inquiry, your business rules, and their actions.",
       },
       {
-        title: "Automated Lead Re-engagement",
-        description: "Timed follow-ups on Day 1, 2, 4, 7, and 14 that maintain warmth without feeling like spam.",
+        title: "Stop Rules and Human Handoff",
+        description: "Pause or stop the sequence when a lead replies, books, or opts out. Alert a person when the conversation needs personal attention.",
       },
       {
-        title: "Unresponsive Lead Recovery",
-        description: "Low-pressure conversational text nudges that recover up to 25% of prospects who ghosted initial contact.",
+        title: "CRM Visibility",
+        description: "Keep stages, tasks, and conversations organized so your team can see what happened with each inquiry.",
       },
     ],
     useCases: [
       {
-        industry: "Home Remodeling & Roofing",
-        scenario: "Average time to contact a website lead was 6 hours, leading to prospects hiring the first competitor who picked up.",
-        outcome: "Reduced contact time to 45 seconds via automated SMS and call loop, doubling quote conversion rates.",
+        industry: "Home Services",
+        scenario: "Average time to respond to a website lead was several hours, by which time prospects had often contacted a competitor.",
+        outcome: "Automated first response sent promptly after lead submission, with follow-up continuing until the lead replies or books.",
       },
     ],
     faqs: [
@@ -399,13 +399,13 @@ export const SERVICES_DATA: Record<string, ServiceDetail> = {
     quickAnswer:
       "Appointment booking automation is a complete scheduling framework that allows prospects to book confirmed times based on real-time availability, while automated reminder sequences ensure they show up prepared.",
     whyChoose:
-      "A calendar link is only the first step. My appointment systems combine pre-call qualification questionnaires, multi-channel reminders (24h, 2h, 10m before), and instant one-click reschedule options to drive 85%+ show-up rates.",
+      "A calendar link is only the first step. My appointment systems combine pre-booking steps, multi-channel reminders, and easy rescheduling options to reduce no-shows and unnecessary back-and-forth.",
     workflowSteps: [
-      "Custom Booking Interface with Embedded Qualification Questions",
-      "Real-Time Two-Way Calendar Sync (Google, Outlook, Apple Calendar)",
-      "Instant Calendar Invite with Zoom / Google Meet Link Generation",
-      "Automated Pre-Call Reminder Sequence (Email + SMS + WhatsApp)",
-      "Post-Appointment Automated Routing (Attended vs No-Show Sequence)",
+      "Booking interface with qualification questions where agreed",
+      "Real-time two-way calendar sync (Google, Outlook, Apple Calendar)",
+      "Calendar invite with meeting link generation",
+      "Automated reminder sequence (email, SMS, or WhatsApp based on agreed channels)",
+      "Post-appointment routing based on attended or no-show status",
     ],
     keyCapabilities: [
       {
@@ -427,9 +427,9 @@ export const SERVICES_DATA: Record<string, ServiceDetail> = {
     ],
     useCases: [
       {
-        industry: "Medical & Dental Clinics",
-        scenario: "High no-show rates costing thousands in vacant practitioner treatment hours every week.",
-        outcome: "Automated SMS reminders with 2-way confirmation reduced missed appointments by 68%.",
+        industry: "Clinics & Wellness",
+        scenario: "Manual appointment reminders were inconsistent and missed appointments disrupted the schedule.",
+        outcome: "Automated reminder sequences sent at agreed intervals, with easy rescheduling links and no-show follow-up workflows.",
       },
     ],
     faqs: [
@@ -453,7 +453,7 @@ export const SERVICES_DATA: Record<string, ServiceDetail> = {
     quickAnswer:
       "CRM automation replaces manual data entry by triggering automated actions whenever a prospect moves through different stages of your sales pipeline, keeping deals moving and sales teams accountable.",
     whyChoose:
-      "Sales reps waste 30% of their day manually updating deal stages, composing emails, and setting reminders. My CRM automations execute all updates in the background the moment actions occur.",
+      "Sales teams spend significant time manually updating deal stages and setting reminders. CRM automations execute updates in the background when agreed actions occur, reducing manual overhead.",
     workflowSteps: [
       "Stage Movement Triggers (Proposal viewed, call finished, contract signed)",
       "Automated Document Generation & Contract Dispatch",
@@ -481,9 +481,9 @@ export const SERVICES_DATA: Record<string, ServiceDetail> = {
     ],
     useCases: [
       {
-        industry: "Consulting & Corporate Services",
-        scenario: "Deals lingering in limbo with no follow-up because account managers lacked structured task reminders.",
-        outcome: "Automated stalled-deal alerts and follow-up sequences increased pipeline velocity by 45%.",
+        industry: "Consulting & Service Companies",
+        scenario: "Deals lingering without follow-up because account managers lacked structured reminders and clear task ownership.",
+        outcome: "Automated stalled-deal alerts and follow-up task creation so the next step is always visible.",
       },
     ],
     faqs: [

@@ -21,13 +21,14 @@ export default function ServicesPage() {
     <div className="pt-24 sm:pt-32 pb-16 sm:pb-20 bg-[var(--background)] min-h-[100dvh]">
       <div className="max-w-6xl mx-auto px-5 sm:px-6 mb-12 text-center">
         <p className="text-[var(--accent)] font-sans uppercase tracking-[0.2em] text-xs sm:text-sm font-semibold mb-3">
-          Specialized Services
+          What I Build
         </p>
         <h1 className="text-3xl sm:text-5xl md:text-6xl font-heading font-semibold text-white tracking-tight">
-          Intelligent Automation <span className="text-[var(--accent)] italic">Services</span>
+          Automation for the parts of your business{" "}
+          <span className="text-[var(--accent)] italic">that keep slipping through the cracks</span>
         </h1>
         <p className="mt-4 sm:mt-6 text-[var(--ice)]/80 font-sans text-sm sm:text-lg max-w-2xl mx-auto">
-          Every system is architected to eliminate repetitive manual admin work, connect disconnected software, and capture leads 24/7.
+          I build lead follow-up, CRM, appointment, and integration systems that reduce manual chasing and make the next step clear.
         </p>
       </div>
 
@@ -79,7 +80,7 @@ export default function ServicesPage() {
         <ServicesBento showHeader={false} />
       </div>
 
-      <MiniTestimonials heading="Results My Clients Love" subheading="Real businesses, real automations, real revenue." />
+      <MiniTestimonials heading="Feedback on the Work" subheading="What clients say about working together." />
     </div>
   );
 }

@@ -107,8 +107,8 @@ export function HeroScroll() {
                 className="text-2xl sm:text-3xl lg:text-4xl xl:text-[2.65rem] font-heading font-semibold text-white tracking-tight leading-[1.18] mb-3"
               >
                 <HeroShutterText
-                  text="I Build CRM & AI Automation Systems That Turn Leads Into Customers."
-                  accentWords={["CRM", "AI", "Automation", "Customers."]}
+                  text="Leads coming in but follow-up falling behind?"
+                  accentWords={["Leads", "follow-up", "behind?"]}
                   textClassName="text-2xl sm:text-3xl lg:text-4xl xl:text-[2.65rem] font-heading font-semibold"
                 />
               </motion.div>
@@ -120,7 +120,7 @@ export function HeroScroll() {
                 transition={{ duration: 0.5, delay: 0.25 }}
                 className="text-xs sm:text-sm lg:text-base font-sans text-[var(--ice)]/80 leading-relaxed mb-5 max-w-xl"
               >
-                I design and implement GoHighLevel, n8n and AI-powered workflows that automate lead capture, qualification, follow-up, appointment booking and CRM operations for service businesses.
+                I build practical CRM and automation systems that respond to new inquiries, organize every conversation, and help your team move prospects toward a booked appointment—without relying on manual chasing.
               </motion.p>
 
               {/* Vertical Trust Checklist */}
@@ -130,7 +130,7 @@ export function HeroScroll() {
                 transition={{ duration: 0.5, delay: 0.35 }}
                 className="space-y-2.5 mb-6"
               >
-                {["50+ Automations Built", "GoHighLevel & n8n Specialist", "100% Custom Workflows"].map((bullet) => (
+                {["GoHighLevel • n8n Implementation", "Structured Follow-Up & Human Handoff", "Forms, Calendars, CRM & Messaging Synced"].map((bullet) => (
                   <div key={bullet} className="flex items-center gap-2.5">
                     <CheckCircle size={16} className="text-[var(--accent)] shrink-0" />
                     <span className="text-xs sm:text-sm font-sans text-[var(--ice)]/90 font-medium">{bullet}</span>
@@ -148,13 +148,13 @@ export function HeroScroll() {
                 <Link href="/contact">
                   <MagneticButton variant="primary" size="md" className="h-11 sm:h-12 px-6 sm:px-7 font-bold">
                     <CalendarCheck size={18} weight="bold" />
-                    <span>Book a Strategy Call</span>
+                    <span>Book Your Complimentary Strategy Call</span>
                   </MagneticButton>
                 </Link>
 
-                <Link href="/projects">
+                <Link href="/contact">
                   <RippleButton variant="outline" className="h-11 sm:h-12 px-6 sm:px-7 text-xs sm:text-sm font-medium">
-                    <span>View Case Studies</span>
+                    <span>Discuss Your Project</span>
                     <ArrowRight size={14} />
                   </RippleButton>
                 </Link>
