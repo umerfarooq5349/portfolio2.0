@@ -1,321 +1,142 @@
-import type { Metadata } from "next";
-import Link from "next/link";
-import { notFound } from "next/navigation";
-import { SERVICES_DATA, ServiceDetail } from "@/lib/services-data";
-import {
-  ArrowLeft,
-  ArrowRight,
-  CheckCircle2,
-  CalendarCheck,
-  Cpu,
-  Layers,
-  Sparkles,
-  HelpCircle,
-  Briefcase,
-  ChevronRight,
-} from "lucide-react";
-import RippleButton from "@/components/lightswind/ripple-button";
+"use client";
+
+import { motion } from "framer-motion";
+import { Download, Calendar, FileText, CheckCircle2, Zap } from "lucide-react";
 import { MagneticButton } from "@/components/lightswind/magnetic-button";
+import { LiquidGlassButton } from "@/components/lightswind/liquid-glass-button";
+import Link from "next/link";
 
-export function generateStaticParams() {
-  return Object.keys(SERVICES_DATA).map((slug) => ({ slug }));
-}
+const experience = [
+  {
+    role: "GoHighLevel Team Lead",
+    company: "Ignitto",
+    period: "January 2025 - Present",
+    desc: "Leading a GoHighLevel automation engineering team, training builders into production-ready funnel, workflow, and integration architects. Spearheading complex client ecosystems including Practice Hub EHR integrations, large-scale database cleanups (tens of thousands of contacts), Instantly.ai cold email outbound systems, and AI-powered patient chatbots.",
+  },
+  {
+    role: "CRM & Workflow Automation Specialist",
+    company: "Independent Client Engagements",
+    period: "2023 - 2024",
+    desc: "Designed and deployed full-scale GoHighLevel patient acquisition systems, multi-channel unified inboxes (WhatsApp Business + Email), and condition-specific automated nurture workflows for healthcare and wellness clinics across Ireland, Germany, and Australia.",
+  },
+  {
+    role: "BS in Information Technology",
+    company: "Bahria University",
+    period: "Class of 2024",
+    desc: "Graduated with a strong foundation in database management, software architecture, RESTful API integrations, and systems engineering.",
+  },
+];
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}): Promise<Metadata> {
-  const { slug } = await params;
-  const service = SERVICES_DATA[slug];
-  if (!service) return { title: "Service Not Found" };
+const skills = [
+  { category: "CRM & Funnel Platforms", items: ["GoHighLevel (GHL)", "Practice Hub EHR", "HubSpot", "Funnel CRO", "Membership Portals"] },
+  { category: "Workflow Automation & APIs", items: ["n8n", "Zapier", "Pabbly Connect", "REST Webhooks", "Make (Integromat)"] },
+  { category: "Outbound & Messaging", items: ["Instantly.ai", "WhatsApp Business API", "Twilio SMS", "Mailgun", "B2B Outbound"] },
+  { category: "AI & Modern Tools", items: ["OpenAI API", "Custom AI Chatbots (LinaBot)", "Fathom AI", "Slack API", "Stripe API"] },
+];
 
-  return {
-    title: `${service.title} | Muhammad Umer Farooq`,
-    description: service.metaDescription,
-    keywords: service.targetKeywords,
-    alternates: {
-      canonical: `https://muhammadumer.coderacks.com/services/${service.slug}`,
-    },
-    openGraph: {
-      title: `${service.title} | Muhammad Umer Farooq`,
-      description: service.metaDescription,
-      url: `https://muhammadumer.coderacks.com/services/${service.slug}`,
-      type: "website",
-    },
-  };
-}
-
-export default async function ServiceDetailPage({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
-  const { slug } = await params;
-  const service = SERVICES_DATA[slug];
-
-  if (!service) {
-    notFound();
-  }
-
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    name: service.title,
-    description: service.metaDescription,
-    provider: {
-      "@type": "Person",
-      name: "Muhammad Umer Farooq",
-      url: "https://muhammadumer.coderacks.com",
-      jobTitle: "GoHighLevel & n8n Automation Expert",
-    },
-    serviceType: service.shortTitle,
-    areaServed: "Worldwide",
-    hasOfferCatalog: {
-      "@type": "OfferCatalog",
-      name: "Automation Services",
-      itemListElement: service.keyCapabilities.map((cap, idx) => ({
-        "@type": "Offer",
-        itemOffered: {
-          "@type": "Service",
-          name: cap.title,
-          description: cap.description,
-        },
-      })),
-    },
-  };
-
+export default function ResumePage() {
   return (
-    <div className="pt-24 sm:pt-32 pb-20 sm:pb-28 bg-[var(--background)] min-h-[100dvh]">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
-
+    <div role="region" aria-label="Qualifications and Resume" className="pt-24 sm:pt-32 pb-20 sm:pb-28 min-h-[100dvh] bg-[var(--background)]">
       <div className="max-w-5xl mx-auto px-5 sm:px-6">
-        {/* Breadcrumbs */}
-        <nav aria-label="Breadcrumbs" className="mb-6 flex items-center gap-2 text-xs font-sans text-[var(--ice)]/60">
-          <Link href="/" className="hover:text-[var(--accent)] transition-colors">Home</Link>
-          <ChevronRight size={12} />
-          <Link href="/services" className="hover:text-[var(--accent)] transition-colors">Services</Link>
-          <ChevronRight size={12} />
-          <span className="text-[var(--ice)] font-medium truncate max-w-xs">{service.shortTitle}</span>
-        </nav>
-
-        {/* Back Link */}
-        <div className="mb-8">
-          <Link
-            href="/services"
-            className="inline-flex items-center gap-2 text-xs sm:text-sm font-sans font-medium text-[var(--ice)]/70 hover:text-[var(--accent)] transition-colors"
-          >
-            <ArrowLeft size={16} />
-            <span>Back to All Services</span>
-          </Link>
-        </div>
-
+        
         {/* Header */}
-        <header className="mb-12">
-          <div className="inline-flex items-center gap-2 rounded-full bg-[var(--accent)]/10 px-3.5 py-1 text-xs font-sans font-semibold text-[var(--accent)] border border-[var(--accent)]/20 mb-4">
-            <Sparkles size={14} />
-            <span>{service.badge}</span>
-          </div>
-
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-heading font-semibold text-white tracking-tight leading-[1.15] mb-6">
-            {service.title}
-          </h1>
-
-          <p className="text-base sm:text-lg font-sans text-[var(--ice)]/80 leading-relaxed max-w-3xl">
-            {service.metaDescription}
-          </p>
-
-          <div className="flex flex-wrap items-center gap-4 mt-8">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-12 sm:mb-16 gap-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <p className="text-[var(--accent)] font-sans uppercase tracking-[0.2em] text-xs sm:text-sm font-semibold mb-2">Qualifications</p>
+            <h1 className="text-4xl sm:text-6xl md:text-7xl font-heading font-semibold text-white tracking-tight mb-3">
+              My <span className="text-[var(--accent)] italic">Resume</span>
+            </h1>
+            <p className="text-[var(--ice)]/80 font-sans text-base sm:text-lg">Muhammad Umer Farooq | CRM &amp; Automation Specialist</p>
+          </motion.div>
+          
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="flex flex-wrap items-center gap-3.5"
+          >
             <Link href="/contact">
-              <MagneticButton variant="primary" size="md" className="h-12 px-7 font-bold">
-                <CalendarCheck size={18} />
-                <span>Book a Strategy Call</span>
+              <MagneticButton variant="primary" size="sm" className="h-10 sm:h-11 px-5 sm:px-6 font-bold">
+                <Calendar size={17} />
+                <span>Book Complimentary Call</span>
               </MagneticButton>
             </Link>
+            <a href="/muhammad-umer-farooq-gohighlevel-expert.pdf" download="Muhammad_Umer_Farooq_Resume.pdf" className="inline-block">
+              <LiquidGlassButton variant="outline" className="h-10 sm:h-11 px-5 sm:px-6 text-xs sm:text-sm font-medium">
+                <Download size={16} />
+                <span>Download PDF</span>
+              </LiquidGlassButton>
+            </a>
+          </motion.div>
+        </div>
 
-            {service.relatedCaseStudySlug && (
-              <Link href={`/projects/${service.relatedCaseStudySlug}`}>
-                <RippleButton variant="outline" className="h-12 px-7 text-xs sm:text-sm font-medium">
-                  <span>View Related Case Study</span>
-                  <ArrowRight size={14} />
-                </RippleButton>
-              </Link>
-            )}
-          </div>
-        </header>
-
-        {/* Answer-First Quick Definition Card */}
-        <section className="p-6 sm:p-8 rounded-3xl bg-[var(--surface)] border border-[var(--accent)]/30 shadow-xl mb-12 relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-[radial-gradient(ellipse_at_top_right,rgba(236,179,101,0.12),transparent_70%)] pointer-events-none" />
-          <span className="text-xs font-sans font-bold uppercase tracking-widest text-[var(--accent)] block mb-2">
-            Overview &amp; Definition
-          </span>
-          <h2 className="text-xl sm:text-2xl font-heading font-semibold text-white mb-3">
-            What is {service.shortTitle}?
-          </h2>
-          <p className="text-sm sm:text-base font-sans text-[var(--ice)]/90 leading-relaxed mb-4">
-            {service.quickAnswer}
-          </p>
-          <div className="pt-3 border-t border-[var(--border-subtle)]">
-            <p className="text-xs sm:text-sm font-sans text-[var(--ice)]/70">
-              <strong className="text-white font-medium">Why work with a specialist: </strong>
-              {service.whyChoose}
+        {/* Resume Content */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="bg-[var(--surface)] border border-[var(--border-subtle)] rounded-3xl p-6 sm:p-10 md:p-16 space-y-12 sm:space-y-16"
+        >
+          {/* Summary */}
+          <section>
+            <h3 className="text-xs font-sans uppercase tracking-[0.2em] text-[var(--accent)] mb-6 border-b border-[var(--border-subtle)] pb-3 flex items-center gap-2 font-semibold">
+              <FileText size={14} className="text-[var(--accent)]" />
+              Professional Summary
+            </h3>
+            <p className="text-[var(--ice)] font-sans text-base md:text-lg leading-relaxed max-w-3xl">
+              GoHighLevel Team Lead &amp; CRM Automation Architect with extensive production experience directing automation teams and engineering high-impact client systems. Proven track record auditing healthcare funnels, integrating Practice Hub EHR with automated SMS recall engines, rebuilding large-scale databases (tens of thousands of contacts), and deploying 24/7 AI-powered conversational bots and B2B outbound engines.
             </p>
-          </div>
-        </section>
+          </section>
 
-        {/* Workflow Architecture Steps */}
-        <section className="mb-14">
-          <div className="flex items-center gap-2.5 mb-6">
-            <Layers className="text-[var(--accent)]" size={22} />
-            <h2 className="text-2xl font-heading font-semibold text-white">
-              Standard Architecture &amp; Implementation Workflow
-            </h2>
-          </div>
-
-          <div className="space-y-3">
-            {service.workflowSteps.map((step, idx) => (
-              <div
-                key={idx}
-                className="flex items-start gap-4 p-4.5 rounded-2xl bg-[var(--surface)] border border-[var(--border-subtle)]"
-              >
-                <span className="h-7 w-7 rounded-xl bg-[var(--accent)]/15 text-[var(--accent)] font-mono text-xs flex items-center justify-center font-bold shrink-0">
-                  {idx + 1}
-                </span>
-                <p className="text-sm font-sans text-[var(--ice)]/90 font-medium pt-0.5">{step}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Key Capabilities Grid */}
-        <section className="mb-14">
-          <div className="flex items-center gap-2.5 mb-6">
-            <Cpu className="text-[var(--accent)]" size={22} />
-            <h2 className="text-2xl font-heading font-semibold text-white">
-              Core Technical Capabilities
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {service.keyCapabilities.map((cap, idx) => (
-              <div
-                key={idx}
-                className="p-5 sm:p-6 rounded-2xl bg-[var(--surface)] border border-[var(--border-subtle)] flex flex-col justify-between"
-              >
-                <h3 className="text-lg font-heading font-semibold text-white mb-2 flex items-center gap-2">
-                  <CheckCircle2 size={18} className="text-emerald-400 shrink-0" />
-                  <span>{cap.title}</span>
-                </h3>
-                <p className="text-xs sm:text-sm font-sans text-[var(--ice)]/75 leading-relaxed">
-                  {cap.description}
-                </p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Real-World Use Cases */}
-        {service.useCases.length > 0 && (
-          <section className="mb-14">
-            <div className="flex items-center gap-2.5 mb-6">
-              <Briefcase className="text-[var(--accent)]" size={22} />
-              <h2 className="text-2xl font-heading font-semibold text-white">
-                Real-World Implementation Scenarios
-              </h2>
-            </div>
-
-            <div className="space-y-4">
-              {service.useCases.map((uc, idx) => (
-                <div
-                  key={idx}
-                  className="p-6 rounded-2xl bg-[var(--surface)] border border-[var(--border-subtle)] space-y-3"
-                >
-                  <span className="text-xs font-sans font-bold uppercase tracking-wider text-[var(--accent)]">
-                    {uc.industry}
-                  </span>
-                  <p className="text-xs sm:text-sm font-sans text-[var(--ice)]/80">
-                    <strong className="text-white">Operational Bottleneck: </strong>
-                    {uc.scenario}
-                  </p>
-                  <p className="text-xs sm:text-sm font-sans text-[var(--emerald)]">
-                    <strong className="text-white">Delivered System Outcome: </strong>
-                    {uc.outcome}
-                  </p>
+          {/* Work Experience */}
+          <section>
+            <h3 className="text-xs font-sans uppercase tracking-[0.2em] text-[var(--accent)] mb-8 border-b border-[var(--border-subtle)] pb-3 flex items-center gap-2 font-semibold">
+              <CheckCircle2 size={14} className="text-[var(--accent)]" />
+              Experience
+            </h3>
+            <div className="space-y-12">
+              {experience.map((job, idx) => (
+                <div key={idx} className="grid grid-cols-1 md:grid-cols-[1fr_2.5fr] gap-4 md:gap-8 border-b border-[var(--border-subtle)] pb-8 last:border-0 last:pb-0">
+                  <div>
+                    <h4 className="text-lg font-heading font-semibold text-white leading-tight">{job.role}</h4>
+                    <p className="text-[var(--ice)]/60 font-sans text-sm mt-1">{job.company}</p>
+                    <p className="text-[var(--accent)] font-sans text-xs mt-1 font-semibold">{job.period}</p>
+                  </div>
+                  <p className="text-[var(--ice)]/80 font-sans text-sm md:text-base leading-relaxed">{job.desc}</p>
                 </div>
               ))}
             </div>
           </section>
-        )}
 
-        {/* Frequently Asked Questions (Answer-First) */}
-        {service.faqs.length > 0 && (
-          <section className="mb-16">
-            <div className="flex items-center gap-2.5 mb-6">
-              <HelpCircle className="text-[var(--accent)]" size={22} />
-              <h2 className="text-2xl font-heading font-semibold text-white">
-                Frequently Asked Questions
-              </h2>
-            </div>
-
-            <div className="space-y-4">
-              {service.faqs.map((faq, idx) => (
-                <div
-                  key={idx}
-                  className="p-5 sm:p-6 rounded-2xl bg-[var(--surface)] border border-[var(--border-subtle)]"
-                >
-                  <h3 className="text-base sm:text-lg font-heading font-semibold text-white mb-2">
-                    {faq.question}
-                  </h3>
-                  <p className="text-xs sm:text-sm font-sans text-[var(--ice)]/80 leading-relaxed">
-                    {faq.answer}
-                  </p>
+          {/* Skills Breakdown */}
+          <section>
+            <h3 className="text-xs font-sans uppercase tracking-[0.2em] text-[var(--accent)] mb-8 border-b border-[var(--border-subtle)] pb-3 flex items-center gap-2 font-semibold">
+              <Zap size={14} className="text-[var(--accent)]" />
+              Skills &amp; Toolkit
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {skills.map((skillGroup, idx) => (
+                <div key={idx} className="p-6 rounded-2xl bg-[var(--surface-elevated)] border border-[var(--border-subtle)]">
+                  <h4 className="font-heading font-semibold text-[var(--accent)] text-sm uppercase tracking-wider mb-4">
+                    {skillGroup.category}
+                  </h4>
+                  <div className="flex flex-wrap gap-2">
+                    {skillGroup.items.map((item) => (
+                      <span key={item} className="px-3 py-1 rounded-full border border-[var(--border-subtle)] text-xs font-sans text-[var(--ice)] bg-[var(--surface)] hover:border-[var(--accent)]/40 hover:text-white transition-colors">
+                        {item}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               ))}
             </div>
           </section>
-        )}
 
-        {/* Technology Badges */}
-        <div className="p-6 rounded-2xl bg-[var(--surface)]/60 border border-[var(--border-subtle)] mb-14">
-          <span className="text-xs font-sans font-bold uppercase tracking-wider text-[var(--ice)]/60 block mb-3">
-            Integrated Platforms &amp; Technologies
-          </span>
-          <div className="flex flex-wrap gap-2">
-            {service.techStack.map((tech) => (
-              <span
-                key={tech}
-                className="px-3.5 py-1.5 rounded-full text-xs font-sans font-medium bg-[var(--surface-elevated)] border border-[var(--border-subtle)] text-white"
-              >
-                {tech}
-              </span>
-            ))}
-          </div>
-        </div>
-
-        {/* Final Conversion CTA */}
-        <div className="p-8 sm:p-12 rounded-3xl bg-gradient-to-br from-[var(--surface-elevated)] to-[var(--surface)] border border-[var(--accent)]/30 text-center space-y-4 shadow-2xl">
-          <span className="text-xs font-sans font-bold uppercase tracking-widest text-[var(--accent)]">
-            Ready to Automate?
-          </span>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-heading font-semibold text-white max-w-xl mx-auto">
-            Need a custom {service.shortTitle} system for your business?
-          </h2>
-          <p className="text-xs sm:text-sm font-sans text-[var(--ice)]/80 max-w-lg mx-auto leading-relaxed">
-            Let&apos;s map out your bottlenecks and build a custom architecture that eliminates manual admin work.
-          </p>
-          <div className="pt-2">
-            <Link href="/contact">
-              <MagneticButton variant="primary" size="md" className="h-12 px-8 font-bold">
-                <CalendarCheck size={18} />
-                <span>Book a Strategy Call</span>
-              </MagneticButton>
-            </Link>
-          </div>
-        </div>
+        </motion.div>
       </div>
     </div>
   );

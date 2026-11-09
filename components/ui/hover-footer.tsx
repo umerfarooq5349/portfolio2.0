@@ -33,14 +33,30 @@ export const TextHoverEffect = ({
       ref={svgRef}
       width="100%"
       height="100%"
-      viewBox="0 0 800 100"
+      viewBox="0 0 1600 240"
+      preserveAspectRatio="xMidYMid meet"
       xmlns="http://www.w3.org/2000/svg"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       onMouseMove={handleMouseMove}
-      className={cn("select-none uppercase cursor-pointer pointer-events-auto", className)}
+      className={cn("select-none uppercase cursor-pointer pointer-events-auto w-full h-auto block", className)}
     >
       <defs>
+        {/* Ambient Watermark Gradient (matching reference image) */}
+        <linearGradient id="ignittoGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stopColor="rgba(184, 219, 217, 0.22)" />
+          <stop offset="35%" stopColor="rgba(32, 71, 108, 0.32)" />
+          <stop offset="100%" stopColor="rgba(17, 40, 61, 0.08)" />
+        </linearGradient>
+
+        {/* Subtle Rim Stroke Gradient */}
+        <linearGradient id="ignittoStroke" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stopColor="rgba(184, 219, 217, 0.55)" />
+          <stop offset="45%" stopColor="rgba(184, 219, 217, 0.22)" />
+          <stop offset="100%" stopColor="rgba(32, 71, 108, 0.06)" />
+        </linearGradient>
+
+        {/* Interactive Hover Glow Gradient */}
         <linearGradient
           id="textGradient"
           gradientUnits="userSpaceOnUse"
@@ -63,7 +79,7 @@ export const TextHoverEffect = ({
         <motion.radialGradient
           id="revealMask"
           gradientUnits="userSpaceOnUse"
-          r="20%"
+          r="25%"
           initial={{ cx: "50%", cy: "50%" }}
           animate={maskPosition}
           transition={{ duration: duration ?? 0, ease: "easeOut" }}
@@ -81,44 +97,65 @@ export const TextHoverEffect = ({
           />
         </mask>
       </defs>
+
+      {/* Base fill layer — dark navy glass watermark */}
       <text
         x="50%"
         y="50%"
         textAnchor="middle"
-        dominantBaseline="middle"
-        className="fill-white/5 font-heading text-7xl font-bold tracking-tight"
+        dominantBaseline="central"
+        textLength="1550"
+        lengthAdjust="spacingAndGlyphs"
+        fill="url(#ignittoGradient)"
+        className="font-heading font-black"
+        style={{
+          fontSize: 220,
+          fontFamily: "var(--font-heading, 'Chubbo', sans-serif)",
+          fontWeight: 900,
+        }}
       >
-        {text}<tspan className="fill-[var(--accent)]/50">.</tspan>
+        {text}
       </text>
-      <motion.text
-        x="50%"
-        y="50%"
-        textAnchor="middle"
-        dominantBaseline="middle"
-        strokeWidth="0.3"
-        className="fill-transparent stroke-[var(--accent)] font-heading text-7xl font-bold tracking-tight opacity-30"
-        initial={{ strokeDashoffset: 1000, strokeDasharray: 1000 }}
-        animate={{
-          strokeDashoffset: 0,
-          strokeDasharray: 1000,
-        }}
-        transition={{
-          duration: 4,
-          ease: "easeInOut",
-        }}
-      >
-        {text}<tspan className="fill-transparent stroke-[var(--accent)]">.</tspan>
-      </motion.text>
+
+      {/* Top rim outline / stroke */}
       <text
         x="50%"
         y="50%"
         textAnchor="middle"
-        dominantBaseline="middle"
+        dominantBaseline="central"
+        textLength="1550"
+        lengthAdjust="spacingAndGlyphs"
+        fill="none"
+        stroke="url(#ignittoStroke)"
+        strokeWidth="1.6"
+        className="font-heading font-black"
+        style={{
+          fontSize: 220,
+          fontFamily: "var(--font-heading, 'Chubbo', sans-serif)",
+          fontWeight: 900,
+        }}
+      >
+        {text}
+      </text>
+
+      {/* Interactive reveal layer — follows cursor with gold accent beam */}
+      <text
+        x="50%"
+        y="50%"
+        textAnchor="middle"
+        dominantBaseline="central"
+        textLength="1550"
+        lengthAdjust="spacingAndGlyphs"
         fill="url(#textGradient)"
         mask="url(#textMask)"
-        className="font-heading text-7xl font-bold tracking-tight"
+        className="font-heading font-black"
+        style={{
+          fontSize: 220,
+          fontFamily: "var(--font-heading, 'Chubbo', sans-serif)",
+          fontWeight: 900,
+        }}
       >
-        {text}<tspan fill="var(--accent)">.</tspan>
+        {text}
       </text>
     </svg>
   );
@@ -129,8 +166,14 @@ export const FooterBackgroundGradient = () => {
     <div
       className="absolute inset-0 z-0 pointer-events-none"
       style={{
-        background:
-          "radial-gradient(125% 125% at 50% 10%, transparent 50%, rgba(236, 179, 101, 0.05) 100%)",
+        backgroundImage: `
+          linear-gradient(to right, rgba(184, 219, 217, 0.035) 1px, transparent 1px),
+          linear-gradient(to bottom, rgba(184, 219, 217, 0.035) 1px, transparent 1px),
+          radial-gradient(125% 125% at 50% 10%, transparent 45%, rgba(236, 179, 101, 0.05) 100%)
+        `,
+        backgroundSize: "48px 48px, 48px 48px, 100% 100%",
+        maskImage: "radial-gradient(ellipse 90% 90% at 50% 50%, black 40%, transparent 100%)",
+        WebkitMaskImage: "radial-gradient(ellipse 90% 90% at 50% 50%, black 40%, transparent 100%)",
       }}
     />
   );

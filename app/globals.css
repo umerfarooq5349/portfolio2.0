@@ -133,6 +133,53 @@ h6.font-heading,
   background-color: var(--accent) !important;
 }
 
+/* Marquee Animations (GPU-Accelerated 60fps/120fps) */
+@keyframes marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(calc(-100% - var(--gap, 1rem)), 0, 0);
+  }
+}
+
+@keyframes marquee-vertical {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(0, calc(-100% - var(--gap, 1rem)), 0);
+  }
+}
+
+.animate-marquee {
+  animation: marquee var(--duration, 40s) linear infinite;
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+.animate-marquee-reverse,
+.marquee-reverse .animate-marquee {
+  animation-direction: reverse !important;
+}
+
+.animate-marquee-vertical {
+  animation: marquee-vertical var(--duration, 40s) linear infinite;
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+.marquee-reverse .animate-marquee-vertical {
+  animation-direction: reverse !important;
+}
+
+/* Guaranteed Hover Pause */
+.group:hover .group-hover\:pause,
+.marquee-pause:hover .animate-marquee,
+.marquee-pause:hover .animate-marquee-vertical {
+  animation-play-state: paused !important;
+}
+
 /* Accessibility: Reduced Motion Override */
 @media (prefers-reduced-motion: reduce) {
   *,

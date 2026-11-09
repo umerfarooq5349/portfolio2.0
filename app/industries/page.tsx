@@ -14,7 +14,7 @@ import {
   CheckCircle2,
 } from "lucide-react";
 import { MagneticButton } from "@/components/lightswind/magnetic-button";
-import RippleButton from "@/components/lightswind/ripple-button";
+import { LiquidGlassButton } from "@/components/lightswind/liquid-glass-button";
 
 export const metadata: Metadata = {
   title: "Industries Served | CRM & Automation Architecture | Muhammad Umer Farooq",
@@ -168,14 +168,14 @@ export default function IndustriesIndexPage() {
             <Link href="/contact">
               <MagneticButton variant="primary" size="md" className="h-12 px-8 font-bold">
                 <CalendarCheck size={18} />
-                <span>Book Your Complimentary Strategy Call</span>
+                <span>Book Complimentary Call</span>
               </MagneticButton>
             </Link>
             <Link href="/services">
-              <RippleButton variant="outline" className="h-12 px-7 text-xs sm:text-sm font-medium">
+              <LiquidGlassButton variant="outline" className="h-12 px-7 text-xs sm:text-sm font-medium">
                 <span>Discuss Your Project</span>
                 <ArrowRight size={14} />
-              </RippleButton>
+              </LiquidGlassButton>
             </Link>
           </div>
         </div>

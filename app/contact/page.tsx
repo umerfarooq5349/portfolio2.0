@@ -101,7 +101,7 @@ export default function ContactPage() {
   return (
     <div
       role="region"
-      aria-label="Contact Muhammad Umer Farooq — Book a Strategy Call"
+      aria-label="Contact Muhammad Umer Farooq — Book Complimentary Call"
       className="pt-24 sm:pt-32 pb-20 sm:pb-28 min-h-[100dvh] bg-[var(--background)]"
     >
       <div className="max-w-6xl mx-auto px-5 sm:px-6">
@@ -131,7 +131,7 @@ export default function ContactPage() {
             className="text-[var(--ice)]/80 font-sans text-sm sm:text-lg max-w-2xl mx-auto"
           >
             Share the process you&apos;re trying to improve, the tools you use today, and what keeps requiring manual work. I&apos;ll review the details and let you know whether I can help. Prefer to talk first?{" "}
-            <span className="text-[var(--accent)] font-medium">Book Your Complimentary Strategy Call.</span>
+            <span className="text-[var(--accent)] font-medium">Book your complimentary call.</span>
           </motion.p>
         </div>
 

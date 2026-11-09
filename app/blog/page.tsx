@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { ArrowUpRight, Calendar, Clock, CalendarCheck } from "lucide-react";
-import RippleButton from "@/components/lightswind/ripple-button";
+import { LiquidGlassButton } from "@/components/lightswind/liquid-glass-button";
 import { MagneticButton } from "@/components/lightswind/magnetic-button";
 
 const posts = [
@@ -128,7 +128,7 @@ export default function BlogPage() {
             <Link href="/contact">
               <MagneticButton variant="primary" size="md" className="h-12 px-8 font-bold">
                 <CalendarCheck size={18} />
-                <span>Book Your Complimentary Strategy Call</span>
+                <span>Book Complimentary Call</span>
               </MagneticButton>
             </Link>
           </div>

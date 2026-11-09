@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ArrowLeft, House, Wrench, Briefcase, CalendarCheck } from "lucide-react";
 import { MagneticButton } from "@/components/lightswind/magnetic-button";
-import RippleButton from "@/components/lightswind/ripple-button";
+import { LiquidGlassButton } from "@/components/lightswind/liquid-glass-button";
 
 export default function NotFound() {
   return (
@@ -55,10 +55,10 @@ export default function NotFound() {
             </MagneticButton>
           </Link>
           <Link href="/contact">
-            <RippleButton variant="outline" className="h-12 px-7 text-xs sm:text-sm font-medium">
+            <LiquidGlassButton variant="outline" className="h-12 px-7 text-xs sm:text-sm font-medium">
               <CalendarCheck size={16} />
-              <span>Book a Strategy Call</span>
-            </RippleButton>
+              <span>Book Complimentary Call</span>
+            </LiquidGlassButton>
           </Link>
         </div>
       </div>

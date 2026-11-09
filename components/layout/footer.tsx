@@ -32,7 +32,7 @@ export function Footer() {
     { label: "Real Estate Automation", href: "/industries/real-estate" },
     { label: "Agency Systems", href: "/industries/agencies" },
     { label: "Contact & Audit", href: "/contact" },
-    { label: "Book a Strategy Call", href: "/contact", pulse: true },
+    { label: "Book Complimentary Call", href: "/contact", pulse: true },
   ];
 
   // All bottom icons (social + contact)
@@ -110,10 +110,18 @@ export function Footer() {
           </div>
         </div>
 
-        <hr className="border-t border-[var(--border-subtle)] my-8 relative z-50" />
+        <hr className="border-t border-[var(--border-subtle)] my-8 relative z-20" />
+      </div>
 
-        {/* Footer bottom */}
-        <div className="flex flex-col md:flex-row justify-between items-center text-sm font-sans space-y-6 md:space-y-0 relative z-50">
+      {/* Full-Screen-Width Name Watermark & Bottom Bar Section */}
+      <div className="w-full relative z-10 select-none overflow-hidden pb-4 sm:pb-6 pt-0">
+        {/* Edge-to-edge watermark spanning full screen width */}
+        <div className="w-full pointer-events-auto overflow-hidden px-0 relative z-10">
+          <TextHoverEffect text="Umer Farooq" />
+        </div>
+
+        {/* Footer bottom bar overlaid cleanly on lower portion of watermark */}
+        <div className="max-w-7xl mx-auto px-6 -mt-10 sm:-mt-14 md:-mt-20 lg:-mt-24 relative z-30 flex flex-col md:flex-row justify-between items-center text-sm font-sans space-y-4 md:space-y-0 pt-0">
 
           {/* Icons row */}
           <div className="flex flex-wrap justify-center gap-6 text-[var(--ice)]/60">
@@ -141,11 +149,6 @@ export function Footer() {
             &copy; {currentYear} Umer Farooq. All rights reserved.
           </p>
         </div>
-      </div>
-
-      {/* Text hover effect */}
-      <div className="lg:flex hidden h-[20rem] md:h-[30rem] -mt-52 -mb-36 pointer-events-none items-center justify-center relative z-0 max-w-7xl mx-auto px-6">
-        <TextHoverEffect text="Muhammad Umer" />
       </div>
 
       <FooterBackgroundGradient />

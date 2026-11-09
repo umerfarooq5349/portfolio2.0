@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { MagneticButton } from "@/components/lightswind/magnetic-button";
-import RippleButton from "@/components/lightswind/ripple-button";
+import { LiquidGlassButton } from "@/components/lightswind/liquid-glass-button";
 import Link from "next/link";
 import { CalendarCheck, ArrowRight } from "@phosphor-icons/react";
 
@@ -45,14 +45,14 @@ export function ContactCTA() {
               <Link href="/contact">
                 <MagneticButton variant="primary" size="md" className="h-11 sm:h-12 px-6 sm:px-7 font-bold">
                   <CalendarCheck size={18} weight="bold" />
-                  <span>Book a Call</span>
+                  <span>Book Complimentary Call</span>
                 </MagneticButton>
               </Link>
               <Link href="/services">
-                <RippleButton variant="outline" className="h-11 sm:h-12 px-6 sm:px-7 text-xs sm:text-sm font-medium">
+                <LiquidGlassButton variant="outline" className="h-11 sm:h-12 px-6 sm:px-7 text-xs sm:text-sm font-medium">
                   <span>View My Services</span>
                   <ArrowRight size={14} />
-                </RippleButton>
+                </LiquidGlassButton>
               </Link>
             </div>
           </div>

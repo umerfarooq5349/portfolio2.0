@@ -19,7 +19,7 @@ import {
   GithubLogo,
   InstagramLogo,
 } from "@phosphor-icons/react/dist/ssr";
-import RippleButton from "@/components/lightswind/ripple-button";
+import { LiquidGlassButton } from "@/components/lightswind/liquid-glass-button";
 import { MagneticButton } from "@/components/lightswind/magnetic-button";
 
 export const metadata: Metadata = {
@@ -314,7 +314,7 @@ export default function AboutPage() {
             <Link href="/contact">
               <MagneticButton variant="primary" size="md" className="h-12 px-8 font-bold">
                 <CalendarCheck size={18} />
-                <span>Book Your Complimentary Strategy Call</span>
+                <span>Book Complimentary Call</span>
               </MagneticButton>
             </Link>
           </div>

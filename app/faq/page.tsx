@@ -4,7 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, HelpCircle, Calendar, MessageSquare } from "lucide-react";
 import Link from "next/link";
-import RippleButton from "@/components/lightswind/ripple-button";
+import { LiquidGlassButton } from "@/components/lightswind/liquid-glass-button";
 import { MagneticButton } from "@/components/lightswind/magnetic-button";
 
 interface FAQItem {
@@ -200,14 +200,14 @@ export default function FAQPage() {
               <Link href="/contact">
                 <MagneticButton variant="primary" size="md" className="h-11 sm:h-12 px-6 sm:px-7 font-bold">
                   <Calendar size={18} />
-                  <span>Book a Call</span>
+                  <span>Book Complimentary Call</span>
                 </MagneticButton>
               </Link>
               <Link href="/services">
-                <RippleButton variant="outline" className="h-11 sm:h-12 px-6 sm:px-7 text-xs sm:text-sm font-medium">
+                <LiquidGlassButton variant="outline" className="h-11 sm:h-12 px-6 sm:px-7 text-xs sm:text-sm font-medium">
                   <MessageSquare size={16} />
                   <span>Explore Services</span>
-                </RippleButton>
+                </LiquidGlassButton>
               </Link>
             </div>
           </div>

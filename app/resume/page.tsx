@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { Download, Calendar, FileText, CheckCircle2, Zap } from "lucide-react";
 import { MagneticButton } from "@/components/lightswind/magnetic-button";
-import RippleButton from "@/components/lightswind/ripple-button";
+import { LiquidGlassButton } from "@/components/lightswind/liquid-glass-button";
 import Link from "next/link";
 
 const experience = [
@@ -62,14 +62,14 @@ export default function ResumePage() {
             <Link href="/contact">
               <MagneticButton variant="primary" size="sm" className="h-10 sm:h-11 px-5 sm:px-6 font-bold">
                 <Calendar size={17} />
-                <span>Book a Call</span>
+                <span>Book Complimentary Call</span>
               </MagneticButton>
             </Link>
             <a href="/muhammad-umer-farooq-gohighlevel-expert.pdf" download="Muhammad_Umer_Farooq_Resume.pdf" className="inline-block">
-              <RippleButton variant="outline" className="h-10 sm:h-11 px-5 sm:px-6 text-xs sm:text-sm font-medium">
+              <LiquidGlassButton variant="outline" className="h-10 sm:h-11 px-5 sm:px-6 text-xs sm:text-sm font-medium">
                 <Download size={16} />
                 <span>Download PDF</span>
-              </RippleButton>
+              </LiquidGlassButton>
             </a>
           </motion.div>
         </div>

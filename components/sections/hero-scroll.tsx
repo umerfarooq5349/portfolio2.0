@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import Link from "next/link";
 import { MagneticButton } from "@/components/lightswind/magnetic-button";
-import RippleButton from "@/components/lightswind/ripple-button";
+import { LiquidGlassButton } from "@/components/lightswind/liquid-glass-button";
 import HeroShutterText from "@/components/ui/hero-shutter-text";
 import { DotGrid } from "@/components/ui/DotGrid";
 import { ArrowRight, CalendarCheck, CheckCircle, Star, Lightning, SpeakerHigh, SpeakerSimpleSlash } from "@phosphor-icons/react";
@@ -67,11 +67,11 @@ export function HeroScroll() {
       className="relative min-h-[100dvh] bg-[var(--background)] text-white overflow-visible flex flex-col justify-between"
     >
       {/* Interactive DotGrid background */}
-      <div className="absolute inset-0 z-0 pointer-events-auto">
+      <div className="absolute inset-0 z-0 pointer-events-auto opacity-40">
         <DotGrid
           dotSize={6}
           gap={24}
-          baseColor="rgba(184, 219, 217, 0.08)"
+          baseColor="rgba(184, 219, 217, 0.07)"
           activeColor="#ECB365"
           proximity={140}
           shockRadius={260}
@@ -148,15 +148,15 @@ export function HeroScroll() {
                 <Link href="/contact">
                   <MagneticButton variant="primary" size="md" className="h-11 sm:h-12 px-6 sm:px-7 font-bold">
                     <CalendarCheck size={18} weight="bold" />
-                    <span>Book Your Complimentary Strategy Call</span>
+                    <span>Book Complimentary Call</span>
                   </MagneticButton>
                 </Link>
 
                 <Link href="/contact">
-                  <RippleButton variant="outline" className="h-11 sm:h-12 px-6 sm:px-7 text-xs sm:text-sm font-medium">
+                  <LiquidGlassButton variant="outline" className="h-11 sm:h-12 px-6 sm:px-7 text-xs sm:text-sm font-medium">
                     <span>Discuss Your Project</span>
                     <ArrowRight size={14} />
-                  </RippleButton>
+                  </LiquidGlassButton>
                 </Link>
               </motion.div>
             </div>

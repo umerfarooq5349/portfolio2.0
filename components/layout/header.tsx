@@ -6,7 +6,7 @@ import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-
 import { useState, useEffect } from "react";
 import { List, X, CalendarCheck } from "@phosphor-icons/react";
 import { cn } from "@/lib/utils";
-import RippleButton from "@/components/lightswind/ripple-button";
+import { LiquidGlassButton } from "@/components/lightswind/liquid-glass-button";
 import { MagneticButton } from "@/components/lightswind/magnetic-button";
 
 const links = [
@@ -182,10 +182,10 @@ export function Header() {
                   onClick={() => setMobileMenuOpen(false)}
                   className="block w-full"
                 >
-                  <RippleButton className="w-full h-11 text-xs sm:text-sm font-semibold">
+                  <LiquidGlassButton className="w-full h-11 text-xs sm:text-sm font-semibold">
                     <CalendarCheck size={18} weight="bold" />
-                    <span>Book Your Complimentary Strategy Call</span>
-                  </RippleButton>
+                    <span>Book Complimentary Call</span>
+                  </LiquidGlassButton>
                 </Link>
               </motion.div>
             </div>
@@ -195,5 +195,4 @@ export function Header() {
     </header>
   );
 }
-
 

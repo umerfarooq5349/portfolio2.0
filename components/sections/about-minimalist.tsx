@@ -2,7 +2,6 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
-import RippleButton from "@/components/lightswind/ripple-button";
 import { MagneticButton } from "@/components/lightswind/magnetic-button";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import { HangingIdCard } from "@/components/lightswind/hanging-id-card";
@@ -266,7 +265,7 @@ export function AboutMinimalist({ isPageHeading = false }: { isPageHeading?: boo
             <div className="pt-2 w-full">
               <Link href="/contact" className="block w-full">
                 <MagneticButton variant="primary" fullWidth size="md" className="w-full h-12 rounded-full font-bold">
-                  <span>Book Your Complimentary Strategy Call</span>
+                  <span>Book Complimentary Call</span>
                   <ArrowUpRight size={18} weight="bold" className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                 </MagneticButton>
               </Link>
